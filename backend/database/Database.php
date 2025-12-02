@@ -4,7 +4,7 @@ class Database {
     
     // ATTRIBUTI
     private $host = "localhost";
-    private $db_name = "yoga00";
+    private $db_name = "Aliston";
     private $username = "root";
     private $password = "root";
     private $conn;
