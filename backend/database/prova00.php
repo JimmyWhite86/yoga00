@@ -19,7 +19,7 @@
     $conn = $db->getConnection();
     
     if ($conn) {
-        echo "Connessione al db ok";
+        echo "Connessione al database riuscita correttamente";
     }
 ?>
 
