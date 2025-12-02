@@ -30,11 +30,12 @@ class Database {
         // Inizializzo la variabile a null
         $this->conn = null;
         
-        
         try {
             // Creo la connessione PDO
             $this->conn = new PDO(
-                "mysql:host={$this->host};dbname={$this->db_name};charset=utf8mb4",
+                "mysql:host={$this->host};
+                dbname={$this->db_name};
+                charset=utf8mb4",
                 $this->username,
                 $this->password
             );
