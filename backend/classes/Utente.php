@@ -1,5 +1,7 @@
 <?php
 
+    // PROVA GITHUB 20251202.00
+    
     require_once '../database/Database.php';
     
     class Utente
