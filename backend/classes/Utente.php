@@ -27,7 +27,7 @@
         
         
         // GETTER
-        public function getUtenteId(): int { return $this->utente_id; }    // TODO: ?int => Può restituire un intero oppure null (nel caso di utente non trovato)
+        public function getUtenteId(): ?int { return $this->utente_id; }    // ? => Può restituire un intero oppure null (nel caso di utente non trovato)
         public function isAdmin(): bool { return $this->admin; }
         public function getNomeUtente(): string { return $this->nome_utente; }
         public function getCognomeUtente(): string { return $this->cognome_utente; }
@@ -116,7 +116,8 @@
             $stmt->bindParam(":password", $this->password);
             
             // Eseguo la query e restituisco il risultato
-            return $stmt->execute();
+            $stmt->execute();
+            return $stmt;
         }
         
         // Read One
@@ -172,11 +173,36 @@
             $stmt->bindParam(':utente_id', $this->utente_id);
             
             // Eseguo la query e restituisco il risultato
+            $stmt->execute();
+            return $stmt;
+        }
+        
+        // Delete
+        function delete()
+        {
+            $query = "DELETE FROM utenti WHERE utente_id = :utente_id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':utente_id', $this->utente_id);
             return $stmt->execute();
         }
         
         
+        // ALTRI METODI
         
+        // Funzione per cercare utenti per keyword
+        function searchByKeyword($keyword)
+        {
+            // Cerco gli utenti
+            $query = "SELECT * FROM utenti WHERE
+                         nome_utente LIKE :keyword OR
+                         cognome_utente LIKE :keyword OR
+                         email LIKE :keyword";
+            $stmt = $this->conn->prepare($query);
+            $keyword = "%{$keyword}%";  // Aggiungo i caratteri jolly per la ricerca parziale (SQL)
+            $stmt->bindParam(':keyword', $keyword);
+            $stmt->execute();
+            return $stmt;               // Restituisco il risultato della query (in questo caso un recordset)
+        }
     }
    
     
