@@ -91,8 +91,87 @@
         
         // Search All
         function searchAll() {
-            $query = "SELECT * FROM utenti";
+            $query = "SELECT * FROM utenti";        // Scrivo la query per interrogare il db
+            $stmt = $this->conn->prepare($query);   // Preparo la query
+            return $stmt->execute();                // Restituisco il risultato della query
+        }
+        
+        // Create
+        function create()
+        {
+            $query = "INSERT INTO utenti SET
+                       nome_utente=:nome_utente,
+                       cognome_utente=:cognome_utente,
+                       data_nascita=:data_nascita,
+                       email=:email,
+                       password=:password";
+            
             $stmt = $this->conn->prepare($query);
+            
+            // Invio i valori per i parametri (i valori del nuovo prodotto sono nelle variabili di istanza).
+            $stmt->bindParam(":nome_utente", $this->nome_utente);
+            $stmt->bindParam(":cognome_utente", $this->cognome_utente);
+            $stmt->bindParam(":data_nascita", $this->data_nascita);
+            $stmt->bindParam(":email", $this->email);
+            $stmt->bindParam(":password", $this->password);
+            
+            // Eseguo la query e restituisco il risultato
+            return $stmt->execute();
+        }
+        
+        // Read One
+        function readOne()
+        {
+            $query = "SELECT * FROM utenti WHERE utente_id = :utente_id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':utente_id', $this->utente_id);
+            $stmt->execute();
+            
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);  // Leggo la prima (e unica) riga del risultato della query
+            
+            if ($row) {
+                // Inserisco i valori nelle variabili di istanza
+                $this->admin = $row['admin'];
+                $this->nome_utente = $row['nome_utente'];
+                $this->cognome_utente = $row['cognome_utente'];
+                $this->data_nascita = $row['data_nascita'];
+                $this->email = $row['email'];
+                $this->password = $row['password'];
+            } else {
+                // Se non trovo l'utente, imposto i valori delle variabili di istanza a null
+                $this->admin = null;
+                $this->nome_utente = null;
+                $this->cognome_utente = null;
+                $this->data_nascita = null;
+                $this->email = null;
+                $this->password = null;
+            }
+            
+            // la funzione readOne non restituisce un risultato, bensì modifica l'oggetto su cui viene invocata (cioè l'utente)
+        }
+        
+        // Update
+        function update()
+        {
+            $query = "UPDATE utenti SET
+                      nome_utente = :nome_utente,
+                      cognome_utente = :cognome_utente,
+                      data_nascita = :data_nascita,
+                      email = :email,
+                      password = :password
+                      WHERE
+                      utente_id = :utente_id";
+            $stmt = $this->conn->prepare($query);
+            
+            // Invio i valori per i parametri (i nuovi valori dell'utente sono nelle variabili di istanza).
+            $stmt->bindParam(':nome_utente', $this->nome_utente);
+            $stmt->bindParam(':cognome_utente', $this->cognome_utente);
+            $stmt->bindParam(':data_nascita', $this->data_nascita);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':password', $this->password);
+            $stmt->bindParam(':utente_id', $this->utente_id);
+            
+            // Eseguo la query e restituisco il risultato
             return $stmt->execute();
         }
         
