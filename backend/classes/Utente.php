@@ -91,7 +91,7 @@
         
         // Search All
         function searchAll() {
-            $query = "SELECT * FROM utenti";        // Scrivo la query per interrogare il db
+            $query = "SELECT * FROM {$this->table_name}";        // Scrivo la query per interrogare il db
             $stmt = $this->conn->prepare($query);   // Preparo la query
             return $stmt->execute();                // Restituisco il risultato della query
         }
@@ -99,7 +99,7 @@
         // Create
         function create()
         {
-            $query = "INSERT INTO utenti SET
+            $query = "INSERT INTO {$this->table_name} SET
                        nome_utente=:nome_utente,
                        cognome_utente=:cognome_utente,
                        data_nascita=:data_nascita,
@@ -123,7 +123,7 @@
         // Read One
         function readOne()
         {
-            $query = "SELECT * FROM utenti WHERE utente_id = :utente_id";
+            $query = "SELECT * FROM {$this->table_name} WHERE utente_id = :utente_id";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':utente_id', $this->utente_id);
             $stmt->execute();
@@ -154,7 +154,7 @@
         // Update
         function update()
         {
-            $query = "UPDATE utenti SET
+            $query = "UPDATE {$this->table_name} SET
                       nome_utente = :nome_utente,
                       cognome_utente = :cognome_utente,
                       data_nascita = :data_nascita,
@@ -162,6 +162,7 @@
                       password = :password
                       WHERE
                       utente_id = :utente_id";
+            
             $stmt = $this->conn->prepare($query);
             
             // Invio i valori per i parametri (i nuovi valori dell'utente sono nelle variabili di istanza).
@@ -180,10 +181,14 @@
         // Delete
         function delete()
         {
-            $query = "DELETE FROM utenti WHERE utente_id = :utente_id";
+            $query = "DELETE FROM {$this->table_name} WHERE utente_id = :utente_id";
+            
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':utente_id', $this->utente_id);
-            return $stmt->execute();
+            
+            // Eseguo la query e restituisco il risultato
+            $stmt->execute();
+            return $stmt;
         }
         
         
@@ -193,7 +198,7 @@
         function searchByKeyword($keyword)
         {
             // Cerco gli utenti
-            $query = "SELECT * FROM utenti WHERE
+            $query = "SELECT * FROM {$this->table_name} WHERE
                          nome_utente LIKE :keyword OR
                          cognome_utente LIKE :keyword OR
                          email LIKE :keyword";
