@@ -57,6 +57,9 @@
         
         public function setDataNascita($data_nascita): void
         {
+            // TODO: Inserire regular regex per validare la data.
+            // https://stackoverflow.com/questions/15491894/regex-to-validate-date-formats-dd-mm-yyyy-dd-mm-yyyy-dd-mm-yyyy-dd-mmm-yyyy
+            // if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $data))
             $this->data_nascita = $data_nascita;
         }
         
@@ -73,11 +76,26 @@
         
         public function setPassword($password): void
         {
-            $this->password = $password;
+            if (strlen($password) < 6) {        // Verifico che la password abbia almeno 6 caratteri.
+                throw new InvalidArgumentException("Password troppo corta. Almeno 6 caratteri.");
+            }
+            $this->password = password_hash($password, PASSWORD_DEFAULT);
+            // Trasformo la password in chiaro in una stringa criptata.
+            // PASSWORD_DEFAULT = Dice quale algoritmo usare per la criptatura. Viene aggiornato quando è disponibile un algoritmo piu sicuro.
+            // https://www.php.net/manual/en/function.password-hash.php
         }
         
         
-        // SETTER
+        
+        // METODI SCRUD
+        
+        // Search All
+        function searchAll() {
+            $query = "SELECT * FROM utenti";
+            $stmt = $this->conn->prepare($query);
+            return $stmt->execute();
+        }
+        
         
         
     }
