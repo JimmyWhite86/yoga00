@@ -4,18 +4,18 @@
     
     class Acquisti
     {
-        private $conn;                          // Connessione al DB (inizializzata nel costruttore);
-        private $table_name = "acquisti";       // Nome della tabella nel database;
+        private ?PDO $conn;                          // Connessione al DB (inizializzata nel costruttore);
+        private string $table_name = "acquisti";       // Nome della tabella nel database;
         
         
         // ATTRIBUTI ACQUISTO
-        private $acquisto_id;
-        private $utente_id;
-        private $abbonamento_id;
-        private $data_acquisto;
-        private $data_scadenza;
-        private $lezioni_rimanenti;
-        private $attivo;
+        private ?int $acquisto_id;
+        private bool $utente_id;
+        private ?string $abbonamento_id;
+        private ?string $data_acquisto;
+        private ?string $data_scadenza;
+        private ?string $lezioni_rimanenti;
+        private ?string $attivo;
         
         
         // COSTRUTTORE => Inizializza la variabile per la connessione al PDO
@@ -27,16 +27,16 @@
         
         // GETTER
         public function getAcquistoId(): ?int { return $this->acquisto_id; }    // ? => Può restituire un intero oppure null (nel caso di acquisto non trovato)
-        public function getUtenteId(): int { return $this->utente_id; }
-        public function getAbbonamentoId(): int { return $this->abbonamento_id; }
+        public function getUtenteId(): ?int { return $this->utente_id; }
+        public function getAbbonamentoId(): ?int { return $this->abbonamento_id; }
         public function getDataAcquisto() { return $this->data_acquisto; }
         public function getDataScadenza() { return $this->data_scadenza; }
-        public function getLezioniRimanenti(): int { return $this->lezioni_rimanenti; }
+        public function getLezioniRimanenti(): ?int { return $this->lezioni_rimanenti; }
         public function isAttivo(): bool { return $this->attivo; }
         
         
         // SETTER (con validazioni)
-        public function setUtenteId($utente_id): void
+        public function setUtenteId(int $utente_id): void
         {
             if (!is_int($utente_id) || $utente_id <= 0) {
                 throw new InvalidArgumentException("L'ID utente deve essere un intero positivo");
@@ -44,7 +44,7 @@
             $this->utente_id = $utente_id;
         }
         
-        public function setAbbonamentoId($abbonamento_id): void
+        public function setAbbonamentoId(int $abbonamento_id): void
         {
             if (!is_int($abbonamento_id) || $abbonamento_id <= 0) {
                 throw new InvalidArgumentException("L'ID abbonamento deve essere un intero positivo");
@@ -52,7 +52,7 @@
             $this->abbonamento_id = $abbonamento_id;
         }
         
-        public function setLezioniRimanenti($lezioni_rimanenti): void
+        public function setLezioniRimanenti(int $lezioni_rimanenti): void
         {
             if (!is_int($lezioni_rimanenti) || $lezioni_rimanenti < 0) {
                 throw new InvalidArgumentException("Le lezioni rimanenti devono essere un intero non negativo");
@@ -60,9 +60,9 @@
             $this->lezioni_rimanenti = $lezioni_rimanenti;
         }
         
-        public function setAttivo($attivo): void
+        public function setAttivo(bool $attivo): void
         {
-            $this->attivo = (bool)$attivo;
+            $this->attivo = $attivo;
         }
         
         
