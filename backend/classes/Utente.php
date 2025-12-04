@@ -1,6 +1,4 @@
 <?php
-
-    // PROVA GITHUB 20251202.01
     
     require_once '../database/Database.php';
     
@@ -8,6 +6,7 @@
     {
         private $conn;                      // Connessione al DB (inizializzata nel costruttore);
         private $table_name = "utenti";     // Nome della tabella nel database;
+        
         
         // ATTRIBUTI UTENTE
         private $utente_id;
@@ -106,6 +105,7 @@
                        email=:email,
                        password=:password";
             
+            // Preparo la query
             $stmt = $this->conn->prepare($query);
             
             // Invio i valori per i parametri (i valori del nuovo prodotto sono nelle variabili di istanza).
