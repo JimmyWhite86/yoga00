@@ -78,7 +78,7 @@
             $query = "INSERT INTO {$this->table_name} SET
                         utente_id=:utente_id,
                         lezione_id=:lezione_id,
-                        NOW() AS data_prenotazione";
+                        data_prenotazione = NOW();";
             
             // Preparo la query
             $stmt = $this->conn->prepare($query);

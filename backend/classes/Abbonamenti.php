@@ -79,7 +79,7 @@
             
             // Eseguo la query e restituisco il risultato
             $stmt->execute();
-            return false;
+            return $stmt;
         }
         
         // Read One

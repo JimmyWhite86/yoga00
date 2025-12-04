@@ -157,7 +157,7 @@
                       attiva=:attiva;";
             
             // Preparo la query
-            $stmt = $this->conn->pepare($query);
+            $stmt = $this->conn->prepare($query);
             
             // Invio i valori ai parametri della query (i valori del nuovo prodotto sono nelle variabili di istanza)
             $stmt->bindParam(':nome', $this->nome);
