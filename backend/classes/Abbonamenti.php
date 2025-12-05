@@ -4,14 +4,16 @@
     
     class Abbonamenti
     {
-        private $conn;                           // Connessione al DB (inizializzata nel costruttore);
-        private $table_name = "abbonamenti";     // Nome della tabella nel database;
+        private ?PDO $conn;                           // Connessione al DB (inizializzata nel costruttore);
+        private string $table_name = "abbonamenti";     // Nome della tabella nel database;
         
         // ATTRIBUTI ABBONAMENTO
-        private $abbonamento_id;
-        private $tipo_abbonamento;
-        private $prezzo;
-        private $durata_mesi;
+        private ?int $abbonamento_id;
+        private ?string $nome;
+        private ?string $descrizione;
+        private ?float $prezzo;
+        private ?int $durata_giorni;
+        private ?int $durata_lezioni;
         
         
         // COSTRUTTORE => Inizializza la variabile per la connessione al PDO
@@ -22,32 +24,54 @@
         
         // GETTER
         public function getAbbonamentoId(): ?int { return $this->abbonamento_id; }    // ? => Può restituire un intero oppure null (nel caso di abbonamento non trovato)
-        public function getTipoAbbonamento(): string { return $this->tipo_abbonamento; }
-        public function getPrezzo(): float { return $this->prezzo; }
-        public function getDurataMesi(): int { return $this->durata_mesi; }
+        public function getNome(): ?string { return $this->nome; }
+        public function getDescrizione(): ?string { return $this->descrizione; }
+        public function getPrezzo(): ?float { return $this->prezzo; }
+        public function getDurataGiorni(): ?int { return $this->durata_giorni; }
+        public function getDurataLezioni(): ?int { return $this->durata_lezioni; }
         
         
         // SETTER (con validazioni)
-        public function setTipoAbbonamento($tipo_abbonamento): void
+        public function setNome(string $nome): void
         {
-            // TODO: Aggiungere validazioni se necessario
-            $this->tipo_abbonamento = htmlspecialchars($tipo_abbonamento);
+            $nome = trim($nome);                          // trim => Rimuove spazi all'inizio e alla fine della stringa
+            if ($nome === '' || strlen($nome) < 2 ) {     // Controllo che il nome non sia stringa vuota o un solo carattere
+                throw new InvalidArgumentException("Il nome deve contenere almeno due caratteri");  // Lancia un'eccezione => obbliga a chi usa la classe a gestire l'errore.
+            }
+            $this->nome = htmlspecialchars($nome);        // Salva il valore facendo l'escape dei caratteri per prevenire XSS.
         }
         
-        public function setPrezzo($prezzo): void
+        public function setDescrizione(string $descrizione): void
+        {
+            $descrizione = trim($descrizione);
+            if ($descrizione === '' || strlen($descrizione) < 5) {
+                throw new InvalidArgumentException("La descrizione deve contenere almeno cinque caratteri");
+            }
+            $this->descrizione = htmlspecialchars($descrizione);
+        }
+        
+        public function setPrezzo(float $prezzo): void
         {
             if (!is_numeric($prezzo) || $prezzo < 0) {
-                throw new InvalidArgumentException("Il prezzo deve essere un numero positivo");
+                throw new InvalidArgumentException("Il prezzo deve essere un numero non negativo");
             }
-            $this->prezzo = floatval($prezzo);
+            $this->prezzo = $prezzo;
         }
         
-        public function setDurataMesi($durata_mesi): void
+        public function setDurataGiorni(int $durata_giorni): void
         {
-            if (!is_int($durata_mesi) || $durata_mesi <= 0) {
-                throw new InvalidArgumentException("La durata deve essere un intero positivo");
+            if (!is_int($durata_giorni) || $durata_giorni <= 0) {
+                throw new InvalidArgumentException("La durata in giorni deve essere un intero positivo");
             }
-            $this->durata_mesi = $durata_mesi;
+            $this->durata_giorni = $durata_giorni;
+        }
+        
+        public function setDurataLezioni(int $durata_lezioni): void
+        {
+            if (!is_int($durata_lezioni) || $durata_lezioni <= 0) {
+                throw new InvalidArgumentException("La durata in lezioni deve essere un intero positivo");
+            }
+            $this->durata_lezioni = $durata_lezioni;
         }
         
         
@@ -66,16 +90,21 @@
         public function create()
         {
             $query = "INSERT INTO {$this->table_name} SET
-                      tipo_abbonamento=:tipo_abbonamento,
-                      prezzo=:prezzo,
-                      durata_mesi=:durata_mesi;";
+                        nome=:nome,
+                        descrizione=:descrizione,
+                        prezzo=:prezzo,
+                        durata_giorni=:durata_giorni,
+                        durata_lezioni=:durata_lezioni;";
             
+            // Preparo la query
             $stmt = $this->conn->prepare($query);
             
-            // Invio i valori ai parametri della query
-            $stmt->bindParam(':tipo_abbonamento', $this->tipo_abbonamento);
-            $stmt->bindParam(':prezzo', $this->prezzo);
-            $stmt->bindParam(':durata_mesi', $this->durata_mesi);
+            // Invio i valori
+            $stmt->bindParam(":nome", $this->nome);
+            $stmt->bindParam(":descrizione", $this->descrizione);
+            $stmt->bindParam(":prezzo", $this->prezzo);
+            $stmt->bindParam(":durata_giorni", $this->durata_giorni);
+            $stmt->bindParam(":durata_lezioni", $this->durata_lezioni);
             
             // Eseguo la query e restituisco il risultato
             $stmt->execute();
@@ -94,16 +123,19 @@
             
             if ($row) {
                 // Inserisco i valori nelle variabili di istanza
-                $this->tipo_abbonamento = $row['tipo_abbonamento'];
+                $this->nome = $row['nome'];
+                $this->descrizione = $row['descrizione'];
                 $this->prezzo = $row['prezzo'];
-                $this->durata_mesi = $row['durata_mesi'];
+                $this->durata_giorni = $row['durata_giorni'];
+                $this->durata_lezioni = $row['durata_lezioni'];
             } else {
                 // Se non trovo l'abbonamento, imposto i valori delle variabili di istanza a null
-                $this->tipo_abbonamento = null;
+                $this->nome = null;
+                $this->descrizione = null;
                 $this->prezzo = null;
-                $this->durata_mesi = null;
+                $this->durata_giorni = null;
+                $this->durata_lezioni = null;
             }
-            
             // La funzione readOne non restituisce un risultato, ma modifica l'oggetto su cui viene invocata
         }
         
@@ -111,18 +143,22 @@
         function update()
         {
             $query = "UPDATE {$this->table_name} SET
-                      tipo_abbonamento = :tipo_abbonamento,
+                      nome=:nome,
+                      descrizione=:descrizione,
                       prezzo = :prezzo,
-                      durata_mesi = :durata_mesi
+                      durata_giorni=:durata_giorni,
+                      durata_lezioni=:durata_lezioni
                       WHERE
                       abbonamento_id = :abbonamento_id;";
             
             $stmt = $this->conn->prepare($query);
             
             // Invio i valori ai parametri della query
-            $stmt->bindParam(':tipo_abbonamento', $this->tipo_abbonamento);
+            $stmt->bindParam(':nome', $this->nome);
+            $stmt->bindParam(':descrizione', $this->descrizione);
             $stmt->bindParam(':prezzo', $this->prezzo);
-            $stmt->bindParam(':durata_mesi', $this->durata_mesi);
+            $stmt->bindParam(':durata_giorni', $this->durata_giorni);
+            $stmt->bindParam(':durata_lezioni', $this->durata_lezioni);
             $stmt->bindParam(':abbonamento_id', $this->abbonamento_id);
             
             // Eseguo la query e restituisco il risultato
@@ -149,12 +185,13 @@
         // Funzione per cercare per parola chiave
         function searchByKeyword($keyword)
         {
-            $query = "SELECT * FROM {$this->table_name} WHERE
-                        tipo_abbonamento LIKE :keyword
-                            ORDER BY tipo_abbonamento;";
+            $query = "SELECT FROM {$this->table_name}
+                      WHERE nome LIKE :keyword
+                      OR descrizione LIKE :keyword
+                      ORDER BY tipo_abbonamento;";
             
             $stmt = $this->conn->prepare($query);
-            $like_keyword = "%{$keyword}%";                     // Aggiungo i wildcard % per la ricerca parziale
+            $like_keyword = "%{$keyword}%";                             // Aggiungo i wildcard % per la ricerca parziale
             $stmt->bindParam(':keyword', $like_keyword);
             
             // Eseguo la query e restituisco il risultato
