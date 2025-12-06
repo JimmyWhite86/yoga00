@@ -4,18 +4,18 @@
     
     class Utente
     {
-        private $conn;                      // Connessione al DB (inizializzata nel costruttore);
-        private $table_name = "utenti";     // Nome della tabella nel database;
+        private ?PDO $conn;                      // Connessione al DB (inizializzata nel costruttore);
+        private string $table_name = "utenti";     // Nome della tabella nel database;
         
         
         // ATTRIBUTI UTENTE
-        private $utente_id;
-        private $admin;
-        private $nome_utente;
-        private $cognome_utente;
+        private ?int $utente_id;
+        private bool $admin;
+        private ?string $nome_utente;
+        private ?string $cognome_utente;
         private $data_nascita;
-        private $email;
-        private $password;
+        private ?string $email;
+        private ?string $password;
         
         
         // COSTRUTTORE => Inizializza la variabile per la connessione al PDO
@@ -31,12 +31,11 @@
         public function getNomeUtente(): string { return $this->nome_utente; }
         public function getCognomeUtente(): string { return $this->cognome_utente; }
         public function getDataNascita() { return $this->data_nascita;}
-        public function getEmail() { return $this->email; }
+        public function getEmail(): string { return $this->email; }
         
         
-
         // SETTER (con validazioni)
-        public function setNomeUtente($nome_utente): void
+        public function setNomeUtente(string $nome_utente): void
         {
             $nome_utente = trim($nome_utente);                          // trim => Rimuove spazi all'inizio e alla fine della stringa
             if ($nome_utente === '' || strlen($nome_utente) < 2 ) {     // Controllo che il nome non sia stringa vuota o un solo carattere
@@ -45,7 +44,7 @@
             $this->nome_utente = htmlspecialchars($nome_utente);        // Salva il valore facendo l'escape dei caratteri per prevenire XSS.
         }
         
-        public function setCognomeUtente($cognome_utente): void
+        public function setCognomeUtente(string $cognome_utente): void
         {
             $cognome_utente = trim($cognome_utente);
             if ($cognome_utente === '' || strlen($cognome_utente) < 2) {
@@ -62,7 +61,7 @@
             $this->data_nascita = $data_nascita;
         }
         
-        public function setEmail($email): void
+        public function setEmail(string $email): void
         {
             $email = filter_var($email, FILTER_SANITIZE_EMAIL);
             $email = filter_var($email, FILTER_VALIDATE_EMAIL); // vedere => Nota00
@@ -73,7 +72,7 @@
         }
         
         
-        public function setPassword($password): void
+        public function setPassword(string $password): void
         {
             if (strlen($password) < 6) {        // Verifico che la password abbia almeno 6 caratteri.
                 throw new InvalidArgumentException("Password troppo corta. Almeno 6 caratteri.");

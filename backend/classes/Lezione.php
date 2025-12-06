@@ -2,19 +2,19 @@
 
     class Lezione
     {
-        private $conn;                     // Connessione al DB (inizializzata nel costruttore);
-        private $table_name = "lezioni";   // Nome della tabella nel database;
+        private ?PDO $conn;                     // Connessione al DB (inizializzata nel costruttore);
+        private string $table_name = "lezioni";   // Nome della tabella nel database;
         
         // ATTRIBUTI LEZIONE
-        private $lezione_id;
-        private $nome;
-        private $descrizione;
-        private $giorno_settimana;
+        private ?int $lezione_id;
+        private ?string $nome;
+        private ?string $descrizione;
+        private ?string $giorno_settimana;
         private $ora_inizio;
         private $ora_fine;
-        private $insegnante;
-        private $posti_totali;
-        private $attiva;
+        private ?string $insegnante;
+        private ?int $posti_totali;
+        private bool $attiva;
         
         // COSTRUTTORE => Inizializza la variabile per la connessione al PDO
         public function __construct($db)
@@ -34,8 +34,9 @@
         public function getPostiTotali(): int { return $this->posti_totali; }
         public function isAttiva(): bool { return $this->attiva; }
         
+        
         // SETTER (con validazioni)
-        public function setNome($nome): void
+        public function setNome(string $nome): void
         {
             $nome = trim($nome);
             if ($nome === '' || strlen($nome) < 2) {
@@ -44,7 +45,7 @@
             $this->nome = htmlspecialchars($nome);
         }
         
-        public function setDescrizione($descrizione): void
+        public function setDescrizione(string $descrizione): void
         {
             $descrizione = trim($descrizione);
             if ($descrizione === '' || strlen($descrizione) < 5) {
@@ -53,7 +54,7 @@
             $this->descrizione = htmlspecialchars($descrizione);
         }
         
-        public function setGiornoSettimana($giorno_settimana): void
+        public function setGiornoSettimana(string $giorno_settimana): void
         {
             // Rimuovo spazi vuoti e metto la prima lettera maiuscola
             // https://www.php.net/manual/en/function.strtolower.php
@@ -81,17 +82,17 @@
             $this->ora_fine = $ora_fine;
         }
         
-        public function setInsegnante($insegnante): void
+        public function setInsegnante(string $insegnante): void
         {
             $this->insegnante = $insegnante;
         }
         
-        public function setPostiTotali($posti_totali): void
+        public function setPostiTotali(int $posti_totali): void
         {
             $this->posti_totali = $posti_totali;
         }
         
-        public function setAttiva($attiva): void
+        public function setAttiva(bool $attiva): void
         {
             $this->attiva = $attiva;
         }

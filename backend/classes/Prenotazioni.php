@@ -4,14 +4,14 @@
     
     class Prenotazioni
     {
-        private $conn;                          // Connessione al DB (inizializzata nel costruttore);
-        private $table_name = "prenotazioni";   // Nome della tabella nel database;
+        private ?PDO $conn;                          // Connessione al DB (inizializzata nel costruttore);
+        private string $table_name = "prenotazioni";   // Nome della tabella nel database;
         
         
         // ATTRIBUTI PRENOTAZIONE
-        private $prenotazione_id;
-        private $utente_id;
-        private $lezione_id;
+        private ?int $prenotazione_id;
+        private ?int $utente_id;
+        private ?int $lezione_id;
         private $data_prenotazione;
         
         
@@ -23,28 +23,14 @@
         
         
         // GETTER
-        public function getPrenotazioneId(): ?int
-        {
-            return $this->prenotazione_id;
-        }    // ? => Può restituire un intero oppure null (nel caso di prenotazione non trovata)
+        public function getPrenotazioneId(): ?int { return $this->prenotazione_id; }    // ? => Può restituire un intero oppure null (nel caso di prenotazione non trovata)
+        public function getUtenteId(): int { return $this->utente_id; }
+        public function getLezioneId(): int { return $this->lezione_id; }
+        public function getDataPrenotazione() { return $this->data_prenotazione; }
         
-        public function getUtenteId(): int
-        {
-            return $this->utente_id;
-        }
-        
-        public function getLezioneId(): int
-        {
-            return $this->lezione_id;
-        }
-        
-        public function getDataPrenotazione()
-        {
-            return $this->data_prenotazione;
-        }
         
         // SETTER (con validazioni)
-        public function setUtenteId($utente_id): void
+        public function setUtenteId(int $utente_id): void
         {
             if (!is_int($utente_id) || $utente_id <= 0) {
                 throw new InvalidArgumentException("L'ID utente deve essere un intero positivo");
@@ -52,7 +38,7 @@
             $this->utente_id = $utente_id;
         }
         
-        public function setLezioneId($lezione_id): void
+        public function setLezioneId(int $lezione_id): void
         {
             if (!is_int($lezione_id) || $lezione_id <= 0) {
                 throw new InvalidArgumentException("L'ID lezione deve essere un intero positivo");
