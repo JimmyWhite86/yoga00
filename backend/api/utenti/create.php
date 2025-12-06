@@ -5,58 +5,81 @@
     // Viene specificato il formato della risposta (JSON)
     header("Content-Type: application/json; charset=UTF-8");
     
+    
     // Includo le classi per la gestione dei dati
     require_once '../../database/DatabaseBase.php';
     require_once '../../classes/Utente.php';
+    
     
     // Creo una connessione al DBMS
     $database = new DatabaseBase();
     $db = $database->getConnection();
     
     // Controllo la connessione al database => utile in fase di debug
-    if (!$db)
-    {
+    if (!$db) {
         http_response_code(500);    // response code 500 = internal server error
         echo json_encode(array("Messaggio" => "Errore connessione al server"));
+        exit;
     }
+    
     
     // Creo un'istanza di Utente
     $utente = new Utente($db);
     
-    // Leggo i dati nel body della request (metodo POST)
+    
+    // Leggo i dati JSON dal body della richiesta HTTP
     $data = json_decode(file_get_contents("php://input"));
     
-    // Controllo la presenza dei dati
-    if (
-        !empty($data->nome_utente) &&
-        !empty($data->cognome_utente) &&
-        !empty($data->data_nascita) &&
-        !empty($data->email) &&
-        !empty($data->password) )
-    {
-        // Inserisco le variabili di istanza dell'oggetto Utente
-        $utente -> setNomeUtente($data->nome_utente);
-        $utente -> setCognomeUtente($data->cognome_utente);
-        $utente -> setDataNascita($data->data_nascita);
-        $utente -> setEmail($data->email);
-        $utente -> setPassword($data->password);
-        
-        // Invoco il metodo create che crea un nuovo utente
-        if ($utente->create()) {        // Caso in cui la creazione va a buon fine
-            http_response_code(201);    // response code 201 = created
-            echo json_encode(array("Messaggio" => "Utente creato"));
-        } else {                        // Caso in cui la creazione fallisce
-            http_response_code(503);    // response code 503 = service unavailable
-            echo json_encode(array("Messaggio" => "Errori durante la creazione dell'utente"));
+    // Controllo che la presenza dei dati ed eventuali errori
+    if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+        http_response_code(400);
+        echo json_encode(array("Messaggio" => "JSON non valido: " . json_last_error_msg()));
+        exit;
+    }
+    
+    // Valido la presenza di campi obbligatori
+    $campi_obbligatori = [
+        'nome_utente',
+        'cognome_utente',
+        'data_nascita',
+        'email',
+        'password'];
+    $campi_mancanti = [];
+    
+    foreach ($campi_obbligatori as $campo) {
+        if (empty($data->$campo)) {
+            $campi_mancanti[] = $campo;
         }
-    } else {        // Caso in cui i dati siano incompleti
-        http_response_code(400);        // Response code 400 = Bad request
-        // Creo un oggetto JSON costituito dalla coppia messaggio : testo del messaggio
-        // Uso l'operatore ternario con empty() per evitare l'errore sulla stamap di un valore inesistente
-        echo json_encode(array("Messaggio" => "Impossibile creare il prodotto. I dati sono incompleti: "
-                . "nome = " . (empty($data->nome_utente) ? "null" : $data->nome_utente)
-                . "cognome = " . (empty($data->cognome_utente) ? "null" : $data->cognome_utente)
-                . "data nascita = " . (empty($data->data_nascita) ? "null" : $data->data_nascita)
-                . "email = " . (empty($data->email) ? "null" : $data->data_nascita)
-                . "password = " . (empty($data->password) ? "null" : $data->password)));
+    }
+    
+    if (!empty($campi_mancanti)) {
+        http_response_code(400);
+        echo json_encode(array(
+            "messaggio" => "Campi incompleti: ",
+            "Campi incompleti" => $campi_mancanti));
+        exit;
+    }
+    
+    
+    // Popolo l'oggetto Utente
+    try {
+        $utente->setNomeUtente($data->nome_utente);
+        $utente->setCognomeUtente($data->cognome_utente);
+        $utente->setDataNascita($data->data_nascita);
+        $utente->setEmail($data->email);
+        $utente->setPassword($data->password);
+    } catch (InvalidArgumentException $e) {
+        http_response_code(400);
+        echo json_encode(array("messaggio" => "Errore validazione dei dati",
+            "errore" => $e->getMessage()));
+    }
+    
+    
+    // Creo l'istanza all'interno del database
+    if ($utente->create()) {                   // Invoco il metodo create() che crea un nuovo utente
+        http_response_code(201); // response code: created
+        echo json_encode(array("messaggio" => "Utente creato con successo"));
+    } else {
+        http_response_code(503); // response code 503 = service unavailable
+        echo json_encode(array("messaggio" => "Impossibile creare l'utente."));
     }
