@@ -69,7 +69,7 @@
             if (!in_array($giorno, $giorni_validi, true)) {
                 throw new InvalidArgumentException("Il giorno della settimana non è valido");
             }
-            $this->giorno_settimana = $giorno_settimana;
+            $this->giorno_settimana = $giorno;
         }
         
         public function setOraInizio($ora_inizio): void

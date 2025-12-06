@@ -6,7 +6,6 @@
     {
         private ?PDO $conn;                           // Connessione al DB (inizializzata nel costruttore);
         private string $table_name = "abbonamenti";     // Nome della tabella nel database;
-        
         // ATTRIBUTI ABBONAMENTO
         private ?int $abbonamento_id;
         private ?string $nome;
@@ -80,7 +79,7 @@
         // Search All
         public function searchAll()
         {
-            $query = "SELECT * FROM " . $this->table_name . " ORDER BY tipo_abbonamento;";
+            $query = "SELECT * FROM {$this->table_name}";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt;
@@ -185,7 +184,7 @@
         // Funzione per cercare per parola chiave
         function searchByKeyword($keyword)
         {
-            $query = "SELECT FROM {$this->table_name}
+            $query = "SELECT * FROM {$this->table_name}
                       WHERE nome LIKE :keyword
                       OR descrizione LIKE :keyword
                       ORDER BY tipo_abbonamento;";

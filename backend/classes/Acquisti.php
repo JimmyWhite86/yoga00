@@ -11,11 +11,11 @@
         // ATTRIBUTI ACQUISTO
         private ?int $acquisto_id;
         private bool $utente_id;
-        private ?string $abbonamento_id;
-        private ?string $data_acquisto;
-        private ?string $data_scadenza;
-        private ?string $lezioni_rimanenti;
-        private ?string $attivo;
+        private ?int $abbonamento_id;
+        private $data_acquisto;
+        private $data_scadenza;
+        private ?int $lezioni_rimanenti;
+        private ?bool $attivo;
         
         
         // COSTRUTTORE => Inizializza la variabile per la connessione al PDO
