@@ -24,50 +24,15 @@
         
         
         // GETTER
-        public function getLezioneId(): ?int
-        {
-            return $this->lezione_id;
-        }    // ? => Può restituire un intero oppure null (nel caso di lezione non trovata)
-        
-        public function getNome(): string
-        {
-            return $this->nome;
-        }
-        
-        public function getDescrizione(): string
-        {
-            return $this->descrizione;
-        }
-        
-        public function getGiornoSettimana(): string
-        {
-            return $this->giorno_settimana;
-        }
-        
-        public function getOraInizio(): string
-        {
-            return $this->ora_inizio;
-        }
-        
-        public function getOraFine(): string
-        {
-            return $this->ora_fine;
-        }
-        
-        public function getInsegnante(): string
-        {
-            return $this->insegnante;
-        }
-        
-        public function getPostiTotali(): int
-        {
-            return $this->posti_totali;
-        }
-        
-        public function isAttiva(): bool
-        {
-            return $this->attiva;
-        }
+        public function getLezioneId(): ?int { return $this->lezione_id; }    // ? => Può restituire un intero oppure null (nel caso di lezione non trovata)
+        public function getNome(): string { return $this->nome; }
+        public function getDescrizione(): string { return $this->descrizione; }
+        public function getGiornoSettimana(): string { return $this->giorno_settimana; }
+        public function getOraInizio(): string { return $this->ora_inizio; }
+        public function getOraFine(): string { return $this->ora_fine; }
+        public function getInsegnante(): string { return $this->insegnante; }
+        public function getPostiTotali(): int { return $this->posti_totali; }
+        public function isAttiva(): bool { return $this->attiva; }
         
         // SETTER (con validazioni)
         public function setNome($nome): void
