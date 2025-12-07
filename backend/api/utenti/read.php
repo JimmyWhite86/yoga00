@@ -24,8 +24,6 @@
     }
     
     
-    
-    
     // Leggo e valido l'id nella richiesta GET e lo inserisco nella variabile di istanza utente_id dell'oggetto utente
     if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0) {
         http_response_code(400);
@@ -36,12 +34,15 @@
     }
     
     
-    // Creo l'oggetto utente
-    $utente = new Utente($db);
+    $utente = new Utente($db);  // Creo l'oggetto utente
+    $utente->setId($id_letto);  // Setto l'id dell'oggetto con il valore della richiesta GET
     
-    $utente->setId($id_letto);
+    // Invoco il metodo readOne
+    // L'id è già presente nella variabile di $utente
+    // La funzione readOne non un risultato ma modifica l'oggetto su cui viene invocata
+    $utente -> readOne();
     
-    if ($utente->readOne()) {
+    if ($utente->getNomeUtente() != null) {             // Se il nome è diverso da null allora l'utente cercato esiste
         $utente_trovato = [
             "utente_id" => $utente->getUtenteId(),
             "admin" => $utente->isAdmin(),
@@ -53,7 +54,7 @@
         
         http_response_code(200);
         echo json_encode($utente_trovato, JSON_UNESCAPED_UNICODE);
-    } else {
+    } else {                                            // Caso in cui l'utente cercato non viene trovato
         http_response_code(404);
         echo json_encode(array("messaggio" => "Utente non trovato"));
     }
