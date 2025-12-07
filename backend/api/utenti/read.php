@@ -24,33 +24,40 @@
     }
     
     
+    
+    
+    // Leggo e valido l'id nella richiesta GET e lo inserisco nella variabile di istanza utente_id dell'oggetto utente
+    if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0) {
+        http_response_code(400);
+        echo json_encode(array("messaggio" => "ID utente mancante o non valido"));
+        exit;
+    } else {
+        $id_letto = $_GET['id'];
+    }
+    
+    
+    // Creo l'oggetto utente
     $utente = new Utente($db);
     
-    // Leggo l'id nella richiesta GET e lo inserisco nella variabile di istanza utente_id dell'oggetto utente
-    $id_letto = isset($_GET['id']) ? $_GET['id'] : die();
     $utente->setId($id_letto);
     
-    // Invoco il metodo readOne
-    // L'id è presente nella variabile utente_id di $utente
-    // readOne non restituisce un risultato ma modifica l'oggetto su cui viene invocato
-    $utente -> readOne();
-    
-    if ($utente->getNomeUtente() != null) {  // Se il nome è diversione da null vuol dire che il prodotto esiste
-        // Costruisco un array che rappresenta l'utente
-        $utente_trovato = array(
+    if ($utente->readOne()) {
+        $utente_trovato = [
             "utente_id" => $utente->getUtenteId(),
             "admin" => $utente->isAdmin(),
             "nome_utente" => $utente->getNomeUtente(),
             "cognome_utente" => $utente->getCognomeUtente(),
             "data_nascita" => $utente->getDataNascita(),
             "email" => $utente->getEmail()
-        );
-        http_response_code(200);    // response code 200 = ok
-        echo json_encode($utente_trovato);       // trasformo l'array associativo in oggetto json e lo restituisco nella response
+        ];
+        
+        http_response_code(200);
+        echo json_encode($utente_trovato, JSON_UNESCAPED_UNICODE);
     } else {
         http_response_code(404);
         echo json_encode(array("messaggio" => "Utente non trovato"));
     }
+    
     
     
     
