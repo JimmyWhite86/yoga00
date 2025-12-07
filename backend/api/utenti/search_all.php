@@ -2,6 +2,7 @@
 
     require_once '../cors.php';
     
+    
     // Viene specificato il formato della risposta
     header("Content-Type: application/json; charset=UTF-8");
     
@@ -16,12 +17,11 @@
     $db = $database->getConnection();
     
     // Controllo la connessione al database => Utile in fase di debug
-    if (! $db) {
+    if (!$db) {
         http_response_code(500);        // response code 500 = internal server error
         echo json_encode(array("messaggio" => "Errore di connessione al server"));
         exit;
     }
-    
     
     
     $utente = new Utente($db);              // Creo un'istanza di Utente

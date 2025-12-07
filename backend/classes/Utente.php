@@ -35,6 +35,13 @@
         
         
         // SETTER (con validazioni)
+        
+        public function setId(int $utente_id)
+        {
+            // TODO: Aggiungere validazioni;
+            $this->utente_id = $utente_id;
+        }
+        
         public function setNomeUtente(string $nome_utente): void
         {
             $nome_utente = trim($nome_utente);                          // trim => Rimuove spazi all'inizio e alla fine della stringa
