@@ -1,6 +1,7 @@
 <?php
     
     require_once '../cors.php';
+    require_once '../../utils/utils.php';
     
     
     // Viene specificato il formato della risposta
@@ -16,7 +17,7 @@
     $database = new Database();
     $db = $database->getConnection();
     
-    // Controllo la connessione al database => Utile in fase di debug
+    // Controllo la connessione al database
     if (!$db) {
         http_response_code(500); // response code = internal server error;
         echo json_encode(array("messaggio" => "Errore di connessione al server"));
@@ -25,13 +26,14 @@
     
     
     // Leggo e valido l'id nella richiesta GET e lo inserisco nella variabile di istanza utente_id dell'oggetto utente
-    if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0) {
+ /*   if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0) {
         http_response_code(400);
         echo json_encode(array("messaggio" => "ID utente mancante o non valido"));
         exit;
     } else {
         $id_letto = $_GET['id'];
-    }
+    }*/
+    $id_letto = idIsValid('id');
     
     
     $utente = new Utente($db);  // Creo l'oggetto utente
