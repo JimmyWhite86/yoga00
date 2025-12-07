@@ -165,8 +165,7 @@
                       nome_utente = :nome_utente,
                       cognome_utente = :cognome_utente,
                       data_nascita = :data_nascita,
-                      email = :email,
-                      password = :password
+                      email = :email
                       WHERE
                       utente_id = :utente_id";
             
@@ -177,7 +176,7 @@
             $stmt->bindParam(':cognome_utente', $this->cognome_utente);
             $stmt->bindParam(':data_nascita', $this->data_nascita);
             $stmt->bindParam(':email', $this->email);
-            $stmt->bindParam(':password', $this->password);
+            // $stmt->bindParam(':password', $this->password);
             $stmt->bindParam(':utente_id', $this->utente_id);
             
             // Eseguo la query e restituisco il risultato
