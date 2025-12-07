@@ -18,7 +18,7 @@
     // Controllo la connessione al database => utile in fase di debug
     if (!$db) {
         http_response_code(500);    // response code 500 = internal server error
-        echo json_encode(array("Messaggio" => "Errore connessione al server"));
+        echo json_encode(array("messaggio" => "Errore connessione al server"));
         exit;
     }
     
@@ -30,10 +30,10 @@
     // Leggo i dati JSON dal body della richiesta HTTP
     $data = json_decode(file_get_contents("php://input"));
     
-    // Controllo che la presenza dei dati ed eventuali errori
+    // Controllo la presenza dei dati ed eventuali errori
     if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
         http_response_code(400);
-        echo json_encode(array("Messaggio" => "JSON non valido: " . json_last_error_msg()));
+        echo json_encode(array("messaggio" => "JSON non valido: " . json_last_error_msg()));
         exit;
     }
     
@@ -44,19 +44,19 @@
         'data_nascita',
         'email',
         'password'];
-    $campi_mancanti = [];
+    $campi_incompleti = [];
     
     foreach ($campi_obbligatori as $campo) {
         if (empty($data->$campo)) {
-            $campi_mancanti[] = $campo;
+            $campi_incompleti[] = $campo;
         }
     }
     
-    if (!empty($campi_mancanti)) {
+    if (!empty($campi_incompleti)) {
         http_response_code(400);
         echo json_encode(array(
             "messaggio" => "Campi incompleti: ",
-            "Campi incompleti" => $campi_mancanti));
+            "Campi incompleti" => $campi_incompleti ));
         exit;
     }
     
