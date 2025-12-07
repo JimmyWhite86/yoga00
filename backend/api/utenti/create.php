@@ -7,12 +7,12 @@
     
     
     // Includo le classi per la gestione dei dati
-    require_once '../../database/DatabaseBase.php';
+    require_once '../../database/Database.php';
     require_once '../../classes/Utente.php';
     
     
     // Creo una connessione al DBMS
-    $database = new DatabaseBase();
+    $database = new Database();
     $db = $database->getConnection();
     
     // Controllo la connessione al database => utile in fase di debug

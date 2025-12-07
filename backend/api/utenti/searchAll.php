@@ -7,12 +7,12 @@
     
     
     // Includo le classi per la gestione dei dati
-    require_once '../../database/DatabaseBase.php';
+    require_once '../../database/Database.php';
     require_once '../../classes/Utente.php';
     
     
     // Creo una connessione al DBMS
-    $database = new DatabaseBase();
+    $database = new Database();
     $db = $database->getConnection();
     
     // Controllo la connessione al database => Utile in fase di debug
@@ -26,15 +26,15 @@
     
     $utente = new Utente($db);              // Creo un'istanza di Utente
     $stmt = $utente -> searchAll();         // Invoco il metodo searchAll()
-    $numero_righe = $stmt -> rowCount();    // Numero di righe trovate (una per ogni utente presente nel db)
+    $row = $stmt -> rowCount();    // Numero di righe trovate (una per ogni utente presente nel db)
     
-    if ($numero_righe > 0) {
+    if ($row > 0) {
         $utenti_lista = [
-            "numero di utenti" => $numero_righe,
+            "numero di utenti" => $row,
             "utenti" => []
         ];
         
-        while ($numero_righe = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // Costruisco un array che rappresenta ogni singolo utente trovato
             $utente_singolo = [
                 "utente_id" => $row['utente_id'],
