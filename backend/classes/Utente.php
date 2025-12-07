@@ -84,11 +84,11 @@
         }
         
         
-        
         // METODI SCRUD
         
         // Search All
-        function searchAll() {
+        function searchAll(): false|PDOStatement
+        {
             $query = "SELECT * FROM {$this->table_name}";   // Scrivo la query per interrogare il db
             $stmt = $this->conn->prepare($query);           // Preparo la query
             $stmt->execute();                               // Eseguo la query

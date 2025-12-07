@@ -23,12 +23,52 @@
     }
     
     
-    // Creo un'istanza di Utente
-    $utente = new Utente($db);
+    
+    $utente = new Utente($db);              // Creo un'istanza di Utente
+    $stmt = $utente -> searchAll();         // Invoco il metodo searchAll()
+    $numero_righe = $stmt -> rowCount();    // Numero di righe trovate (una per ogni utente presente nel db)
+    
+    if ($numero_righe > 0) {
+        $utenti_lista = [
+            "numero di utenti" => $numero_righe,
+            "utenti" => []
+        ];
+        
+        while ($numero_righe = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            // Costruisco un array che rappresenta ogni singolo utente trovato
+            $utente_singolo = [
+                "utente_id" => $row['utente_id'],
+                "admin" => $row['admin'],
+                "nome_utente" => $row['nome_utente'],
+                "cognome_utente" => $row['cognome_utente'],
+                "data_nascita" => $row['data_nascita'],
+                "email" => $row['email'],
+            ];
+            
+            // array_push($utenti_lista["utenti"], $utente_singolo);
+            
+            $utenti_lista["utenti"][] = $utente_singolo;
+        }
+        
+        http_response_code(200);
+        echo json_encode($utenti_lista, JSON_UNESCAPED_UNICODE);
+        
+    } else {
+        http_response_code(200);
+        echo json_encode([
+            'numero di utenti' => 0,
+            "messaggio" => "Nussun utente trovato"
+        ], JSON_UNESCAPED_UNICODE);
+    }
     
     
-    // Invoco il metodo searchAll() che restituisce l'elenco di tutti gli utenti presenti nel db
-    $stmt = $utente -> searchAll();
+    
+    
+    
+    
+    
+    
+    
     
     if ($stmt) { // Se stmt è diverso da falls vuol dire che sono stati trovati degli utenti
         
