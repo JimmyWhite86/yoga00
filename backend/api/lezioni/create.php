@@ -3,6 +3,9 @@
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_scrud.php';
     
+    // Includo la classe Lezione.php
+    require_once '../../classes/Lezione.php';
+    
     // Richiamo la funzione per connettermi al database
     $db = connessioneDatabase();
     
@@ -17,7 +20,6 @@
     
     // Dichiaro i campi obbligatori per la creazione di una lezione
     $campi_obbligatori = [
-        'lezione_id',
         'nome',
         'descrizione',
         'giorno_settimana',
@@ -29,7 +31,7 @@
     ];
     
     // Richiamo la funzione che valida la presenza dei campi obbligatori
-    validazioneCampiObbligatori($campi_obbligatori);
+    validazioneCampiObbligatori($campi_obbligatori, $data);
     
     // Popolo l'oggetto Lezione
     try {

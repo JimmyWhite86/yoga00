@@ -2,7 +2,7 @@
     
     // INTESTAZIONE DI OGNI CLASSE SCRUD DI OGNI ENTITÀ
     
-    require_once __DIR__ . '/../cors.php';
+    require_once '../cors.php';
     
     
     // Viene specificato il formato della risposta (JSON)
@@ -66,7 +66,7 @@
     
     // validazioneCampiObbligatori
     // Controlla la presenza dei campi obbligatori nel JSON ricevuto
-    function validazioneCampiObbligatori($campi_obbligatori): void
+    function validazioneCampiObbligatori($campi_obbligatori, $data): void
     {
         $campi_incompleti = [];
         

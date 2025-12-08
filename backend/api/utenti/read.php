@@ -25,6 +25,7 @@
     }
     
     
+    // TODO: Cancellare questo pezzo di codice una volta che funziona tutto
     // Leggo e valido l'id nella richiesta GET e lo inserisco nella variabile di istanza utente_id dell'oggetto utente
  /*   if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0) {
         http_response_code(400);
@@ -33,6 +34,9 @@
     } else {
         $id_letto = $_GET['id'];
     }*/
+    
+    // Richiamo la funzione idIsValid();
+    // Se l'id è valido e presente lo memorizzo nella variabile $id_letto;
     $id_letto = idIsValid('id');
     
     
