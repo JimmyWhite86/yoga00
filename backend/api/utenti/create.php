@@ -24,7 +24,7 @@
     
     
     // Creo un'istanza di Utente
-    $lezione = new Utente($db);
+    $utente = new Utente($db);
     
     
     // Leggo i dati JSON dal body della richiesta HTTP
@@ -63,11 +63,11 @@
     
     // Popolo l'oggetto Utente
     try {
-        $lezione->setNomeUtente($data->nome_utente);
-        $lezione->setCognomeUtente($data->cognome_utente);
-        $lezione->setDataNascita($data->data_nascita);
-        $lezione->setEmail($data->email);
-        $lezione->setPassword($data->password);
+        $utente->setNomeUtente($data->nome_utente);
+        $utente->setCognomeUtente($data->cognome_utente);
+        $utente->setDataNascita($data->data_nascita);
+        $utente->setEmail($data->email);
+        $utente->setPassword($data->password);
     } catch (InvalidArgumentException $e) {
         http_response_code(400);
         echo json_encode(array("messaggio" => "Errore validazione dei dati",
@@ -76,7 +76,7 @@
     
     
     // Creo l'istanza all'interno del database
-    if ($lezione->create()) {                   // Invoco il metodo create() che crea un nuovo utente
+    if ($utente->create()) {                   // Invoco il metodo create() che crea un nuovo utente
         http_response_code(201); // response code: created
         echo json_encode(array("messaggio" => "Utente creato con successo"));
     } else {
