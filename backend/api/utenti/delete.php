@@ -1,7 +1,7 @@
 <?php
 
     require_once '../cors.php';
-    require_once '../../utils/utils.php';
+    require_once '../../utils/utils_scrud.php';
     
     
     // Viene specificato il formato della risposta
