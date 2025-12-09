@@ -84,12 +84,14 @@
                 "messaggio" => "Utente non trovato o impossibile da aggiornare"
             ));
         }
+        
     } catch (InvalidArgumentException $e) {
         http_response_code(400);
         echo json_encode(array(
-            "messagio" => "Errore validazione dati",
+            "messaggio" => "Errore validazione dati",
             "errore" => $e->getMessage()
         ));
+        
     } catch (Exception $e) {
         http_response_code(500);
         echo json_encode(array(

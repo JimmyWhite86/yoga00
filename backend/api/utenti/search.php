@@ -28,7 +28,7 @@ if (!$db) {
 $keyword = isset($_GET["s"]) ? $_GET["s"] : "";
 
 // Creo un istanza di Utente
-    $utente = new Utente($db);
+$utente = new Utente($db);
 
 // Invoco il metodo searchByKeyword()
 $stmt = $utente->searchByKeyword($keyword);

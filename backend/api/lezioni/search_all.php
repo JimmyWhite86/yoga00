@@ -50,7 +50,7 @@
             
             // array_push($utenti_lista["utenti"], $utente_singolo);
             
-            $lezioni_lista["utenti"][] = $lezione_singola;
+            $lezioni_lista["lezioni"][] = $lezione_singola;
         }
         
         http_response_code(200);
@@ -59,7 +59,7 @@
     } else {
         http_response_code(200);
         echo json_encode([
-            'numero di utenti' => 0,
+            'numero di lezioni' => 0,
             "messaggio" => "Nussun utente trovato"
         ], JSON_UNESCAPED_UNICODE);
     }
