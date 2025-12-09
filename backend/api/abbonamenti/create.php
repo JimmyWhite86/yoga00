@@ -12,7 +12,7 @@
     // Leggo i dati JSON dal body della richiesta HTTP
     $data = json_decode(file_get_contents("php://input"));
     
-    // Richiamo la funzione che controlla la validità del JSON in input
+    // Richiamo la funzione che controlla la validità del JSON in ingresso
     isJSONvalid($data);
     
     // Creo un'istanza di Abbonamento

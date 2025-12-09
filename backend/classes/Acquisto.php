@@ -1,5 +1,7 @@
 <?php
     
+    // TODO: Gestire le date di acquisto e scadenza
+    
     //require_once '../database/Database.php';
     require_once __DIR__ . '/../database/Database.php';
     
@@ -53,15 +55,31 @@
         
         public function setAbbonamentoId(int $abbonamento_id): void
         {
-            if (!is_int($abbonamento_id) || $abbonamento_id <= 0) {
+            if ($abbonamento_id <= 0) {
                 throw new InvalidArgumentException("L'ID abbonamento deve essere un intero positivo");
             }
             $this->abbonamento_id = $abbonamento_id;
         }
         
+        public function setDataAcquisto($data): void {
+            // Controllo formato YYYY-MM-DD
+            if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $data)) {
+                throw new InvalidArgumentException("Formato data non valido");
+            }
+            $this->data_acquisto = $data;
+        }
+        
+        public function setDataScadenza($data): void {
+            // Controllo formato YYYY-MM-DD
+            if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $data)) {
+                throw new InvalidArgumentException("Formato data non valido");
+            }
+            $this->data_scadenza = $data;
+        }
+        
         public function setLezioniRimanenti(int $lezioni_rimanenti): void
         {
-            if (!is_int($lezioni_rimanenti) || $lezioni_rimanenti < 0) {
+            if ($lezioni_rimanenti < 0) {
                 throw new InvalidArgumentException("Le lezioni rimanenti devono essere un intero non negativo");
             }
             $this->lezioni_rimanenti = $lezioni_rimanenti;

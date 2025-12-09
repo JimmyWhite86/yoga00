@@ -14,7 +14,6 @@
     // --------------------------------------------------
     
     
-    
     // --------------------------------------------------
     // connessioneDatabase
     // Funzione che crea e ritorna una connessione al database
@@ -33,6 +32,7 @@
         
         return $db;
     }
+    
     // --------------------------------------------------
     
     
@@ -45,6 +45,7 @@
         $nome_classe = get_class($istanza);
         return $nome_classe;
     }
+    
     // --------------------------------------------------
     
     // --------------------------------------------------
@@ -75,8 +76,8 @@
         
         return (int)$_GET[$id]; // Cast esplicito
     }
-    // --------------------------------------------------
     
+    // --------------------------------------------------
     
     
     // --------------------------------------------------
@@ -91,8 +92,8 @@
             exit;
         }
     }
-    // --------------------------------------------------
     
+    // --------------------------------------------------
     
     
     // --------------------------------------------------
@@ -116,9 +117,10 @@
             exit;
         }
     }
+    
     // --------------------------------------------------
-
-
+    
+    
     // --------------------------------------------------
     // delete()
     function delete($istanza, $id_letto): void
@@ -136,17 +138,18 @@
             ));
         }
     }
+    
     // --------------------------------------------------
-
-
+    
+    
     // --------------------------------------------------
     // handleUpdate();
-    function handleUpdate($istanza, $data, $campi): void
+    function handleUpdate($istanza, $data, $campi_mapping): void
     {
         $nome_classe = getClasseOggetto($istanza);
         
         try {
-            foreach ($campi as $campo => $setter) {
+            foreach ($campi_mapping as $campo => $setter) {
                 if (isset($data->$campo)) {
                     $istanza->$setter($data->$campo);
                 }
@@ -177,46 +180,86 @@
             ));
         }
     }
+    
     // --------------------------------------------------
 
 
-// --------------------------------------------------
-// handlerSearchAll
-// Riutilizzo lo stesso codice per tutte le classi
-function handlerSearchAll($istanza, $campi): void
-{
-    $nome_classe = getClasseOggetto($istanza);
-    
-    $stmt = $istanza -> searchAll();    // Invoco il metodo searchAll sull'istanza che viene passata dalla classe che lo chiama
-    $row = $stmt -> rowCount();         // Numero di righe trovate. Una per ogni istanza presente nel db
-
-    if ($row > 0) {
-        $oggetti_trovati = [
-            "numero di" . $nome_classe => $row,
-            $nome_classe => []
-        ];
+    // --------------------------------------------------
+    // handlerSearchAll
+    // Riutilizzo lo stesso codice per tutte le classi
+    function handlerSearchAll($istanza, $campi): void
+    {
+        $nome_classe = getClasseOggetto($istanza);
         
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // Costruisco un array che rappresenta ogni singolo record trovato nel db
-            $oggetto_singolo = [];
+        $stmt = $istanza->searchAll();    // Invoco il metodo searchAll sull'istanza che viene passata dalla classe che lo chiama
+        $row = $stmt->rowCount();         // Numero di righe trovate. Una per ogni istanza presente nel db
+        
+        if ($row > 0) {
+            $oggetti_trovati = [
+                "numero di" . $nome_classe => $row,
+                $nome_classe => []
+            ];
             
-            foreach ($campi as $campo) {
-                if (isset($row[$campo])) {
-                    $oggetto_singolo[$campo] = $row[$campo];
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                // Costruisco un array che rappresenta ogni singolo record trovato nel db
+                $oggetto_singolo = [];
+                
+                foreach ($campi as $campo) {
+                    if (isset($row[$campo])) {
+                        $oggetto_singolo[$campo] = $row[$campo];
+                    }
+                }
+                
+                $oggetti_trovati[$nome_classe][] = $oggetto_singolo;
+            }
+            
+            http_response_code(200);
+            echo json_encode($oggetti_trovati, JSON_UNESCAPED_UNICODE);
+        } else {
+            http_response_code(200);
+            echo json_encode(array(
+                "messaggio" => "Nessun {$nome_classe} trovato"
+            ));
+        }
+    }
+    
+    // --------------------------------------------------
+    
+    // --------------------------------------------------
+    // handlerCreate
+    function handlerCreate($istanza, $campi_mapping, $data)
+    {
+        $nome_classe = getClasseOggetto($istanza);
+        
+        try {
+            foreach ($campi_mapping as $campo => $setter) {
+                if (isset($data->$campo)) ;
+                {
+                    $istanza->$setter($data->$campo);
                 }
             }
             
-            $oggetti_trovati[$nome_classe][] = $oggetto_singolo;
+            if ($istanza->create()) {
+                http_response_code(201);
+            } else {
+                http_response_code(503);
+                echo json_encode(array(
+                    "messaggio" => "Impossibile creare {$nome_classe}"
+                ));
+            }
+        } catch (InvalidArgumentException $e) {
+            http_response_code(400); // response code = Bad Request
+            echo json_encode(array(
+                "messaggio" => "Errore di validazione dei dati",
+                "errore" => $e->getMessage()
+            ));
+        } catch (Exception $e) {
+            http_response_code(500); // response code = internal server error
+            echo json_encode(array(
+                "messaggio" => "Errore del server",
+                "errore" => $e->getMessage()
+            ));
         }
-        
-        http_response_code(200);
-        echo json_encode($oggetti_trovati, JSON_UNESCAPED_UNICODE);
-    } else {
-        http_response_code(200);
-        echo json_encode(array(
-            "messaggio" => "Nessun {$nome_classe} trovato"
-        ));
     }
     // --------------------------------------------------
 
-}
