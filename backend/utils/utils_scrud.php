@@ -49,28 +49,11 @@
     
     // --------------------------------------------------
     // Funzione per scegliere la classe da includere in base al tipo di istanza
-    function includiClassi($istanza): string
+    // TODO: Eliminare se non la uso (è stata durante delle prove quando ho provato a fare una sola funzione per update)
+    function selezionaInclusioneClasse($istanza): void
     {
-        $nome_classe = getClasseOggetto($istanza);
-        
-        switch ($nome_classe) {
-            case $nome_classe === "Abbonamento":
-                $percorso_classe = "'../../classes/Abbonamento.php';";
-                break;
-            case $nome_classe === "Acquisto":
-                $percorso_classe = "'../../classes/Acquisto.php';";
-                break;
-            case $nome_classe === "Lezione":
-                $percorso_classe = "'../../classes/Lezione.php';";
-                break;
-            case $nome_classe === "Prenotazione":
-                $percorso_classe = "'../../classes/Prenotazione.php';";
-                break;
-            case $nome_classe === "Utente":
-                $percorso_classe = "'../../classes/Lezione.php';";
-                break;
-        }
-        return $percorso_classe;
+        $nome_da_inserire = getClasseOggetto($istanza);
+        $file_classe = __DIR__ . '/../classes/' . $nome_da_inserire . '.php';
     }
     
     
@@ -172,7 +155,7 @@
             if ($istanza->update()) {
                 http_response_code(200);
                 echo json_encode(array(
-                    "messaggio" => "{$nome_classe} con id {$istanza->getId()} aggiornata con successo"
+                    "messaggio" => "{$nome_classe} con id {$istanza->getAbbonamentoId()} aggiornata con successo"
                 ));
             } else {
                 http_response_code(503);
