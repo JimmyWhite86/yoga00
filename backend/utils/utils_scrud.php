@@ -177,3 +177,46 @@
             ));
         }
     }
+    // --------------------------------------------------
+
+
+// --------------------------------------------------
+// handlerSearchAll
+// Riutilizzo lo stesso codice per tutte le classi
+function handlerSearchAll($istanza, $campi): void
+{
+    $nome_classe = getClasseOggetto($istanza);
+    
+    $stmt = $istanza -> searchAll();    // Invoco il metodo searchAll sull'istanza che viene passata dalla classe che lo chiama
+    $row = $stmt -> rowCount();         // Numero di righe trovate. Una per ogni istanza presente nel db
+
+    if ($row > 0) {
+        $oggetti_trovati = [
+            "numero di" . $nome_classe => $row,
+            $nome_classe => []
+        ];
+        
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            // Costruisco un array che rappresenta ogni singolo record trovato nel db
+            $oggetto_singolo = [];
+            
+            foreach ($campi as $campo) {
+                if (isset($row[$campo])) {
+                    $oggetto_singolo[$campo] = $row[$campo];
+                }
+            }
+            
+            $oggetti_trovati[$nome_classe][] = $oggetto_singolo;
+        }
+        
+        http_response_code(200);
+        echo json_encode($oggetti_trovati, JSON_UNESCAPED_UNICODE);
+    } else {
+        http_response_code(200);
+        echo json_encode(array(
+            "messaggio" => "Nessun {$nome_classe} trovato"
+        ));
+    }
+    // --------------------------------------------------
+
+}

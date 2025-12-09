@@ -1,6 +1,7 @@
 <?php
     
-    require_once '../database/Database.php';
+    //require_once '../database/Database.php';
+    require_once __DIR__ . '/../database/Database.php';
     
     class Acquisto
     {
@@ -36,6 +37,12 @@
         
         
         // SETTER (con validazioni)
+        public function setId($id): void
+        {
+            $this->acquisto_id = $id;
+            // TODO: Aggiungere validazioni
+        }
+        
         public function setUtenteId(int $utente_id): void
         {
             if (!is_int($utente_id) || $utente_id <= 0) {
