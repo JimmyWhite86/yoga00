@@ -1,11 +1,13 @@
 <?php
 
-    require_once '../database/Database.php';
+    //require_once '../database/Database.php';
+    require_once __DIR__ . '/../database/Database.php';
     
-    class Abbonamenti
+    class Abbonamento
     {
         private ?PDO $conn;                           // Connessione al DB (inizializzata nel costruttore);
         private string $table_name = "abbonamenti";     // Nome della tabella nel database;
+        
         // ATTRIBUTI ABBONAMENTO
         private ?int $abbonamento_id;
         private ?string $nome;
@@ -31,6 +33,11 @@
         
         
         // SETTER (con validazioni)
+        public function setId(int $id): void
+        {
+            $this->abbonamento_id = $id;
+        }
+        
         public function setNome(string $nome): void
         {
             $nome = trim($nome);                          // trim => Rimuove spazi all'inizio e alla fine della stringa
@@ -186,8 +193,7 @@
         {
             $query = "SELECT * FROM {$this->table_name}
                       WHERE nome LIKE :keyword
-                      OR descrizione LIKE :keyword
-                      ORDER BY tipo_abbonamento;";
+                      OR descrizione LIKE :keyword";
             
             $stmt = $this->conn->prepare($query);
             $like_keyword = "%{$keyword}%";                             // Aggiungo i wildcard % per la ricerca parziale

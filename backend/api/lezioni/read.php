@@ -16,11 +16,11 @@
     
     
     $lezione = new Lezione($db);    // Creo l'oggetto lezione
-    $lezione->setId($id_letto);
+    $lezione->setId($id_letto);     // Setto l'id dell'oggetto
     
     // Invoco il metodo readOne
     // L'id è già presente nella variabile di $lezione
-    // La funzione readOne non un risultato ma modifica l'oggetto su cui viene invocata
+    // La funzione readOne non restituisce un risultato ma modifica l'oggetto su cui viene invocata
     $lezione -> readOne();
     
     

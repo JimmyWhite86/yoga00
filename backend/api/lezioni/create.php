@@ -45,7 +45,9 @@
         $lezione->setAttiva($data->attiva);
     } catch (Exception $e) {
         http_response_code(400);
-        echo json_encode(array("messaggio" => "Errore nei dati forniti: " . $e->getMessage()));
+        echo json_encode(array(
+            "messaggio" => "Errore nei dati forniti: " . $e->getMessage()
+        ));
         exit;
     }
     
@@ -54,7 +56,9 @@
         http_response_code(201);      // response code: created
     } else {
         http_response_code(503);
-        echo json_encode(array('messaggio' => "Impossibile creare l'utente"));
+        echo json_encode(array(
+            'messaggio' => "Impossibile creare l'utente"
+        ));
     }
     
     

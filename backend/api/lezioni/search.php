@@ -12,7 +12,7 @@
     // Leggo la keyword nella richiesta GET
     $keyword = isset($_GET["s"]) ? $_GET["s"] : "";
     
-    // Creo un istanza di Lezione
+    // Creo un'istanza di Lezione
     $lezione = new Lezione($db);
     
     // Invoco il metodo searchByKeyword

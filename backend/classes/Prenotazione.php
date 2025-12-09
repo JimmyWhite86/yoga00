@@ -2,7 +2,7 @@
 
     require_once '../database/Database.php';
     
-    class Prenotazioni
+    class Prenotazione
     {
         private ?PDO $conn;                          // Connessione al DB (inizializzata nel costruttore);
         private string $table_name = "prenotazioni";   // Nome della tabella nel database;

@@ -51,7 +51,7 @@ INSERT INTO lezioni (nome, descrizione, giorno_settimana, ora_inizio, ora_fine, 
 ('Kundalini Yoga', 'Risveglio dell’energia', 'sabato', '18:00:00', '19:30:00', 'Marco', 16, 1);
 
 -- -----------------------------------------------------------
--- 4. Acquisti (10 acquisti reali)
+-- 4. Acquisto (10 acquisti reali)
 -- -----------------------------------------------------------
 INSERT INTO acquisti (utente_id, abbonamento_id, data_acquisto, data_scadenza, lezioni_rimanenti, attivo) VALUES
 (2, 1, '2025-11-01', '2026-04-30', 7, 1),        -- Laura ha comprato 10 ingressi
@@ -66,7 +66,7 @@ INSERT INTO acquisti (utente_id, abbonamento_id, data_acquisto, data_scadenza, l
 (11, 10, '2025-09-01', '2026-09-01', NULL, 1);    -- Lorenzo ha Famiglia 2 persone
 
 -- -----------------------------------------------------------
--- 5. Prenotazioni (10 prenotazioni reali per i prossimi giorni)
+-- 5. Prenotazione (10 prenotazioni reali per i prossimi giorni)
 -- -----------------------------------------------------------
 INSERT INTO prenotazioni (utente_id, lezione_id, data_prenotazione, stato, acquistato_con) VALUES
 (2, 1, '2025-12-09', 'confermata', 1),  -- Laura - Hatha lunedì prossimo

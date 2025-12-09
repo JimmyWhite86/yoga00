@@ -2,7 +2,7 @@
     
     require_once '../database/Database.php';
     
-    class Acquisti
+    class Acquisto
     {
         private ?PDO $conn;                          // Connessione al DB (inizializzata nel costruttore);
         private string $table_name = "acquisti";       // Nome della tabella nel database;

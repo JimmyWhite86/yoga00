@@ -35,7 +35,7 @@ CREATE TABLE abbonamenti (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ===================================================================
--- 3. Acquisti (storico acquisti abbonamenti)
+-- 3. Acquisto (storico acquisti abbonamenti)
 -- ===================================================================
 CREATE TABLE acquisti (
                           acquisto_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -69,7 +69,7 @@ CREATE TABLE lezioni (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ===================================================================
--- 5. Prenotazioni (per una data specifica)
+-- 5. Prenotazione (per una data specifica)
 -- ===================================================================
 CREATE TABLE prenotazioni (
                               prenotazione_id INT AUTO_INCREMENT PRIMARY KEY,
