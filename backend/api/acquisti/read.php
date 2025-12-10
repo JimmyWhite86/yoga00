@@ -22,7 +22,7 @@
     // La funzione readOne non restituisce un risultato ma modifica l'oggetto su cui viene invocata
     $acquisto -> readOne();
     
-    if ($acquisto->getDataAcquisto() != null) {
+    if ($acquisto->getDataAcquisto() != null) {     // Se è presente una data di acquisto vuol dire che l'oggetto è stato trovato
         $acquisto_trovato = [
             "acquisto_id" => $acquisto->getAcquistoId(),
             "utente_id" => $acquisto->getUtenteId(),

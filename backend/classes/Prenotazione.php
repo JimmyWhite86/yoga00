@@ -1,6 +1,7 @@
 <?php
 
-    require_once '../database/Database.php';
+    // require_once '../database/Database.php';
+    require_once __DIR__ . '/../database/Database.php';
     
     class Prenotazione
     {
@@ -12,7 +13,10 @@
         private ?int $prenotazione_id;
         private ?int $utente_id;
         private ?int $lezione_id;
-        private $data_prenotazione;
+        private $data_prenotata;
+        private $stato;
+        private ?int $acquistato_con;
+        private $prenotato_il;
         
         
         // COSTRUTTORE => Inizializza la variabile per la connessione al PDO
@@ -23,13 +27,22 @@
         
         
         // GETTER
-        public function getPrenotazioneId(): ?int { return $this->prenotazione_id; }    // ? => Può restituire un intero oppure null (nel caso di prenotazione non trovata)
+        public function getId(): ?int { return $this->prenotazione_id; }    // ? => Può restituire un intero oppure null (nel caso di prenotazione non trovata)
         public function getUtenteId(): int { return $this->utente_id; }
         public function getLezioneId(): int { return $this->lezione_id; }
-        public function getDataPrenotazione() { return $this->data_prenotazione; }
+        public function getDataPrenotata() { return $this->data_prenotata; }
+        public function getStato() { return $this->stato; }
+        public function getAcquistatoCon(): ?int { return $this->acquistato_con; }
+        public function getPrenotatoIl() { return $this->prenotato_il; }
         
         
         // SETTER (con validazioni)
+        public function setId(int $id): void
+        {
+            $this->prenotazione_id = $id;
+            // TODO: Aggiungere validazione del campo
+        }
+        
         public function setUtenteId(int $utente_id): void
         {
             if (!is_int($utente_id) || $utente_id <= 0) {
@@ -44,6 +57,30 @@
                 throw new InvalidArgumentException("L'ID lezione deve essere un intero positivo");
             }
             $this->lezione_id = $lezione_id;
+        }
+        
+        public function setDataPrenotata($data_prenotata): void
+        {
+            $this->data_prenotata = $data_prenotata;
+            // TODO: Aggiungere validazioni
+        }
+        
+        public function setStato($stato): void
+        {
+            $this->stato = $stato;
+            // TODO: Aggiungere validazioni
+        }
+        
+        public function setAcquistatoCon(?int $acquistato_con): void
+        {
+            $this->acquistato_con = $acquistato_con;
+            // TODO: Aggiungere validazioni
+        }
+        
+        public function setPrenotatoIl($prenotato_il): void
+        {
+            $this->prenotato_il = $prenotato_il;
+            // TODO: Aggiungere validazioni
         }
         
         
@@ -64,7 +101,10 @@
             $query = "INSERT INTO {$this->table_name} SET
                         utente_id=:utente_id,
                         lezione_id=:lezione_id,
-                        data_prenotazione = NOW();";
+                        data_prenotata:=:data_prenotata,
+                        stato=1,
+                        acquistato_con=:acquistato_con,
+                        prenotato_il = NOW();";
             
             // Preparo la query
             $stmt = $this->conn->prepare($query);
@@ -72,6 +112,8 @@
             // Bind dei parametri
             $stmt->bindParam(':utente_id', $this->utente_id);
             $stmt->bindParam(':lezione_id', $this->lezione_id);
+            $stmt->bindParam(':data_prenotata', $this->data_prenotata);
+            $stmt->bindParam(':acquistato_con', $this->acquistato_con);
             
             // Eseguo la query e restistuisco il risultato
             $stmt->execute();
@@ -92,12 +134,15 @@
                 // Inserisco i valori nelle variabili di istanza
                 $this->utente_id = $row['utente_id'];
                 $this->lezione_id = $row['lezione_id'];
-                $this->data_prenotazione = $row['data_prenotazione'];
+                $this->data_prenotata = $row['data_prenotata'];
+                $this->stato = $row['stato'];
+                $this->acquistato_con = $row['acquistato_con'];
+                $this->prenotato_il = $row['prenotato_il'];
             } else {
                 // Se non trovo la prenotazione, imposto i valori delle variabili di istanza a null
                 $this->utente_id = null;
                 $this->lezione_id = null;
-                $this->data_prenotazione = null;
+                $this->data_prenotata = null;
             }
             
             // La funzione readOne non restituisce nulla, i valori sono nelle variabili di istanza
@@ -108,7 +153,11 @@
         {
             $query = "UPDATE {$this->table_name} SET
                         utente_id=:utente_id,
-                        lezione_id=:lezione_id
+                        lezione_id=:lezione_id,
+                        data_prenotata=:data_prenotata,
+                        stato=:stato,
+                        acquistato_con=:acquistato_con,
+                        prenotato_il=:prenotato_il
                         WHERE
                         prenotazione_id=:prenotazione_id;";
             
@@ -118,6 +167,10 @@
             // Bind dei parametri
             $stmt->bindParam(':utente_id', $this->utente_id);
             $stmt->bindParam(':lezione_id', $this->lezione_id);
+            $stmt->bindParam(':data_prenotata', $this->data_prenotata);
+            $stmt->bindParam(':stato', $this->stato, PDO::PARAM_BOOL);
+            $stmt->bindParam(':acquistato_con', $this->acquistato_con);
+            $stmt->bindParam(':prenotato_il', $this->prenotato_il);
             $stmt->bindParam(':prenotazione_id', $this->prenotazione_id);
             
             // Eseguo la query e restituisco il risultato
