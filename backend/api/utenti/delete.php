@@ -1,50 +1,22 @@
 <?php
-
-    require_once '../cors.php';
+    
+    // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_scrud.php';
     
-    
-    // Viene specificato il formato della risposta
-    header ("Content-Type: application/json; charset=UTF-8");
-    
-    
-    // Includo le classi per la gestione dei dati
-    require_once '../../database/Database.php';
+    // Includo la classe Utente.php
     require_once '../../classes/Utente.php';
     
+    // Richiamo la funzione per connettermi al database
+    $db = connessioneDatabase();
     
-    // Creo una connessione al DBMS
-    $database = new Database();
-    $db = $database->getConnection();
-    
-    // Controllo la connessione al database
-    if (!$db) {
-        http_response_code(500); // internal server error
-        echo json_encode(array("messaggio" => "Errore d connessione al database"));
-    }
-    
-    // Leggo e valido l'id nella richiesta GET e lo inserisco nella variabile utente_id dell'oggetto utente
-/*    if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0) {
-        http_response_code(400);
-        echo json_encode(array("messaggio" => "ID utente mancante o non valido"));
-        exit;
-    } else {
-        $id_letto = $_GET['id'];
-    }*/
+    // Richiamo la funzione idIsValid();
+    // Se l'id è valido e presente lo memorizzo nella variabile $id_letto;
     $id_letto = idIsValid('id');
     
+    $utente = new Utente($db);       // Creo un'istanza di acquisto
+    $utente->setId($id_letto);         // Setto l'id dell'oggetto
     
-    $utente = new Utente($db);      // Creo un istanza di utente
-    $utente->setId($id_letto);      // Setto l'id dell'oggetto con l'id letto
-
-    
-    // Invoco il metodo delete() per cancellare l'utente selezionato
-    if ($utente->delete()) {
-        http_response_code(200);
-        echo json_encode(array("messaggio" => "utente " . $id_letto . " eliminato con successo"));
-    } else {
-        http_response_code(503); // Service unavailable
-        echo json_encode(array("messaggio" => "Impossibile eliminare l'utente id " . $id_letto));
-    }
+    // Richiamo la funzione delete
+    handlerDelete($utente, $id_letto);
     
     

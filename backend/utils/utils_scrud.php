@@ -123,7 +123,7 @@
     
     // --------------------------------------------------
     // delete()
-    function delete($istanza, $id_letto): void
+    function handlerDelete($istanza, $id_letto): void
     {
         $nome_classe = getClasseOggetto($istanza);
         if ($istanza->delete()) {
@@ -144,7 +144,7 @@
     
     // --------------------------------------------------
     // handleUpdate();
-    function handleUpdate($istanza, $data, $campi_mapping): void
+    function handlerUpdate($istanza, $data, $campi_mapping): void
     {
         $nome_classe = getClasseOggetto($istanza);
         

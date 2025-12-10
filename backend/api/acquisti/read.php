@@ -18,7 +18,7 @@
     $acquisto->setId($id_letto);        // Setto l'id dell'oggetto
     
     // Invoco il metodo readOne
-    // L'id è già presente nella variabile di $abbonamento
+    // L'id è già presente nella variabile di $acquisto
     // La funzione readOne non restituisce un risultato ma modifica l'oggetto su cui viene invocata
     $acquisto -> readOne();
     

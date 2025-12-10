@@ -43,4 +43,4 @@
     ];
     
     // Richiamo la funzione che esegue l'update
-    handleUpdate($acquisto, $data, $campi);
+    handlerUpdate($acquisto, $data, $campi);

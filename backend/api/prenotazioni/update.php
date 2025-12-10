@@ -43,4 +43,4 @@
     ];
     
     // Richiamo la funzione che esegue l'update
-    handleUpdate($prenotazione, $data, $campi);
+    handlerUpdate($prenotazione, $data, $campi);

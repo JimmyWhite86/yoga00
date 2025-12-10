@@ -1,56 +1,30 @@
 <?php
     
-    require_once '../cors.php';
+    // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_scrud.php';
     
-    
-    // Viene specificato il formato della risposta
-    header("Content-Type: application/json; charset=UTF-8");
-    
-    
-    // Includo le classi per la gestione dei dati
-    require_once '../../database/Database.php';
+    // Includo la classe Utente.php
     require_once '../../classes/Utente.php';
     
-    
-    // Creo una connessione al DBMS
-    $database = new Database();
-    $db = $database->getConnection();
-    
-    // Controllo la connessione al database
-    if (!$db) {
-        http_response_code(500); // response code = internal server error;
-        echo json_encode(array("messaggio" => "Errore di connessione al server"));
-        exit;
-    }
-    
-    
-    // TODO: Cancellare questo pezzo di codice una volta che funziona tutto
-    // Leggo e valido l'id nella richiesta GET e lo inserisco nella variabile di istanza utente_id dell'oggetto utente
- /*   if (!isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id'] <= 0) {
-        http_response_code(400);
-        echo json_encode(array("messaggio" => "ID utente mancante o non valido"));
-        exit;
-    } else {
-        $id_letto = $_GET['id'];
-    }*/
+    // Richiamo la funzione per connettermi al database
+    $db = connessioneDatabase();
     
     // Richiamo la funzione idIsValid();
     // Se l'id è valido e presente lo memorizzo nella variabile $id_letto;
     $id_letto = idIsValid('id');
     
     
-    $utente = new Utente($db);  // Creo l'oggetto utente
-    $utente->setId($id_letto);  // Setto l'id dell'oggetto con il valore della richiesta GET
+    $utente = new Utente($db);      // Creo un istanza di utente
+    $utente->setId($id_letto);      // Setto l'id dell'oggetto
     
     // Invoco il metodo readOne
     // L'id è già presente nella variabile di $utente
-    // La funzione readOne non un risultato ma modifica l'oggetto su cui viene invocata
+    // La funzione readOne non restituisce un risultato ma modifica l'oggetto su cui viene invocata
     $utente -> readOne();
     
-    if ($utente->getNomeUtente() != null) {             // Se il nome è diverso da null allora l'utente cercato esiste
+    if ($utente->getNomeUtente() != null) {     // Se è presente un nome utente vuol dire che l'oggetto è stato trovato
         $utente_trovato = [
-            "utente_id" => $utente->getUtenteId(),
+            "utente_id" => $utente->getId(),
             "admin" => $utente->isAdmin(),
             "nome_utente" => $utente->getNomeUtente(),
             "cognome_utente" => $utente->getCognomeUtente(),
@@ -59,12 +33,10 @@
         ];
         
         http_response_code(200);
-        echo json_encode($utente_trovato, JSON_UNESCAPED_UNICODE);
-    } else {                                            // Caso in cui l'utente cercato non viene trovato
+        echo json_encode($utente_trovato, JSON_UNESCAPED_UNICODE );
+    } else {
         http_response_code(404);
-        echo json_encode(array("messaggio" => "Utente non trovato"));
+        echo json_encode(array(
+            "messaggio" => "Utente non trovato"
+        ));
     }
-    
-    
-    
-    

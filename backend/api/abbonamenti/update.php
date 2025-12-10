@@ -41,5 +41,5 @@
     ];
     
     // Richiamo la funzione che esegue l'update
-    handleUpdate($abbonamento, $data, $campi);
+    handlerUpdate($abbonamento, $data, $campi);
     

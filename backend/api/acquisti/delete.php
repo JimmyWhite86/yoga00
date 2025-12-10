@@ -17,4 +17,4 @@
     $acquisto->setId($id_letto);         // Setto l'id dell'oggetto
     
     // Richiamo la funzione delete
-    delete($acquisto, $id_letto);
+    handlerDelete($acquisto, $id_letto);

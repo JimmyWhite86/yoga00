@@ -1,85 +1,44 @@
 <?php
     
-    require_once '../cors.php';
+    // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
+    require_once '../../utils/utils_scrud.php';
     
-    // Viene specificato il formato della risposta (JSON)
-    header("Content-Type: application/json; charset=UTF-8");
-    
-    
-    // Includo le classi per la gestione dei dati
-    require_once '../../database/Database.php';
+    // Includo la classe Utente.php
     require_once '../../classes/Utente.php';
     
+    // Richiamo la funzione per connettermi al database
+    $db = connessioneDatabase();
     
-    // Creo una connessione al DBMS
-    $database = new Database();
-    $db = $database->getConnection();
+    // Leggo i dati JSON dal body della richiesta HTTP
+    $data = json_decode(file_get_contents("php://input"));
     
-    // Controllo la connessione al database => utile in fase di debug
-    if (!$db) {
-        http_response_code(500);    // response code 500 = internal server error
-        echo json_encode(array("messaggio" => "Errore connessione al server"));
-        exit;
-    }
-    
+    // Richiamo la funzione che controlla la validazione del JSON in ingresso
+    isJSONvalid($data);
     
     // Creo un'istanza di Utente
     $utente = new Utente($db);
     
     
-    // Leggo i dati JSON dal body della richiesta HTTP
-    $data = json_decode(file_get_contents("php://input"));
-    
-    // Controllo la presenza dei dati ed eventuali errori
-    if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
-        http_response_code(400);
-        echo json_encode(array("messaggio" => "JSON non valido: " . json_last_error_msg()));
-        exit;
-    }
-    
-    // Valido la presenza di campi obbligatori
+    // Dichiaro i campi obbligatori per la creazione di un utente
     $campi_obbligatori = [
         'nome_utente',
         'cognome_utente',
         'data_nascita',
         'email',
-        'password'];
-    $campi_incompleti = [];
+        'password'
+    ];
     
-    foreach ($campi_obbligatori as $campo) {
-        if (empty($data->$campo)) {
-            $campi_incompleti[] = $campo;
-        }
-    }
+    // Richiamo la funzione che valida la presenza dei campi obbligatori
+    validazioneCampiObbligatori($campi_obbligatori, $data);
     
-    if (!empty($campi_incompleti)) {
-        http_response_code(400);
-        echo json_encode(array(
-            "messaggio" => "Campi incompleti: ",
-            "Campi incompleti" => $campi_incompleti ));
-        exit;
-    }
+    // Costruisco il mapping nome_attributo => setter
+    $campi_mapping = [
+        'nome_utente' => 'setNomeUtente',
+        'cognome_utente' => 'setCognomeUtente',
+        'data_nascita' => 'setDataNascita',
+        'email' => 'setEmail',
+        'password' => 'setPassword'
+    ];
     
-    
-    // Popolo l'oggetto Utente
-    try {
-        $utente->setNomeUtente($data->nome_utente);
-        $utente->setCognomeUtente($data->cognome_utente);
-        $utente->setDataNascita($data->data_nascita);
-        $utente->setEmail($data->email);
-        $utente->setPassword($data->password);
-    } catch (InvalidArgumentException $e) {
-        http_response_code(400);
-        echo json_encode(array("messaggio" => "Errore validazione dei dati",
-            "errore" => $e->getMessage()));
-    }
-    
-    
-    // Creo l'istanza all'interno del database
-    if ($utente->create()) {                   // Invoco il metodo create() che crea un nuovo utente
-        http_response_code(201); // response code: created
-        echo json_encode(array("messaggio" => "Utente creato con successo"));
-    } else {
-        http_response_code(503); // response code 503 = service unavailable
-        echo json_encode(array("messaggio" => "Impossibile creare l'utente."));
-    }
+    // Richiamo la funzione per il create
+    handlerCreate($utente, $campi_mapping, $data);

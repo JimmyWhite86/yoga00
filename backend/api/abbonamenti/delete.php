@@ -17,6 +17,6 @@
     $abbonamento->setId($id_letto);         // Setto l'id dell'oggetto
 
     // Richiamo la funzione delete
-    delete($abbonamento, $id_letto);
+    handlerDelete($abbonamento, $id_letto);
     
     // TODO: Risolvere chiave esterna

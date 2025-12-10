@@ -26,7 +26,7 @@
         
         
         // GETTER
-        public function getUtenteId(): ?int { return $this->utente_id; }    // ? => Può restituire un intero oppure null (nel caso di utente non trovato)
+        public function getId(): ?int { return $this->utente_id; }    // ? => Può restituire un intero oppure null (nel caso di utente non trovato)
         public function isAdmin(): bool { return $this->admin; }
         public function getNomeUtente(): string { return $this->nome_utente; }
         public function getCognomeUtente(): string { return $this->cognome_utente; }

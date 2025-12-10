@@ -17,4 +17,4 @@
     $prenotazione->setId($id_letto);            // Setto l'id dell'oggetto
     
     // Richiamo la funzione delete
-    delete($prenotazione, $id_letto);
+    handlerDelete($prenotazione, $id_letto);
