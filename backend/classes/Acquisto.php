@@ -29,7 +29,7 @@
         
         
         // GETTER
-        public function getAcquistoId(): ?int { return $this->acquisto_id; }    // ? => Può restituire un intero oppure null (nel caso di acquisto non trovato)
+        public function getId(): ?int { return $this->acquisto_id; }    // ? => Può restituire un intero oppure null (nel caso di acquisto non trovato)
         public function getUtenteId(): ?int { return $this->utente_id; }
         public function getAbbonamentoId(): ?int { return $this->abbonamento_id; }
         public function getDataAcquisto() { return $this->data_acquisto; }

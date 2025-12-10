@@ -24,7 +24,7 @@
         
         
         // GETTER
-        public function getLezioneId(): ?int
+        public function getId(): ?int
         {
             return $this->lezione_id;
         }    // ? => Può restituire un intero oppure null (nel caso di lezione non trovata)

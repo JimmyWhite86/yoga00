@@ -26,7 +26,7 @@
     
     if ($lezione->getNome() != null) {             // Se il nome è diverso da null allora la lezione cercata esiste
         $lezione_trovata = [
-            "lezione_id" => $lezione->getLezioneId(),
+            "lezione_id" => $lezione->getId(),
             "nome" => $lezione->getNome(),
             "descrizione" => $lezione->getDescrizione(),
             "giorno_settimana" => $lezione->getGiornoSettimana(),

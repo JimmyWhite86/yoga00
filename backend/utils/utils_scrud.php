@@ -158,7 +158,7 @@
             if ($istanza->update()) {
                 http_response_code(200);
                 echo json_encode(array(
-                    "messaggio" => "{$nome_classe} con id {$istanza->getAbbonamentoId()} aggiornato con successo"
+                    "messaggio" => "{$nome_classe} con id {$istanza->getId()} aggiornato con successo"
                 ));
             } else {
                 http_response_code(503);

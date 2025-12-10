@@ -13,7 +13,7 @@
     $stmt = $utente -> searchAll();
     
     $campi_istanza = [
-        'utente_it',
+        'utente_id',
         'admin',
         'nome_utente',
         'cognome_utente',

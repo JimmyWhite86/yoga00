@@ -18,7 +18,6 @@
     // Dichiaro i campi obbligatori per la creazione di un utente
     $campi_obbligatori = [
         'utente_id',
-        'admin',
         'nome_utente',
         'cognome_utente',
         'data_nascita',
@@ -29,12 +28,11 @@
     validazioneCampiObbligatori($campi_obbligatori, $data);
     
     // Creo un'istanza di utente
-    $utente = new Prenotazione($db);
+    $utente = new Utente($db);
     
     // Definisco i campi con i rispettivi metodi setter
     $campi_con_setter = [
         'utente_id' => 'setId',
-        'admin' => 'setAdmin',
         'nome_utente' => 'setNomeUtente',
         'cognome_utente' => 'setCognomeUtente',
         'data_nascita' => 'setDataNascita',

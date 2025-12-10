@@ -4,7 +4,7 @@
     require_once '../../utils/utils_scrud.php';
     
     // Includo la classe Abbonamento.php
-    require_once '../../classes/Abbonamento.php.php';
+    require_once '../../classes/Abbonamento.php';
     
     // Richiamo la funzione per connettermi al database
     $db = connessioneDatabase();

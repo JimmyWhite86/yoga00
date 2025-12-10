@@ -9,7 +9,7 @@
     // Richiamo la funzione per connettermi al database
     $db = connessioneDatabase();
     
-    $lezione = new Acquisto($db);
+    $lezione = new Lezione($db);
     $stmt = $lezione -> searchAll();
     
     $campi_istanza = [

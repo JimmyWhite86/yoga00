@@ -17,13 +17,12 @@
     
     // Dichiaro i campi obbligatori per la creazione di una prenotazione
     $campi_obbligatori = [
-        'prenotazioni_id',
+        'prenotazione_id',
         'utente_id',
         'lezione_id',
         'data_prenotata',
         'stato',
         'acquistato_con',
-        'prenotato_il'
     ];
     
     // Richiamo la funzione che valida la presenza dei campi obbligatori
@@ -34,13 +33,12 @@
     
     // Definisco i campi con i rispettivi metodi setter
     $campi_con_setter = [
-        'prenotazioni_id' => 'setId',
+        'prenotazione_id' => 'setId',
         'utente_id' => 'setUtenteId',
         'lezione_id' => 'setLezioneId',
         'data_prenotata' => 'setDataPrenotata',
         'stato' => 'setStato',
         'acquistato_con' => 'setAcquistatoCon',
-        'prenotato_il' => 'setPrenotatoIl'
     ];
     
     // Richiamo la funzione che esegue l'update

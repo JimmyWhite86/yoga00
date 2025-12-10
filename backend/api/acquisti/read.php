@@ -24,7 +24,7 @@
     
     if ($acquisto->getDataAcquisto() != null) {     // Se è presente una data di acquisto vuol dire che l'oggetto è stato trovato
         $acquisto_trovato = [
-            "acquisto_id" => $acquisto->getAcquistoId(),
+            "acquisto_id" => $acquisto->getId(),
             "utente_id" => $acquisto->getUtenteId(),
             "abbonamento_id" => $acquisto->getAbbonamentoId(),
             "data_acquisto" => $acquisto->getDataAcquisto(),
