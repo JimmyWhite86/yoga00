@@ -38,7 +38,9 @@
         
         public function setId(int $utente_id)
         {
-            // TODO: Aggiungere validazioni;
+            if ($utente_id <= 0) {
+                throw new InvalidArgumentException("L'ID utente deve essere un intero positivo");
+            }
             $this->utente_id = $utente_id;
         }
         
