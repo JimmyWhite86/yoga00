@@ -24,7 +24,7 @@
         }
         
         // GETTER
-        public function getId(): ?int { return $this->abbonamento_id; }    // ? => Può restituire un intero oppure null (nel caso di abbonamento non trovato)
+        public function getAbbonamentoId(): ?int { return $this->abbonamento_id; }    // ? => Può restituire un intero oppure null (nel caso di abbonamento non trovato)
         public function getNome(): ?string { return $this->nome; }
         public function getDescrizione(): ?string { return $this->descrizione; }
         public function getPrezzo(): ?float { return $this->prezzo; }
