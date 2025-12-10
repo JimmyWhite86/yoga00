@@ -15,7 +15,7 @@
     // Richiamo la funzione per la validazione del JSON letto
     isJSONvalid($data);
     
-    // Dichiaro i campi obbligatori per la creazione di una lezione
+    // Dichiaro i campi obbligatori per la creazione di una abbonamento
     $campi_obbligatori = [
       'abbonamento_id',
       'nome',
@@ -31,7 +31,8 @@
     // Creo un'istanza di abbonamento
     $abbonamento = new Abbonamento($db);
     
-    $campi = [
+    // Definisco i campi con i rispettivi metodi setter
+    $campi_con_setter = [
       "abbonamento_id"  =>  "setId",
       "nome"            =>  "setNome",
       "descrizione"     =>  "setDescrizione",
@@ -41,5 +42,5 @@
     ];
     
     // Richiamo la funzione che esegue l'update
-    handlerUpdate($abbonamento, $data, $campi);
+    handlerUpdate($abbonamento, $data, $campi_con_setter);
     

@@ -32,7 +32,8 @@
     // Creo un'istanza di prenotazione
     $prenotazione = new Prenotazione($db);
     
-    $campi = [
+    // Definisco i campi con i rispettivi metodi setter
+    $campi_con_setter = [
         'prenotazioni_id' => 'setId',
         'utente_id' => 'setUtenteId',
         'lezione_id' => 'setLezioneId',
@@ -43,4 +44,4 @@
     ];
     
     // Richiamo la funzione che esegue l'update
-    handlerUpdate($prenotazione, $data, $campi);
+    handlerUpdate($prenotazione, $data, $campi_con_setter);

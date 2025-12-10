@@ -15,8 +15,7 @@
     // Richiamo la funzione che controlla la validità del JSON in ingresso
     isJSONvalid($data);
     
-    // Creo un'istanza di Abbonamento
-    $abbonamento = new Abbonamento($db);
+    
     
     // Dichiaro i campi obbligatori per la creazione di un abbonamento
     $campi_obbligatori = [
@@ -30,8 +29,28 @@
     // Richiamo la funzione che valida la presenza dei campi obbligatori
     validazioneCampiObbligatori($campi_obbligatori, $data);
     
+    // Campi mappati
+    $campi_con_setter = [
+        "nome" => "setNome",
+        "descrizione" => "setDescrizione",
+        "prezzo" => "setPrezzo",
+        "durata_lezioni" => "setDurataLezioni",
+        "durata_giorni" => "setDurataGiorni"
+    ];
+    
+    // Creo un'istanza di Abbonamento
+    $abbonamento = new Abbonamento($db);
+    
+    // Richiamo la funzione per creare
+    handlerCreate($abbonamento, $campi_con_setter, $data);
+    
+    
+    
+    
+    
+    
     // Popolo l'oggetto abbonamento
-    try {
+    /*try {
         $abbonamento->setNome($data->nome);
         $abbonamento->setDescrizione($data->descrizione);
         $abbonamento->setPrezzo($data->prezzo);
@@ -53,4 +72,4 @@
         echo json_encode(array(
             "messaggio" => "Impossibile creare l'utente"
         ));
-    }
+    }*/

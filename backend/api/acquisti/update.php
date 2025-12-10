@@ -32,7 +32,8 @@
     // Creo un'istanza di acquisto
     $acquisto = new Acquisto($db);
     
-    $campi = [
+    // Definisco i campi con i rispettivi metodi setter
+    $campi_con_setter = [
         'acquisto_id' => 'setId',
         'utente_id' => 'setUtenteId',
         'abbonamento_id' => 'setAbbonamentoId',
@@ -43,4 +44,4 @@
     ];
     
     // Richiamo la funzione che esegue l'update
-    handlerUpdate($acquisto, $data, $campi);
+    handlerUpdate($acquisto, $data, $campi_con_setter);

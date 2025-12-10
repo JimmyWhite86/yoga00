@@ -15,9 +15,6 @@
     // Richiamo la funzione che controlla la validità del JSON in ingresso
     isJSONvalid($data);
     
-    // Creo un'istanza di Abbonamento
-    $prenotazione = new Prenotazione($db);
-    
     // Dichiaro i campi obbligatori per la creazione di una prenotazione
     $campi_obbligatori = [
         "utente_id",
@@ -31,7 +28,7 @@
     validazioneCampiObbligatori($campi_obbligatori, $data);
     
     // Campi mappati
-    $campi_mapping = [
+    $campi_con_setter = [
         "utente_id" => "setUtenteId",
         "lezione_id" => "setLezioneId",
         "data_prenotata" => "setDataPrenotata",
@@ -39,5 +36,8 @@
         "acquistato_con" => "setAcquistatoCon",
     ];
     
+    // Creo un'istanza di Prenotazione
+    $prenotazione = new Prenotazione($db);
+    
     // Richiamo la funzione per creare
-    handlerCreate($prenotazione, $campi_mapping, $data);
+    handlerCreate($prenotazione, $campi_con_setter, $data);

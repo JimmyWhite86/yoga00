@@ -15,9 +15,6 @@
     // Richiamo la funzione che controlla la validità del JSON in input
     isJSONvalid($data);
     
-    // Creo un istanza di Lezione
-    $lezione = new Lezione($db);
-    
     // Dichiaro i campi obbligatori per la creazione di una lezione
     $campi_obbligatori = [
         'nome',
@@ -33,7 +30,27 @@
     // Richiamo la funzione che valida la presenza dei campi obbligatori
     validazioneCampiObbligatori($campi_obbligatori, $data);
     
-    // Popolo l'oggetto Lezione
+    // Campi mappati
+    $campi_con_setter = [
+        'nome' => 'setNome',
+        'descrizione' => 'setDescrizione',
+        'giorno_settimana' => 'setGiornoSettimana',
+        'ora_inizio' => 'setOraInizio',
+        'ora_fine' => 'setOraFine',
+        'insegnante' => 'setInsegnante',
+        'posti_totali' => 'setPostiTotali',
+        'attiva' => 'setAttiva'
+    ];
+    
+    // Creo un istanza di Lezione
+    $lezione = new Lezione($db);
+    
+    // Richiamo la funzione per creare
+    handlerCreate($lezione, $campi_con_setter, $data);
+    
+    
+    
+    /*// Popolo l'oggetto Lezione
     try {
         $lezione->setNome($data->nome);
         $lezione->setDescrizione($data->descrizione);
@@ -59,6 +76,6 @@
         echo json_encode(array(
             'messaggio' => "Impossibile creare l'utente"
         ));
-    }
+    }*/
     
     

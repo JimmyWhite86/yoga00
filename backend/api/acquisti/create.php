@@ -17,11 +17,14 @@
     // Richiamo la funzione che controlla la validazione del JSON in ingresso
     isJSONvalid($data);
     
-    // Creo un'istanza di acquisto
-    $acquisto = new Acquisto($db);
-    
     // Dichiaro i campi obbligatori per la creazione di un acquisto
-   /* $campi_obbligatori = [
+    $campi_obbligatori = [
+        'utente_id',
+        'abbonamento_id',
+        'lezioni_rimanenti',
+        'attivo'
+    ];
+    /* $campi_obbligatori = [
         'utente_id',
         'abbonamento_id',
         'data_acquisto',
@@ -29,18 +32,13 @@
         'lezioni_rimanenti',
         'attivo'
     ];*/
-    $campi_obbligatori = [
-        'utente_id',
-        'abbonamento_id',
-        'lezioni_rimanenti',
-        'attivo'
-    ];
+    
     
     // Richiamo la funzione che valida la presenza dei campi obbligatori
     validazioneCampiObbligatori($campi_obbligatori, $data);
     
     // Costruisco il mapping nome_attributo => setter
-    $campi_mapping = [
+    $campi_con_setter = [
         'utente_id' => 'setUtenteId',
         'abbonamento_id' => 'setAbbonamentoId',
         'data_acquisto' => 'setDataAcquisto',
@@ -48,12 +46,15 @@
         'lezioni_rimanenti' => 'setLezioniRimanenti',
         'attivo' => 'setAttivo'
     ];
-   /* $campi_mapping = [
+   /* $campi_con_setter = [
         'utente_id' => 'setUtenteId',
         'abbonamento_id' => 'setAbbonamentoId',
         'lezioni_rimanenti' => 'setLezioniRimanenti',
         'attivo' => 'setAttivo'
     ];*/
     
+    // Creo un'istanza di acquisto
+    $acquisto = new Acquisto($db);
+    
     // Richiamo la funzione per il create
-    handlerCreate($acquisto, $campi_mapping, $data);
+    handlerCreate($acquisto, $campi_con_setter, $data);

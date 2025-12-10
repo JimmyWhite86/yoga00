@@ -34,8 +34,25 @@
     // Creo un'istanza di lezione
     $lezione = new Lezione($db);
     
+    // Definisco i campi con i rispettivi metodi setter
+    $campi_con_setter = [
+        'lezione_id' => 'setId',
+        'nome' => 'setNome',
+        'descrizione' => 'setDescrizione',
+        'giorno_settimana' => 'setGiornoSettimana',
+        'ora_inizio' => 'setOraInizio',
+        'ora_fine' => 'setOraFine',
+        'insegnante' => 'setInsegnante',
+        'posti_totali' => 'setPostiTotali',
+        'attiva' => 'setAttiva'
+    ];
     
-    try {
+    // Richiamo la funzione che esegue l'update
+    handlerUpdate($lezione, $data, $campi_con_setter);
+    
+    
+    
+    /*try {
         $lezione -> setId($data->lezione_id);
         $lezione -> setNome($data->nome);
         $lezione -> setDescrizione($data->descrizione);
@@ -67,4 +84,4 @@
             "messaggio" => "Errore interno al server",
             "errore" => $e->getMessage()
         ));
-    }
+    }*/
