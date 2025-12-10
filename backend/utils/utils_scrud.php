@@ -129,7 +129,7 @@
         if ($istanza->delete()) {
             http_response_code(200);
             echo json_encode(array(
-                "messaggio" => $nome_classe . $id_letto . " eliminata con successo"
+                "messaggio" => $nome_classe . " " . $id_letto . " eliminato con successo"
             ));
         } else {
             http_response_code(503); // Service unavailable
@@ -158,12 +158,12 @@
             if ($istanza->update()) {
                 http_response_code(200);
                 echo json_encode(array(
-                    "messaggio" => "{$nome_classe} con id {$istanza->getAbbonamentoId()} aggiornata con successo"
+                    "messaggio" => "{$nome_classe} con id {$istanza->getAbbonamentoId()} aggiornato con successo"
                 ));
             } else {
                 http_response_code(503);
                 echo json_encode(array(
-                    "messaggio" => "{$nome_classe} non trovata o impossibile da aggiornare."
+                    "messaggio" => "{$nome_classe} non trovato o impossibile da aggiornare."
                 ));
             }
         } catch (InvalidArgumentException $e) {
@@ -263,3 +263,11 @@
     }
     // --------------------------------------------------
 
+
+// --------------------------------------------------
+// handlerReadOne
+function handlerReadOne($istanza, $campi_mapping)
+{
+    // TODO: Funzione da definire
+    // Acquisti non ha nome
+}
