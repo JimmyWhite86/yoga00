@@ -14,7 +14,7 @@
         private $ora_fine;
         private ?string $insegnante;
         private ?int $posti_totali;
-        private bool $attiva;
+        private ?bool $attiva;
         
         // COSTRUTTORE => Inizializza la variabile per la connessione al PDO
         public function __construct($db)
@@ -24,57 +24,24 @@
         
         
         // GETTER
-        public function getId(): ?int
-        {
-            return $this->lezione_id;
-        }    // ? => Può restituire un intero oppure null (nel caso di lezione non trovata)
-        
-        public function getNome(): string
-        {
-            return $this->nome;
-        }
-        
-        public function getDescrizione(): string
-        {
-            return $this->descrizione;
-        }
-        
-        public function getGiornoSettimana(): string
-        {
-            return $this->giorno_settimana;
-        }
-        
-        public function getOraInizio(): string
-        {
-            return $this->ora_inizio;
-        }
-        
-        public function getOraFine(): string
-        {
-            return $this->ora_fine;
-        }
-        
-        public function getInsegnante(): string
-        {
-            return $this->insegnante;
-        }
-        
-        public function getPostiTotali(): int
-        {
-            return $this->posti_totali;
-        }
-        
-        public function isAttiva(): bool
-        {
-            return $this->attiva;
-        }
+        public function getId(): ?int { return $this->lezione_id; }
+        public function getNome(): string { return $this->nome; }
+        public function getDescrizione(): string { return $this->descrizione; }
+        public function getGiornoSettimana(): string { return $this->giorno_settimana; }
+        public function getOraInizio(): string { return $this->ora_inizio; }
+        public function getOraFine(): string { return $this->ora_fine; }
+        public function getInsegnante(): string { return $this->insegnante; }
+        public function getPostiTotali(): int { return $this->posti_totali; }
+        public function isAttiva(): bool { return $this->attiva; }
         
         
         // SETTER (con validazioni)
         
-        // TODO: aggiungere validazione per setId lezione
         public function setId(int $id): void
         {
+            if ($id <= 0) {
+                throw new InvalidArgumentException("L'ID della lezione deve essere un intero positivo.");
+            }
             $this->lezione_id = $id;
         }
         
@@ -82,7 +49,9 @@
         {
             $nome = trim($nome);
             if ($nome === '' || strlen($nome) < 2) {
-                throw new InvalidArgumentException("Il nome della lezione deve contenere almeno due caratteri");
+                throw new InvalidArgumentException(
+                    "Il nome della lezione deve contenere almeno due caratteri"
+                );
             }
             $this->nome = htmlspecialchars($nome);
         }
@@ -91,7 +60,9 @@
         {
             $descrizione = trim($descrizione);
             if ($descrizione === '' || strlen($descrizione) < 5) {
-                throw new InvalidArgumentException("La descrizione della lezione deve contenere almeno cinque caratteri");
+                throw new InvalidArgumentException(
+                    "La descrizione della lezione deve contenere almeno cinque caratteri"
+                );
             }
             $this->descrizione = htmlspecialchars($descrizione);
         }
@@ -104,7 +75,8 @@
             $giorno = ucfirst(strtolower(trim($giorno_settimana)));
             
             // Lista dei giorni validi
-            $giorni_validi = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
+            // $giorni_validi = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
+            $giorni_validi = ['Lunedi', 'Martedi', 'Mercoledi', 'Giovedi', 'Venerdi', 'Sabato', 'Domenica'];
             
             // Controllo se il giorno inserito dall'utente è nella lista dei giorni validi.
             // true => attiva la strict mode (controlla anche il tipo di dato (come fare ===))
@@ -116,21 +88,41 @@
         
         public function setOraInizio($ora_inizio): void
         {
+            if (!preg_match('/^(2[0-3]|[01][0-9]):([0-5][0-9])$/', $ora_inizio)) {
+                throw new InvalidArgumentException("L'ora di inizio non è valida. Formato corretto HH:MM (24h).");
+            }
             $this->ora_inizio = $ora_inizio;
+            // Controllo formato HH:MM:SS
+            /*if (!preg_match("/^([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$/", $ora_inizio)) {
+                throw new InvalidArgumentException("Formato orario non valido. Usa HH:MM:SS");
+            }*/
         }
         
         public function setOraFine($ora_fine): void
         {
+            if (!preg_match('/^(2[0-3]|[01][0-9]):([0-5][0-9])$/', $ora_fine)) {
+                throw new InvalidArgumentException("L'ora di fine non è valida. Formato corretto HH:MM (24h).");
+            }
             $this->ora_fine = $ora_fine;
+            // Controllo formato HH:MM:SS
+            /*if (!preg_match("/^([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$/", $ora_fine)) {
+                throw new InvalidArgumentException("Formato orario non valido. Usa HH:MM:SS");
+            }*/
         }
         
         public function setInsegnante(string $insegnante): void
         {
+            if($insegnante === '' || strlen($insegnante) < 2) {
+                throw new InvalidArgumentException("Il nome dell'insegnante deve contenere almeno due caratteri");
+            }
             $this->insegnante = $insegnante;
         }
         
         public function setPostiTotali(int $posti_totali): void
         {
+            if ($posti_totali <=0 ) {
+                throw new InvalidArgumentException("Il numero di posti deve essere un intero positivo");
+            }
             $this->posti_totali = $posti_totali;
         }
         

@@ -35,6 +35,9 @@
         // SETTER (con validazioni)
         public function setId(int $id): void
         {
+            if ($id <= 0) {
+                throw new InvalidArgumentException("L'ID abbonamento deve essere un intero positivo");
+            }
             $this->abbonamento_id = $id;
         }
         
@@ -66,15 +69,15 @@
         
         public function setDurataGiorni(int $durata_giorni): void
         {
-            if (!is_int($durata_giorni) || $durata_giorni <= 0) {
-                throw new InvalidArgumentException("La durata in giorni deve essere un intero positivo");
+            if ($durata_giorni !== null && $durata_giorni <= 0) {
+                throw new InvalidArgumentException("La durata in giorni deve essere un intero positivo o null");
             }
             $this->durata_giorni = $durata_giorni;
         }
         
         public function setDurataLezioni(int $durata_lezioni): void
         {
-            if (!is_int($durata_lezioni) || $durata_lezioni <= 0) {
+            if ($durata_lezioni !== null && $durata_lezioni <= 0) {
                 throw new InvalidArgumentException("La durata in lezioni deve essere un intero positivo");
             }
             $this->durata_lezioni = $durata_lezioni;

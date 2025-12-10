@@ -13,7 +13,7 @@
         
         // ATTRIBUTI ACQUISTO
         private ?int $acquisto_id;
-        private bool $utente_id;
+        private ?int $utente_id;
         private ?int $abbonamento_id;
         private $data_acquisto;
         private $data_scadenza;
