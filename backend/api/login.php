@@ -25,8 +25,33 @@
         $utente->setEmail($data->email);
         $utente->setPassword($data->password);
         
-        if ($utente->login()) {
-            impostaDatiUtenteInSessione();
+        if ($utente->login()) {                 // Login riuscito => imposto la sessione
+            impostaDatiUtenteInSessione(
+                $utente->getId(),
+                $utente->getNomeUtente(),
+                $utente->isAdmin(),
+                $utente->getEmail()
+            );
+            
+            http_response_code(200);
+            echo json_encode(array(
+               "messaggio" => "Login effettuato con successo",
+                "user" => array(
+                    "id" => $utente->getId(),
+                    "nome" => $utente->getNomeUtente(),
+                    "admin" => $utente->isAdmin(),
+                    "email" => $utente->getEmail()
+                )
+            ));
+        } else {        // Login fallito
+            http_response_code(401);    // Unauthorized
+            echo json_encode(array(
+                "messaggio" => "Credenziali non valide"
+            ));
         }
-        
+    } else {
+        http_response_code(400);    // Bad Request
+        echo json_encode(array(
+            "messaggio" => "Dati incompleti"
+        ));
     }
