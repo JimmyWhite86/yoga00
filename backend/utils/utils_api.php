@@ -2,8 +2,14 @@
     
     // --------------------------------------------------
     // INTESTAZIONE DI OGNI CLASSE SCRUD DI OGNI ENTITÀ
+    // --------------------------------------------------
+    
+    // Includo il file cors.php
+    // TODO: Inserire spiegazione da lezione 04.12.2025
     require_once __DIR__ . '/../api/cors.php';
     
+    // Includo il file per gestire le sessioni
+    require_once __DIR__ . '/../utils/utils_session.php';
     
     // Viene specificato il formato della risposta (JSON)
     header("Content-Type: application/json; charset=UTF-8");

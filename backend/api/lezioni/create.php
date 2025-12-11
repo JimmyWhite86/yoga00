@@ -1,7 +1,7 @@
 <?php
     
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
-    require_once '../../utils/utils_scrud.php';
+    require_once '../../utils/utils_api.php';
     
     // Includo la classe Lezione.php
     require_once '../../classes/Lezione.php';

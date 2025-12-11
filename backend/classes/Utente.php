@@ -32,6 +32,7 @@
         public function getCognomeUtente(): string { return $this->cognome_utente; }
         public function getDataNascita() { return $this->data_nascita;}
         public function getEmail(): string { return $this->email; }
+        public function getPassword(): string {return $this->password; }
         
         
         // SETTER (con validazioni)
@@ -215,6 +216,30 @@
             $stmt->bindParam(':keyword', $keyword);
             $stmt->execute();
             return $stmt;               // Restituisco il risultato della query (in questo caso un recordset)
+        }
+        
+        // Funzione per effettuare il login;
+        function login(): bool
+        {
+            $query = "SELECT utente_id, utente_nome, password, admin, email
+                         FROM {$this->table_name}
+                         WHERE email =: email
+                         LIMIT 1";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($row && password_verify($this->getPassword(), $row['password'])) {
+                $this->utente_id = $row['utente_id'];
+                $this->nome_utente = $row['utente_nome'];
+                $this->admin = $row['admin'];
+                $this->email = $row['email'];
+                return true;
+            }
+            return false;
         }
     }
    

@@ -1,7 +1,7 @@
 <?php
     
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
-    require_once '../../utils/utils_scrud.php';
+    require_once '../../utils/utils_api.php';
     
     // Includo la classe Utente.php
     require_once '../../classes/Utente.php';
@@ -43,7 +43,7 @@
     
     
     /*require_once '../cors.php';
-    require_once '../../utils/utils_scrud.php';
+    require_once '../../utils/utils_api.php';
     
     // Viene specificato il formato della risposta
     header("Content-Type: application/json; charset=UTF-8");
