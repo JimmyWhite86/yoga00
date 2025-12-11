@@ -1,9 +1,11 @@
 <?php
-
     
     // TODO: Gestire le date di acquisto e scadenza
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
+    
+    // Verifico che l'utente sia loggato
+    login_necessario();
     
     // Includo la classe Acquisto.php
     require_once '../../classes/Acquisto.php';

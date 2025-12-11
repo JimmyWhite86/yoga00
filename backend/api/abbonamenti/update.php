@@ -3,6 +3,9 @@
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     
+    // Verifico che l'utente sia admin
+    admin_necessario();
+    
     // Includo la classe Abbonamenti.php
     require_once '../../classes/Abbonamento.php';
     
