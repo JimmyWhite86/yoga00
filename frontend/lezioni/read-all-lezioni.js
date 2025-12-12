@@ -6,7 +6,8 @@ function mostraLezioni() {
 
     // Controllo se ci sono lezioni da mostrare
     if (data.Lezione && data.Lezione.length > 0) {
-      let read_lezioni_html = products_table(data.Lezione);
+      // let read_lezioni_html = products_table(data.Lezione);
+      let read_lezioni_html = card_lezione(data.Lezione);
       $("#page-content").html(read_lezioni_html);
     } else {
       $("#page-content").html("<p>Nessuna lezione trovata</p>");
