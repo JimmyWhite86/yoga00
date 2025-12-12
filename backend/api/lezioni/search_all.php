@@ -17,8 +17,8 @@
         'nome',
         'descrizione',
         'giorno_settimana',
-        'orario_inizio',
-        'orario_fine',
+        'ora_inizio',
+        'ora_fine',
         'insegnante',
         'posti_totali',
         'attiva'
