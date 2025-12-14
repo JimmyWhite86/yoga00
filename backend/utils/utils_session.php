@@ -12,6 +12,9 @@
     
     
     // Verifico se l'utente è loggato
+    //  1. Chiama startSession() per avviare / riprendere la sessione PHP
+    //  2. Controlla se esiste $_SESSION['utente_id']
+    //  3. Restituisce true se esiste, altrimenti false
     function isLoggedIn(): bool
     {
         startSession();

@@ -62,3 +62,5 @@ function card_lezione(lezioni) {
     cards_html += `</div>`;
     return cards_html;
 }
+
+
