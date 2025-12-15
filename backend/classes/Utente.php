@@ -1,4 +1,6 @@
 <?php
+    /* /yoga00/backend/classes/Utente.php */
+    
     
     require_once __DIR__ . '/../database/Database.php';
     
@@ -16,6 +18,7 @@
         private $data_nascita;
         private ?string $email;
         private ?string $password;
+        private ?string $password_in_chiaro;   // Variabile per memorizzare la password in chiaro (usata solo in fase di login)
         
         
         // COSTRUTTORE => Inizializza la variabile per la connessione al PDO
@@ -33,6 +36,7 @@
         public function getDataNascita() { return $this->data_nascita;}
         public function getEmail(): string { return $this->email; }
         public function getPassword(): string {return $this->password; }
+        /*public function getPasswordInChiaro(): ?string { return $this->password_in_chiaro; }*/
         
         
         // SETTER (con validazioni)
@@ -91,6 +95,15 @@
             // Trasformo la password in chiaro in una stringa criptata.
             // PASSWORD_DEFAULT = Dice quale algoritmo usare per la criptatura. Viene aggiornato quando è disponibile un algoritmo piu sicuro.
             // https://www.php.net/manual/en/function.password-hash.php
+        }
+        
+        // Setto la password in chiaro per il login (non viene salvata nel database)
+        public function setPassqord_in_chiaro (string $password): void
+        {
+            if (strlen($password) < 6) {        // Verifico che la password abbia almeno 6 caratteri.
+                throw new InvalidArgumentException("Password troppo corta. Almeno 6 caratteri.");
+            }
+            $this->password_in_chiaro = $password;
         }
         
         
@@ -218,23 +231,24 @@
             return $stmt;               // Restituisco il risultato della query (in questo caso un recordset)
         }
         
+        
         // Funzione per effettuare il login;
-        function login(): bool
+        public function login(): bool
         {
-            $query = "SELECT utente_id, utente_nome, password, admin, email
+            $query = "SELECT utente_id, nome_utente, password, admin, email
                          FROM {$this->table_name}
-                         WHERE email =: email
-                         LIMIT 1";
+                         WHERE email = :email
+                         LIMIT 1";  // Limito il risultato a 1 riga (non ha senso avere piu utenti con la stessa email)
             
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':email', $this->email);
             $stmt->execute();
             
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if ($row && password_verify($this->getPassword(), $row['password'])) {
+            if ($row && password_verify($this->password_in_chiaro, $row['password'])) {
                 $this->utente_id = $row['utente_id'];
-                $this->nome_utente = $row['utente_nome'];
+                $this->nome_utente = $row['nome_utente'];
                 $this->admin = $row['admin'];
                 $this->email = $row['email'];
                 return true;

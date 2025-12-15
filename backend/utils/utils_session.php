@@ -1,5 +1,6 @@
 <?php
-
+    // yoga00/backend/utils/utils_session.php
+    
     // FUNZIONI PER SESSIONE UTENTE
     
     // Avvia la sessione se non è già attiva

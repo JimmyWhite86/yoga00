@@ -1,3 +1,6 @@
+// /yoga00/frontend/lezioni/read-all-lezioni.js
+
+
 function mostraLezioni() {
   inviaRichiesta("lezioni/search_all.php", data => {
 

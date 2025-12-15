@@ -1,5 +1,7 @@
 <?php
-
+    // yoga00/backend/api/login.php
+    
+    
     // Richiamo il file che contiene le funzioni condivise con le varie API
     require_once '../utils/utils_api.php';
     
@@ -23,7 +25,8 @@
     if (!empty($data->email) && !empty($data->password)) {
         
         $utente->setEmail($data->email);
-        $utente->setPassword($data->password);
+        $utente->setPassqord_in_chiaro($data->password);
+        /*$utente->setPassword($data->password);*/
         
         if ($utente->login()) {                 // Login riuscito => imposto la sessione
             impostaDatiUtenteInSessione(

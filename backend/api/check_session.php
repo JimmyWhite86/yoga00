@@ -1,8 +1,9 @@
 <?php
-
+    // yoga00/backend/api/check_session.php
+    
+    
     // Verifica se l'utente ha una sessione attiva (loggato) e restituisce i dati se disponibile
-
-
+    
     // Richiamo il file che contiene le funzioni condivise con le varie API
     require_once '../utils/utils_api.php';
 

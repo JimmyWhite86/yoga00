@@ -1,5 +1,7 @@
-// ------------------------------------------------
+// yoga00/frontend/login.js
 
+
+// ------------------------------------------------
 // Gestione delle autenticazioni con sessioni in PHP
 // Viene usato JavaScript Vanilla
 
@@ -9,7 +11,6 @@
 // - Gestisce il submit del form inviando i dati a login.php
 // - Gestisce il logut tramite il file logout.php
 // - Aggiorna l'interfaccia in base allo stato dell'utente.
-
 // ------------------------------------------------
 
 // Variabile dove memorizzo i dati dell'utente loggato.
@@ -24,10 +25,14 @@ let utente_corrente = null;
 // In JQUERY => $(document).ready()
 document.addEventListener('DOMContentLoaded', function() {
 
+  // Richiamo la UI per utente Guest come default, e poi mostro le lezioni
+  // In questo modo quando avvio l'app ho sempre la schermata per utenti non loggati (caso ipotizzato piu frequente)
+  // e controlloStatoSessione() la "sovrascrive" solo se necessario
+  aggiornaHTMLperUtenteGuest();
+  //mostraLezioni();
 
   // Controllo lo stato della sessione
   controlloStatoSessione();
-
 
   // FORM LOGIN
   // Mostro il form di login quando l'utente clicca sul bottone login
@@ -76,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Il server PHP si aspetta una stringa JSON nel body
       // www.w3schools.com/js/js_json_stringify.asp
       const datiLogin = JSON.stringify({email: email, password: password});
-
 
       // Invio i dati in formato JSON a login.php con la funzione sendRequest
       // - Endpoint = login.php => Verifica le credenziali
@@ -244,7 +248,7 @@ function aggiornaHTMLperUtenteGuest() {
   }
 
   // Creo l'HTML per un pulsant edi login
-  const loginButton = `
+  const loginButtonHTML = `
         <div class="text-end mb-3">
             <button class="btn btn-sm btn-primary login-button">
                 <span class="fa fa-sign-in"></span> Login
@@ -255,7 +259,7 @@ function aggiornaHTMLperUtenteGuest() {
   const existingLoginButton = document.querySelector('.login-button');
   if (!existingLoginButton) {
     const pageContent = document.getElementById('page-content');
-    pageContent.insertAdjacentHTML('afterbegin', loginButton);
+    pageContent.insertAdjacentHTML('afterbegin', loginButtonHTML);
   }
 }
 

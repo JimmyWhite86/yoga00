@@ -1,8 +1,10 @@
+// yoga00/frontend/app.js
+
+
+
 // ------------------------------------------------
 // URL BASE
-// const BASEURL = '../../yoga00/';
 const BASEURL = '../backend/api/';
-// const BASEURL = '';
 // ------------------------------------------------
 
 
@@ -26,7 +28,7 @@ function inviaRichiesta(api, callback, method = "GET", body) {
     // Opzioni della richiesta:
 
     // Metodo http => di default GET
-    method,
+    method,   // shorthand property name: dato che la variabile ha lo stesso nome della proprietà, equivale a "method: method"
 
     // Headers
     // Operatore ternario
@@ -36,17 +38,20 @@ function inviaRichiesta(api, callback, method = "GET", body) {
 
     // Body (corpo della richiesta)
     // Contiene i dati da inviare
-    body
+    body,
+
+    // Credenziali _ Per la gestione delle sessioni in PHP
+    credentials: 'include'
   });
 
   // Gestione della risposta
   // fetch() restituisce una promise che viene soddisfatta quando arriva la risposta dal server.
   //
   // Flusso:
-  // 1. fetch() invia richiesta → Promise pending
-  // 2. Server risponde → Promise resolved
-  // 3. .then() gestisce la risposta
-  // 4. .catch() gestisce eventuali errori
+  // 1.  fetch() invia richiesta → Promise pending
+  // 2.  Server risponde → Promise resolved
+  // 3.  .then() gestisce la risposta
+  // 4.  .catch() gestisce eventuali errori
   fetchPromise
     // Controllo lo stato HTTP
     // response è un oggetto Response con le seguenti proprietà:
