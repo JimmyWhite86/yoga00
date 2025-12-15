@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('submit', function(e) {
 
     // Controllo che il form sia quello di login (in caso di altri form nella stessa pagina).
-    if (e.rarget.id === 'login-form') {
+    if (e.target.id === 'login-form') {
 
       // Disabilito l'azione di default
       e.preventDefault();
@@ -208,8 +208,10 @@ function aggiornaHTMLperUtenteLoggato() {
   const userInfo = `
         <div class="user-info text-end mb-3">
             <span class="me-2">
-                <span class="fa fa-user"></span> ${utente_corrente.username} 
-                <span class="badge bg-${utente_corrente.admin === true ? 'danger' : 'secondary'}">${utente_corrente.admin}</span>
+                <span class="fa fa-user"></span> ${utente_corrente.nome_utente} 
+                <span class="badge bg-${utente_corrente.admin === true ? 'danger' : 'secondary'}">
+                  ${utente_corrente.admin ? 'Admin' : 'User'}
+                </span>
             </span>
             <button class="btn btn-sm btn-outline-danger logout-button">
                 <span class="fa fa-sign-out"></span> Logout

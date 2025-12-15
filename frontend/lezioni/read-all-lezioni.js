@@ -1,5 +1,5 @@
 function mostraLezioni() {
-  inviaRichiesta("/../backend/api/lezioni/search_all.php", data => {
+  inviaRichiesta("lezioni/search_all.php", data => {
 
     // Per debug
     console.log("Dati ricevuti: ", data);
