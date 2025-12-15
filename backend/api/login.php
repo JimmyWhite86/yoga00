@@ -39,9 +39,9 @@
             http_response_code(200);
             echo json_encode(array(
                "messaggio" => "Login effettuato con successo",
-                "user" => array(
+                "utente" => array(
                     "id" => $utente->getId(),
-                    "nome" => $utente->getNomeUtente(),
+                    "nome_utente" => $utente->getNomeUtente(),
                     "admin" => $utente->isAdmin(),
                     "email" => $utente->getEmail()
                 )

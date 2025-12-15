@@ -158,14 +158,9 @@ function mostraFormLogin() {
                                 <span class="fa fa-sign-in"></span> Accedi
                             </button>
                             <button type="button" class="btn btn-secondary mostra-lezioni-button">
-                                Annulla
+                                Annulla <!-- TODO: Farlo funzionare -->
                             </button>
                         </form>
-                        <!--<div class="mt-3">
-                            <small>Demo credentials:<br>
-                            Admin: admin / admin123<br>
-                            User: user / admin123</small>
-                        </div>-->
                     </div>
                 </div>
             </div>
@@ -183,9 +178,14 @@ function mostraFormLogin() {
 // GESTIONE DEL LOGIN AVVENUTO CON SUCCESSO
 // Questa funzione viene chiamata in automatico quando login.php risponde con successo
 function gestisciLogin(data) {
+
+  // Per debug => così capisco se la funzione viene effettivamente chiamata dopo il login
+  console.log("gestisciLogin() => Caricata ok");
+  // console.log(data);
+
   utente_corrente = data.utente;      // setto i dati dell'utente
   aggiornaHTMLperUtenteLoggato();     // Aggiorno l'html della pagina con quella riservata agli utenti loggati
-  mostraLezioni();                    // Richiamo la funzione che richiama tutte le funzioni
+  //mostraLezioni();                    // Richiamo la funzione che richiama tutte le funzioni
 
   // Messaggio di benvenuto
   // TODO: sostituire con toast o notifica piu "elegante"
@@ -279,7 +279,7 @@ function isCurrentUserAdmin() {
 
 /*
    ================================================
-          NOTE FINALI SULL'EVENT DELEGATION
+          NOTE SULL'EVENT DELEGATION
    ================================================
  *
  * EVENT DELEGATION - Perché è necessaria?
