@@ -229,7 +229,7 @@ function aggiornaHTMLperUtenteLoggato() {
 
   // Se le info non esistono, allora le aggiungo
   if (!datiUtenteEsistenti) {
-    const pageContent = document.getElementById('page-content');    // Prendo il container principale
+    const pageContent = document.getElementById('user-info');    // Prendo il container principale
     pageContent.insertAdjacentHTML('afterbegin', userInfo);
     // insertAdjacentHTML => inserisce l'HTML in una posizione specifica
     // 'afterbegin' = come primo figlio (all'inizio del contenuto)
@@ -247,7 +247,17 @@ function aggiornaHTMLperUtenteGuest() {
     datiUtenteEsistenti.remove();   // remove() => elimina l'elemento dal DOM
   }
 
-  // Creo l'HTML per un pulsant edi login
+  // Creo l'HTML per il pulsante di login
+  const loginButtonHTML = `
+            <button class="btn btn-sm btn-primary login-button">
+                <span class="fa fa-sign-in"></span> Login
+            </button>`
+
+  document.getElementById("user-info").innerHTML = loginButtonHTML;
+
+
+/*
+  // Creo l'HTML per un pulsante di login
   const loginButtonHTML = `
         <div class="text-end mb-3">
             <button class="btn btn-sm btn-primary login-button">
@@ -255,20 +265,22 @@ function aggiornaHTMLperUtenteGuest() {
             </button>
         </div>`;
 
+
+
   // Aggiungi pulsante login se non esiste
   const existingLoginButton = document.querySelector('.login-button');
   if (!existingLoginButton) {
-    const pageContent = document.getElementById('page-content');
+    const pageContent = document.getElementById('user-info');
     pageContent.insertAdjacentHTML('afterbegin', loginButtonHTML);
-  }
+  }*/
 }
 
 
 // UTENTE ADMIN
 // Verifico se l'utente loggato è un admin
-// ritorna true se l'utente è loggato con previlegi di admin
+// ritorna true se l'utente è loggato con privilege di admin
 //         false in tutti gli altri casi
-// può essere usato per esempio per mostare pulsanti elimina lezione solo ad admin
+// può essere usato per esempio per mostrare pulsanti elimina lezione solo ad admin
 function isCurrentUserAdmin() {
   return utente_corrente && utente_corrente.admin;
 }

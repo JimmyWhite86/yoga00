@@ -9,7 +9,7 @@ const BASEURL = '../backend/api/';
 
 
 
-// ------------------------------------------------
+
 // INVIA RICHIESTA
 // Funzione per effettuare chiamate AJAX alle API.
 // Utilizza fetch
@@ -79,7 +79,6 @@ function inviaRichiesta(api, callback, method = "GET", body) {
 
 
 
-// ------------------------------------------------
 // CARD LEZIONI
 // Genera l'HTML per visualizzare le lezioni come card Bootstrap
 //
