@@ -42,55 +42,7 @@
 
   <body>
 
-  <!-- BARRA DI NAVIGAZIONE -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-      <!-- Titolo della pagina -->
-      <a class="navbar-brand" href="#"> White Yoga </a>
-
-      <!-- Burger menu dinamico in base alla grandezza della pagina -->
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-
-        <!-- Link di navigazione -->
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
-              Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Lezioni</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Area Personale</a>
-          </li>
-        </ul>
-
-        <!-- Info utenti e tasti login / logout -->
-        <div>
-          <div id="user-info" class="user-info">User Info</div>
-          <!--<div class="session-button">Session Button</div>-->
-        </div>
-      </div>
-
-
-
-
-    </nav>
-  <!-- Fine della barra di navigazione -->
-
+  <div id="contenitore-navbar"></div>
 
     <div id="app" class="container-fluid">
       <div class="page-header">
@@ -104,9 +56,10 @@
     <!-- Carico i file JS -->
     <script src="lezioni/read-all-lezioni.js"></script>
     <script src="login.js"></script>
+    <script src="navbar.js"></script>
 
     <script>
-      aggiornaHTMLperUtenteGuest();
+      // aggiornaHTMLperUtenteGuest();
       // Mostra la lista delle lezioni all'avvio dell'applicazione
       // mostraLezioni();
     </script>

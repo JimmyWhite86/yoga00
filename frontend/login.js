@@ -19,6 +19,7 @@ let utente_corrente = null;
 
 // ------------------------------------------------
 
+
 // LISTENER
 // Eseguo il codice quando il DOM è completamente caricato.
 // All'interno inserisco gli event listener principali
@@ -39,29 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
       mostraFormLogin();
     }
   })
-
-/*  // FORM LOGIN
-  // Mostro il form di login quando l'utente clicca sul bottone login
-  // Event Delegation
-  // Metto il listener sul document (che è sempre presente) e poi controllo se il click è avvenuto sul pulsante desiderato.
-  // Utile quando la UI è generata dinamicamente.
-  document.addEventListener('click', function (e) {
-
-    // e.target = elemento cliccato
-    // e.target = closest('.login-button') = cerca il pulsante piu vicino con classe .login-button risalendo l'albero del DOM.
-    //                                       Se clicco sull'icona dentro il pulsante e.target sarebbe lo l'icona e non il pulsante.
-    //                                       closest() risale fino a trovare il button
-    if (e.target.closest('.login-button')) {
-
-      // Disabilito l'evento di default del componente
-      // developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
-      // w3schools.com/jsref/event_preventdefault.asp
-      e.preventDefault();
-
-      // Richiamo la funzione che carica l'html del form
-      mostraFormLogin();
-    }
-  });*/
 
 
   // LOGIN SUBMIT
@@ -140,10 +118,10 @@ function controlloStatoSessione() {
     // In base al valore di logged_in, contenuto nella risposta
     if(data.logged_in) {                  // Se logged_in è true => utente loggato;
       utente_corrente = data.utente;      // Salvo i dati dell'utente nella variabile
-      aggiornaHTMLperUtenteLoggato();     // Aggiorno l'html della pagina con quella riservata agli utenti loggati
+      generaNavbar()
     } else {                              // Se logged_in è false => utente non loggato;
       utente_corrente = null;             // Imposto la variabile a null
-      aggiornaHTMLperUtenteGuest();       // Aggiorno l'html della pagina con quella per utenti guest
+      generaNavbar()
     }
   });
 }
@@ -199,7 +177,7 @@ function gestisciLogin(data) {
   console.log("Dati utente: ", data.utente);
 
   utente_corrente = data.utente;      // setto i dati dell'utente
-  aggiornaHTMLperUtenteLoggato();     // Aggiorno l'html della pagina con quella riservata agli utenti loggati
+  generaNavbar();
   mostraLezioni();                    // Richiamo la funzione che richiama tutte le funzioni
 
   // Messaggio di benvenuto
@@ -212,128 +190,15 @@ function gestisciLogin(data) {
 function logout() {
   inviaRichiesta("logout.php", () => {    // Chiamo l'endpoint logout.php
     utente_corrente = null;             // Imposto la variabile utente a null
-    aggiornaHTMLperUtenteGuest();       // Aggiorno l'html della pagina con quella per utenti guest
+    generaNavbar();
     mostraLezioni();                    // TOrno alla pagina che mostra le lezioni
     alert("Logout effettuato con succecsso");  // TODO: Sostituire con toast o notifica piu "elegante"
   });
 }
 
 
-// INTERFACCIA PER UTENTE LOGGATO
-// Aggiorna UI per utente loggato
-// Mostra info utente e pulsante logout in cima alla pagina
-function aggiornaHTMLperUtenteLoggato() {
-  // Creo HTML con info utente
-  const userInfo = `
-    <span class="me-3">
-      <i class="fa fa-user"></i>
-      <strong>${utente_corrente.nome_utente}</strong>
-      <span class="badge bg-${utente_corrente.admin ? 'danger' : 'info'}">
-        ${utente_corrente.admin ? 'Admin' : 'User'}
-      </span>
-    </span>
-    <button class="btn btn-sm btn-outline-danger logout-button">
-      <i class="fa fa-sign-out"></i> Logout
-    </button>`
-
-  const userInfoOld = `
-        <div class="user-info text-end mb-3">
-            <span class="me-2">
-                <span class="fa fa-user"></span> ${utente_corrente.nome_utente} 
-                <span class="badge bg-${utente_corrente.admin === true ? 'danger' : 'secondary'}">
-                  ${utente_corrente.admin ? 'Admin' : 'User'}
-                </span>
-            </span>
-            <button class="btn btn-sm btn-outline-danger logout-button">
-                <span class="fa fa-sign-out"></span> Logout
-            </button>
-        </div>`;
-
-  // Inserisco l'html crato nella navbar
-  const userInfoContainer = document.getElementById('user-info');
-
-  if (userInfoContainer) {
-    userInfoContainer.innerHTML = userInfo;
-  } else {
-    console.error("Tag HTML con id #user-info non trovato nel DOM");
-  }
-
-  // Verifico se le info utente esistono già
-  // querySelector restituisce il primo elemento trovato o null
-  /*const datiUtenteEsistenti = document.querySelector('.user-info');*/
-
-  // Se le info non esistono, allora le aggiungo
-/*  if (!datiUtenteEsistenti) {
-    const pageContent = document.getElementById('user-info');    // Prendo il container principale
-    pageContent.insertAdjacentHTML('afterbegin', userInfo);
-    // insertAdjacentHTML => inserisce l'HTML in una posizione specifica
-    // 'afterbegin' = come primo figlio (all'inizio del contenuto)
-  }*/
-}
-
-
-// Aggiorna UI per ospite
-// Mostra solo il pulsante login
-function aggiornaHTMLperUtenteGuest() {
-
-  // Creo l'html del pulsante login
-  const loginButton = `
-    <button class="btn btn-sm btn-primary login-button">
-      <i class="fa fa-sign-in"></i> Login
-    </button>
-  `;
-
-  // Inserisco l'html appena creato nella navbar
-  const userInfoContainer = document.getElementById('user-info');
-
-  if (userInfoContainer) {
-    userInfoContainer.innerHTML = loginButton;
-  } else {
-    console.error('Tag HTML con id #user-info non trovato nel DOM')
-  }
-
-
-
-  // Controllo se esistono dati utente da una sessione precedente e nel caso rimuovo
-  /*const datiUtenteEsistenti = document.querySelector('.user-info');
-  if (datiUtenteEsistenti) {
-    datiUtenteEsistenti.remove();   // remove() => elimina l'elemento dal DOM
-  }
-
-  // Creo l'HTML per il pulsante di login
-  const loginButtonHTML = `
-            <button class="btn btn-sm btn-primary login-button">
-                <span class="fa fa-sign-in"></span> Login
-            </button>`
-
-  document.getElementById("user-info").innerHTML = loginButtonHTML;*/
-
-
-/*
-  // Creo l'HTML per un pulsante di login
-  const loginButtonHTML = `
-        <div class="text-end mb-3">
-            <button class="btn btn-sm btn-primary login-button">
-                <span class="fa fa-sign-in"></span> Login
-            </button>
-        </div>`;
-
-
-
-  // Aggiungi pulsante login se non esiste
-  const existingLoginButton = document.querySelector('.login-button');
-  if (!existingLoginButton) {
-    const pageContent = document.getElementById('user-info');
-    pageContent.insertAdjacentHTML('afterbegin', loginButtonHTML);
-  }*/
-}
-
-
 // UTENTE ADMIN
 // Verifico se l'utente loggato è un admin
-// ritorna true se l'utente è loggato con privilege di admin
-//         false in tutti gli altri casi
-// può essere usato per esempio per mostrare pulsanti elimina lezione solo ad admin
 function isCurrentUserAdmin() {
   return utente_corrente && utente_corrente.admin;
 }
