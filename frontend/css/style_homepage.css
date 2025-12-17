@@ -1,0 +1,73 @@
+/* style_home.css - Colori brand White Yoga */
+:root {
+    --bg-light: #fefbf1;
+    --accent: #d0bfa6;
+    --primary: #2f4f58;
+}
+
+/* Background generale */
+body {
+    background-color: var(--bg-light);
+    color: var(--primary);
+    font-family: 'Georgia', serif;
+}
+
+/* Hero section */
+.hero {
+    background: linear-gradient(rgba(47, 79, 88, 0.8), rgba(47, 79, 88, 0.8)), url('../assets/img/yoga-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    min-height: 500px;
+}
+
+.btn-accent {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.btn-accent:hover {
+    background-color: #c0b099;
+    border-color: #c0b099;
+    color: var(--primary);
+}
+
+/* Icone nelle card */
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    color: var(--primary);
+}
+
+/* Card benefici */
+.card {
+    transition: transform 0.3s;
+    border-radius: 15px;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* Testi */
+h1, h2, h5 {
+    color: var(--primary);
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+/* Navbar (se ne aggiungi una) */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}

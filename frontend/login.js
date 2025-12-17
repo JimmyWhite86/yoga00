@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
   controlloStatoSessione();
 
   // Mostro le lezioni nella home
-  mostraLezioni();
+  // mostraLezioni();
+  // generaHomepage()
 
   // LOGIN
   // Gestisco il click sul pulsante di login
