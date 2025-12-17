@@ -98,7 +98,7 @@
         }
         
         // Setto la password in chiaro per il login (non viene salvata nel database)
-        public function setPassqord_in_chiaro (string $password): void
+        public function setPassword_in_chiaro (string $password): void
         {
             if (strlen($password) < 6) {        // Verifico che la password abbia almeno 6 caratteri.
                 throw new InvalidArgumentException("Password troppo corta. Almeno 6 caratteri.");

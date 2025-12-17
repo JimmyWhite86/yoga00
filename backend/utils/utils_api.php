@@ -240,7 +240,7 @@
         
         try {
             foreach ($campi_mapping as $campo => $setter) {
-                if (isset($data->$campo)) ;
+                if (isset($data->$campo))
                 {
                     $istanza->$setter($data->$campo);
                 }
