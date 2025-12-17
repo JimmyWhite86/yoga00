@@ -1,4 +1,4 @@
-// yoga00/frontend/homepage.js
+// yoga00/frontend/common/homepage.js
 
 function generaHomepage() {
   let homepageHMTL = `

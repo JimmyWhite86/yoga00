@@ -1,10 +1,10 @@
-// /yoga00/frontend/navbar.js
+// /yoga00/frontend/common/navbar.js
 
 function generaNavbar() {
   let navbarHTML = `
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#">White Yoga</a>
+        <a id="logo-navbar" class="navbar-brand fw-bold" href="#">White Yoga</a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,15 +16,15 @@ function generaNavbar() {
           <ul class="navbar-nav me-auto">
             
             <li class="nav-item">
-              <a class="nav-link active" href="#">Home</a>
+              <a id="homeLink" class="nav-link active" href="#">Home</a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="#">Lezioni</a>
+              <a id="lezioniLink" class="nav-link" href="#">Lezioni</a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="#">Area Personale</a>
+              <a id="areaPersonaleLink" class="nav-link" href="#">Area Personale</a>
             </li>
             
             ${isCurrentUserAdmin() ? `

@@ -1,4 +1,4 @@
-// yoga00/frontend/app.js
+// yoga00/frontend/common/app.js
 
 
 
@@ -58,7 +58,30 @@ function inviaRichiesta (api, callback, method = 'GET', body = null) {
 // ------------------------------------------------
 
 
+// FUNZIONI DI NAVIGAZIONE
+document.addEventListener('DOMContentLoaded', function () {
 
+    // Controllo lo stato della sessione
+    controlloStatoSessione();
+
+
+    // Homepage
+    document.addEventListener('click', function (e) {
+        if(e.target.closest('#logo-navbar' || '#homeLink')) {
+            e.preventDefault();
+            generaHomepage();
+        }
+    });
+
+    // Area personale per utenti loggati
+
+    // Le mie prenotazioni
+
+    // Lezioni
+
+
+
+})
 
 
 

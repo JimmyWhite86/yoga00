@@ -1,4 +1,4 @@
-// yoga00/frontend/cardLezioni.js
+// yoga00/frontend/common/cardLezioni.js
 
 
 
