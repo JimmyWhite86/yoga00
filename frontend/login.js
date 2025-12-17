@@ -200,7 +200,7 @@ function gestisciLogin(data) {
 
   utente_corrente = data.utente;      // setto i dati dell'utente
   aggiornaHTMLperUtenteLoggato();     // Aggiorno l'html della pagina con quella riservata agli utenti loggati
-  //mostraLezioni();                    // Richiamo la funzione che richiama tutte le funzioni
+  mostraLezioni();                    // Richiamo la funzione che richiama tutte le funzioni
 
   // Messaggio di benvenuto
   // TODO: sostituire con toast o notifica piu "elegante"

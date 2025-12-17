@@ -20,52 +20,18 @@ const BASEURL = '../backend/api/';
 // @param {string} method       - Metodo HTTP (default: "GET")
 // @param {string} body         - Dati da inviare (JSON string, opzionale)
 function inviaRichiesta(api, callback, method = "GET", body) {
-
-  // Costruzione della richiesta fetch
-  // URL Completa concatenando BASEURL + API
   const fetchPromise = fetch(BASEURL + api, {
-
-    // Opzioni della richiesta:
-
-    // Metodo http => di default GET
-    method,   // shorthand property name: dato che la variabile ha lo stesso nome della proprietà, equivale a "method: method"
-
-    // Headers
-    // Operatore ternario
-    //    - Se c'è un body => imposto Content-Type: application/json (dice al server quale formato stiamo inviando)
-    //    - Se non c'è un body => metto headers come undefined
+    method,
     headers: body ? {'Content-Type': 'application/json'} : undefined,
-
-    // Body (corpo della richiesta)
-    // Contiene i dati da inviare
     body,
-
-    // Credenziali _ Per la gestione delle sessioni in PHP
     credentials: 'include'
   });
-
-  // Gestione della risposta
-  // fetch() restituisce una promise che viene soddisfatta quando arriva la risposta dal server.
-  //
-  // Flusso:
-  // 1.  fetch() invia richiesta → Promise pending
-  // 2.  Server risponde → Promise resolved
-  // 3.  .then() gestisce la risposta
-  // 4.  .catch() gestisce eventuali errori
   fetchPromise
-    // Controllo lo stato HTTP
-    // response è un oggetto Response con le seguenti proprietà:
-    // - response.ok:           true se status 200-299, false altrimenti
-    // - response.status:       codice HTTP (200, 404, 500, ecc.)
-    // - response.statusText:   testo status ("OK", "Not Found", ecc.)
-    // - response.headers:      headers della risposta
-    // - response.body:         contenuto della risposta (stream)
     .then((response) => {                           // Viene eseguita quando arriva la risposta
       if (!response.ok) {                                     // Se la risposta è diversa da .ok => Gestisco errore
         throw new Error(`HTTP error: ${response.status}`);    // Lancio errore che viene catturato da catch
       }
-      return response.json();                                 // response.ok === true => "parso" la risposta come JSON.
-                                                              // response.json(); restituisce una Promise che si risolve con i dati JSON "parsati"
+      return response.json();                                 // response.ok === true => "parso" la risposta come JSON.// response.json(); restituisce una Promise che si risolve con i dati JSON "parsati"
     })
     // Gestione dei dati
     .then(data => callback(data))   // Ricevo i dati JSON parsati, eseguo la funzione callback passando i dati.
