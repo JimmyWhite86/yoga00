@@ -1,13 +1,9 @@
 // yoga00/frontend/common/app.js
 
-
-
 // ------------------------------------------------
 // URL BASE
 const BASEURL = '../backend/api/';
 // ------------------------------------------------
-
-
 
 
 // INVIA RICHIESTA
@@ -58,7 +54,8 @@ function inviaRichiesta (api, callback, method = 'GET', body = null) {
 // ------------------------------------------------
 
 
-
+// Versione modificata il 17.12.2025 per gestire anche i casi in cui l'utente inserisce dati errati in fase di login
+// Prima non gestiva i casi di credenziali sbagliate
 
 
 

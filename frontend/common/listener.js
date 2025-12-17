@@ -101,6 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Prenota lezione
+  document.addEventListener('click', function (e) {
+    if(e.target.closest)
+  })
+
 
 
 
