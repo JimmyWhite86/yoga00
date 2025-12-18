@@ -103,7 +103,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Prenota lezione
   document.addEventListener('click', function (e) {
-    if(e.target.closest)
+
+    const datiBottone = e.target.closest('.readLezione');
+
+    if(e.target.closest('.readLezione')) {
+      e.preventDefault();
+
+      // Leggo l'id della lezione, passato come attrabuto data-id="" del tag html
+      const lezione_id = datiBottone.getAttribute('data-id');
+      mostraDettaglioLezione(lezione_id);
+    }
+  })
+
+  // Gestisci prenotazione
+  // Mostra le card con le prenotazioni
+  document.addEventListener('click', function(e) {
+    if(e.target.closest('.vaiGestionePrenotazioni')) {
+      e.preventDefault();
+      mostraPrenotazioni();
+    }
   })
 
 

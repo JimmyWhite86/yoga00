@@ -106,6 +106,13 @@ function logout() {
 }
 
 
+// UTENTE LOGGATO
+// Controllo se è presente un utente loggato
+function isLoggedIn() {
+  return utente_corrente;
+}
+
+
 // UTENTE ADMIN
 // Verifico se l'utente loggato è un admin
 function isCurrentUserAdmin() {

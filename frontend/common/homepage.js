@@ -8,7 +8,7 @@ function generaHomepage() {
         <div class="container">
             <h1 class="display-3 fw-bold mb-4">White Yoga</h1>
             <p class="lead mb-5">Trova equilibrio, forza e serenità attraverso lo yoga</p>
-            <a href="dashboard.php" class="btn btn-lg btn-accent">Inizia ora</a>
+            <a href="" class="btn btn-lg btn-accent">Inizia ora</a>
         </div>
     </section>
 
@@ -63,11 +63,11 @@ function generaHomepage() {
                     <div class="row text-center">
                         <div class="col-sm-4 mb-4">
                             <i class="fas fa-map-marker-alt fa-2x text-primary mb-3"></i>
-                            <p>Via della Pace 42<br>00100 Roma, Italia</p>
+                            <p>Lungo Dora<br>10010 Torino, Italia</p>
                         </div>
                         <div class="col-sm-4 mb-4">
                             <i class="fas fa-phone fa-2x text-primary mb-3"></i>
-                            <p>+39 06 1234567</p>
+                            <p>+39 011 1234567</p>
                         </div>
                         <div class="col-sm-4 mb-4">
                             <i class="fas fa-envelope fa-2x text-primary mb-3"></i>
@@ -75,7 +75,7 @@ function generaHomepage() {
                         </div>
                     </div>
                     <div class="text-center mt-4">
-                        <a href="dashboard.php" class="btn btn-primary btn-lg">Accedi all'area riservata</a>
+                        <a href="" class="btn btn-primary btn-lg">Accedi all'area riservata</a>
                     </div>
                 </div>
             </div>

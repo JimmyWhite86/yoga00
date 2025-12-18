@@ -33,8 +33,21 @@ function generaNavbar() {
                 Admin
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Gestione Utenti</a></li>
-                <li><a class="dropdown-item" href="#">Gestione Lezioni</a></li>
+                <li>
+                    <a class="dropdown-item vaiGestioneUtente" href="#">
+                        Gestione Utenti
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item vaiGestioneLezioni" href="#">
+                        Gestione Lezioni
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item vaiGestionePrenotazioni" href="#">
+                        Gestione Prenotazioni
+                    </a>
+                </li>
               </ul>
             </li>
             ` : ''}

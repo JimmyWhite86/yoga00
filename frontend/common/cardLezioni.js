@@ -51,7 +51,7 @@ function card_lezione(lezioni) {
         <div class='btn-group btn-group-sm'>
             
             <!-- Bottone per leggere una singola lezione -->
-            <button class='btn btn-primary me-2 read-one-product-button' data-id='${val.lezione_id}'>
+            <button class='btn btn-primary me-2 read-one-product-button readLezione' data-id='${val.lezione_id}'>   <!--La classe readLezione mi serve per andare a leggere l'evento sul bottone -->
               <span class='fa fa-eye'></span> <small>Leggi</small>
             </button>
             
