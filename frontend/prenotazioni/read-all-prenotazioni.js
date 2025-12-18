@@ -1,7 +1,7 @@
 // /yoga00/frontend/prenotazioni/read-all-prenotazioni.js
 
 function mostraPrenotazioni() {
-  inviaRichiesta("prenotazioni/search-all.php", data => {
+  inviaRichiesta("prenotazioni/search_all.php", data => {
 
     // Per debug:
     console.log("Dati ricevuti: ", data);

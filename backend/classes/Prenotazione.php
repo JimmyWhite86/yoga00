@@ -18,6 +18,14 @@
         private ?int $acquistato_con;
         private $prenotato_il;
         
+        // Attributi per le join
+        private ?string $nome_utente;
+        private ?string $cognome_utente;
+        private ?string $email_utente;
+        private ?string $nome_lezione;
+        private ?string $insegnante;
+        
+        
         
         // COSTRUTTORE => Inizializza la variabile per la connessione al PDO
         public function __construct($db)
@@ -34,6 +42,13 @@
         public function getStato() { return $this->stato; }
         public function getAcquistatoCon(): ?int { return $this->acquistato_con; }
         public function getPrenotatoIl() { return $this->prenotato_il; }
+        
+        public function getNomeUtente(): ?string { return $this->nome_utente; }
+        public function getCognomeUtente(): ?string { return $this->cognome_utente; }
+        public function getEmailUtente(): ?string { return $this->email_utente; }
+        public function getNomeLezione(): ?string { return $this->nome_lezione; }
+        public function getInsegnante(): ?string { return $this->insegnante; }
+        
         
         
         // SETTER (con validazioni)
