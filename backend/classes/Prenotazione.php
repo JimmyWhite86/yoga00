@@ -122,7 +122,32 @@
         // Search All
         public function searchAll()
         {
-            $query = "SELECT * FROM {$this->table_name}";
+            $query = "SELECT
+                    p.prenotazione_id,
+                    p.utente_id,
+                    p.lezione_id,
+                    p.data_prenotata,
+                    p.stato,
+                    p.acquistato_con,
+                    p.prenotato_il,
+                    -- Dati utente
+                    u.nome_utente AS utente_nome,
+                    u.cognome_utente AS utente_cognome,
+                    u.email AS utente_email,
+                    -- Dati lezione
+                    l.nome AS lezione_nome,
+                    l.insegnante AS lezione_insegnante,
+                    l.giorno_settimana AS lezione_giorno,
+                    l.ora_inizio AS lezione_ora_inizio,
+                    l.ora_fine AS lezione_ora_fine,
+                    -- Dati abbonamento (opzionale)
+                    abb.nome AS abbonamento_nome
+                  FROM {$this->table_name} AS p
+                  INNER JOIN utenti AS u ON p.utente_id = u.utente_id
+                  INNER JOIN lezioni AS l ON p.lezione_id = l.lezione_id
+                  LEFT JOIN acquisti AS acq ON p.acquistato_con = acq.acquisto_id
+                  LEFT JOIN abbonamenti AS abb ON acq.abbonamento_id = abb.abbonamento_id
+                  ORDER BY p.prenotato_il DESC;";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt;
@@ -157,7 +182,27 @@
         // Read One
         public function readOne()
         {
-            $query = "SELECT * FROM {$this->table_name} WHERE prenotazione_id = :prenotazione_id;";
+            $query = "SELECT
+                    p.prenotazione_id,
+                    p.utente_id,
+                    p.lezione_id,
+                    p.data_prenotata,
+                    p.stato,
+                    p.acquistato_con,
+                    p.prenotato_il,
+                    -- Dati utente
+                    u.nome_utente AS nome_utente,
+                    u.cognome_utente AS cognome_utente,
+                    u.email AS email,
+                    -- Dati lezione
+                    l.nome AS nome_lezione,
+                    l.insegnante AS insegnante,
+                    l.giorno_settimana AS giorno_settimana
+                  FROM {$this->table_name} AS p
+                  INNER JOIN utenti AS u ON p.utente_id = u.utente_id
+                  INNER JOIN lezioni AS l ON p.lezione_id = l.lezione_id
+                  LEFT JOIN acquisti AS acq ON p.acquistato_con = acq.acquisto_id
+                  WHERE p.prenotazione_id = :prenotazione_id;";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':prenotazione_id', $this->prenotazione_id);
             $stmt->execute();
@@ -172,6 +217,12 @@
                 $this->stato = $row['stato'];
                 $this->acquistato_con = $row['acquistato_con'];
                 $this->prenotato_il = $row['prenotato_il'];
+                
+                $this->nome_utente = $row['nome_utente'];
+                $this->cognome_utente = $row['cognome_utente'];
+                $this->email_utente = $row['email'];
+                $this->nome_lezione = $row['lezione'];
+                $this->insegnante = $row['insegnante'];
             } else {
                 // Se non trovo la prenotazione, imposto i valori delle variabili di istanza a null
                 $this->utente_id = null;
@@ -225,6 +276,8 @@
         }
         
         
+        
+        
         // METODI AGGIUNTIVI
         // Annulla una prenotazione
         public function annullaPrenotazione()
@@ -237,4 +290,48 @@
             $stmt->execute();
             return $stmt;
         }
+        
+        
+        // Cerca prenotazioni in base all'utente
+        // Da usare per mostrare all'utente le sue prenotazioni
+        public function searchByUtente($utente_id)
+        {
+            $query = "SELECT
+                    p.*,
+                    u.nome_utente AS nome_utente,
+                    u.cognome_utente AS cognome_utente,
+                    l.nome AS lezione_nome,
+                    l.insegnante AS insegnante,
+                    l.giorno_settimana AS giorno_settimana
+                  FROM {$this->table_name} AS p
+                  INNER JOIN utenti AS u ON p.utente_id = u.utente_id
+                  INNER JOIN lezioni AS l ON p.lezione_id = l.lezione_id
+                  WHERE p.utente_id = :utente_id
+                  ORDER BY p.data_prenotata DESC;";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':utente_id', $utente_id);
+            $stmt->execute();
+            return $stmt;
+        }
     }
+    
+    
+    
+    
+    
+    
+    
+ /*
+     *      INNER JOIN vs LEFT JOIN:
+     *
+     * INNER JOIN:
+     * - Restituisce SOLO le righe dove esiste una corrispondenza in entrambe le tabelle
+     * - Uso: utenti e lezioni (DEVONO esistere per ogni prenotazione)
+     *
+     * LEFT JOIN:
+     * - Restituisce TUTTE le righe della tabella sinistra (prenotazioni)
+     * - E le righe corrispondenti della tabella destra (se esistono)
+     * - Uso: abbonamenti (potrebbero NON esistere, acquistato_con può essere NULL)
+  *
+  * */
