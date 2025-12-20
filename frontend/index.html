@@ -38,6 +38,10 @@
     <!-- File JS mio -->
     <script src="common/app.js"></script>
 
+    <!-- fontawesome per icone -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
     <title>White Yoga</title>
   </head>
 
@@ -46,12 +50,25 @@
   <div id="contenitore-navbar"></div>
 
     <div id="app" class="container-fluid">
-      <div class="page-header">
+
+<!--      <div class="page-header">
         <h1 id="page-title">Lezioni</h1>
+      </div>-->
+
+
+      <div class="py-5 text-center bg-light">
+        <h1 id="page-title" class="display-5 fw-normal text-secondary">
+          Lezioni
+        </h1>
+        <div class="mx-auto mt-3"
+             style="width:60px; height:2px; background-color:#c8b59b;">
+        </div>
       </div>
+
 
       <!-- Dove viene inserito il codice generato automaticamente -->
       <div id="page-content"></div>
+
     </div>
 
     <!-- Carico i file JS -->
@@ -62,7 +79,7 @@
   <script src="common/cardLezioni.js"></script>
   <script src="common/listener.js"></script>
   <script src="common/area-personale.js"></script>
-  <script src="common/prenotazioni.js"></script>
+  <script src="lezioni/read-one.js"></script>
   <script src="common/cardPrenotazioni.js"></script>
   <script src="prenotazioni/read-all-prenotazioni.js"></script>
 

@@ -52,11 +52,18 @@ function inviaRichiesta (api, callback, method = 'GET', body = null) {
         })
 }
 // ------------------------------------------------
-
-
 // Versione modificata il 17.12.2025 per gestire anche i casi in cui l'utente inserisce dati errati in fase di login
 // Prima non gestiva i casi di credenziali sbagliate
 
+
+
+
+
+// Funzione per cambiare il titolo della pagina
+function cambiaTitoloPagina(titoloDellaPagina) {
+    $("#page-title").text(titoloDellaPagina);
+    document.title = titoloDellaPagina;
+}
 
 
 

@@ -12,6 +12,10 @@
 // @return {string} - HTML completo con tutte le card
 function card_lezione(lezioni) {
 
+  // Aggiorno il titolo della pagina
+  const titoloDellaPagina = "Lezioni";
+  cambiaTitoloPagina(titoloDellaPagina);
+
   // Controllo se l'utente è admin
   const isAdmin = isCurrentUserAdmin();
 

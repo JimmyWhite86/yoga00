@@ -1,4 +1,4 @@
-// yoga00/frontend/common/prenotazioni.js
+// yoga00/frontend/common/read-one.js
 
 // Funzione per mostrare il dettaglio della lezione caricata
 function mostraDettaglioLezione(lezione_id) {

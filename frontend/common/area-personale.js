@@ -1,13 +1,20 @@
 // yoga00/frontend/common/area-personale.js
 
 
+
 function generaAreaPersonale() {
+
+  // Aggiorno il titolo della pagina
+  const titoloDellaPagina = "Area Personale";
+  cambiaTitoloPagina(titoloDellaPagina);
+
 
   // Controllo che l'utente sia loggato
   if (!utente_corrente) {
     document.getElementById('page-content').innerHTML =
       '<h2 class="text-danger">Attenzione! Utente non loggato</h2>';
   }
+
 
   let datiUtenteFormattati = `
     <dl class="row">

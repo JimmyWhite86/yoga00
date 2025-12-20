@@ -1,10 +1,10 @@
-// /yoga00/frontend/prenotazioni/read-all-prenotazioni.js
+// /yoga00/frontend/prenotazioni/read-all-read-one.js
 
 function mostraPrenotazioni() {
   inviaRichiesta("prenotazioni/search_all.php", data => {
 
     // Per debug:
-    console.log("Dati ricevuti: ", data);
+    console.log("read-all-prenotazione.js => Dati ricevuti: ", data);
 
     // Controllo se ci sono prenotazioni da mostrare
     if (data.Prenotazione && data.Prenotazione.length > 0) {

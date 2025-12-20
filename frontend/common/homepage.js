@@ -1,6 +1,13 @@
 // yoga00/frontend/common/homepage.js
 
 function generaHomepage() {
+
+
+  // Aggiorno il titolo della pagina
+  const titoloDellaPagina = "Home Page";
+  cambiaTitoloPagina(titoloDellaPagina);
+
+  // Creo l'html da passare
   let homepageHMTL = `
 
     <!-- HERO SECTION -->

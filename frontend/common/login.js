@@ -39,6 +39,7 @@ function controlloStatoSessione() {
 // HTML DEL FORM DI LOGIN
 // Genera e inserisce l'HTML del form di login nella pagina
 function mostraFormLogin() {
+
   const loginHtml = `
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
@@ -72,8 +73,9 @@ function mostraFormLogin() {
   // innerHTML = imposta contenuto HTML di un elemento
   document.getElementById('page-content').innerHTML = loginHtml;
 
-  // Cambio il titolo della pagina
-  // cambiaTitoloPagina("Login");
+  // Aggiorno il titolo della pagina
+  const titoloDellaPagina = "LOGIN";
+  cambiaTitoloPagina(titoloDellaPagina);
 }
 
 
