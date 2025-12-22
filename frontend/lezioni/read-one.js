@@ -104,7 +104,7 @@ function mostraDettaglioLezione(lezione_id) {
 // HTML Per utente loggato => mostro pulsante prenotazione
 function utenteLoggatoHTML(lezione_id) {
   return `
-    <button class="btn btn-primary login-button mt-3" data-id="${lezione_id}">
+    <button class="btn btn-primary mt-3" id="prenotaLezione" data-id="${lezione_id}">
         <i class="fa fa-sign-in me-2"></i>Prenota la lezione
     </button>
     `;

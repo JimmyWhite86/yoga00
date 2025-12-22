@@ -4,7 +4,7 @@ function generaNavbar() {
   let navbarHTML = `
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div class="container-fluid">
-        <a id="logo-navbar" class="navbar-brand fw-bold" href="#">White Yoga</a>
+        <a id="logo-navbar" class="navbar-brand fw-bold home-link" href="#">White Yoga</a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,7 @@ function generaNavbar() {
           <ul class="navbar-nav me-auto">
             
             <li class="nav-item">
-              <a id="homeLink" class="nav-link active" href="#">Home</a>
+              <a id="homeLink" class="nav-link active home-link" href="#">Home</a>
             </li>
             
             <li class="nav-item">

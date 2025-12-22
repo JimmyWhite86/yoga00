@@ -240,14 +240,16 @@
         
         try {
             foreach ($campi_mapping as $campo => $setter) {
-                if (isset($data->$campo))
-                {
+                if (isset($data->$campo)) {
                     $istanza->$setter($data->$campo);
                 }
             }
             
             if ($istanza->create()) {
                 http_response_code(201);
+                echo json_encode(array(
+                    "messaggio" => "creazione avvenuta con successo"
+                ));
             } else {
                 http_response_code(503);
                 echo json_encode(array(

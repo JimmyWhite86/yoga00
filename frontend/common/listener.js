@@ -69,16 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   // Navigazione Link
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('.home-link')) {
-      e.preventDefault();
-      mostraLezioni();
-    }
-  })
 
   // Homepage
   document.addEventListener('click', function (e) {
-    if(e.target.closest('#logo-navbar') || e.target.closest('#home-link')) {
+    if(e.target.closest('.home-link')) {
       e.preventDefault();
       generaHomepage();
     }
@@ -93,7 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Lezioni
+
+  // Mostra Lezioni
   document.addEventListener('click', function (e) {
     if(e.target.closest('#lezioniLink')) {
       e.preventDefault();
@@ -101,7 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Prenota lezione
+
+  // Leggi singola lezione
   document.addEventListener('click', function (e) {
 
     const datiBottone = e.target.closest('.readLezione');
@@ -124,6 +120,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
 
+
+  // Prenota la lezione
+  document.addEventListener('click', function(e) {
+    if(e.target.closest('#prenotaLezione')) {
+      e.preventDefault();
+      createPrenotazione();
+    }
+  })
+
+
+  // Crea nuova lezione
+/*  document.addEventListener('click', function(e) {
+    if(e.target.closest('.vaiGestioneLezioni')) {
+      e.preventDefault();
+
+    }
+  })*/
 
 
 
