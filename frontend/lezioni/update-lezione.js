@@ -1,18 +1,17 @@
-// yoga00/frontend/lezioni/create-lezione.js
-
 $(document).ready(function () {
 
-  // Mostro il form quando l'utente fa clock su crea nuova lezione
-  $(document).on('click', '.vaiGestioneLezioni', function (e) {
+  // Mostro il form già compilato quando l'utente clicca sul bottone per aggiornare una lezione
+  $(document).on("click", ".update-product-button", function (e) {
 
-    e.preventDefault();
+    // Recupero l'id della lezione che vogliamo modificare
+    const lezione_id = $(this).attr("data-id"); // this = il bottone cliccato. Leggo l'attributo "data-id" del tag html
 
-    // Creo l'html del form
-    const formNuovaLezioneHTML = `
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
+    let formAggiornaLezioneHTML = `
+    
+<div class="card shadow">
+  <div class="card-header bg-primary text-white">
     <h4 class="mb-0">
-      <i class="fa fa-plus-circle"></i> Crea Nuova Lezione
+      <i class="fa fa-plus-circle"></i> Modifica la lezione
     </h4>
   </div>
 
@@ -29,7 +28,7 @@ $(document).ready(function () {
                 name="nome"
                 id="nome"
                 class="form-control"
-                placeholder="Es: Hatha Yoga"
+                value="${data.nome}"
                 required
         >
       </div>
@@ -44,7 +43,7 @@ $(document).ready(function () {
                 id="descrizione"
                 class="form-control"
                 rows="3"
-                placeholder="Descrivi la lezione..."
+                value="${data.descrizione || ""}"
                 required
         ></textarea>
       </div>
@@ -61,13 +60,27 @@ $(document).ready(function () {
                 required
         >
           <option value="">-- Seleziona giorno --</option>
-          <option value="lunedi">Lunedì</option>
-          <option value="martedi">Martedì</option>
-          <option value="mercoledi">Mercoledì</option>
-          <option value="giovedi">Giovedì</option>
-          <option value="venerdi">Venerdì</option>
-          <option value="sabato">Sabato</option>
-          <option value="domenica">Domenica</option>
+          <option value="lunedi" ${
+            data.giorno_settimana === "lunedi" ? "selected" : ""
+          }>Lunedì</option>
+          <option value="martedi" ${
+            data.giorno_settimana === "martedi" ? "selected" : ""
+          }>Martedì</option>
+          <option value="mercoledi" ${
+            data.giorno_settimana === "mercoledi" ? "selected" : ""
+          }>Mercoledì</option>
+          <option value="giovedi" ${
+            data.giorno_settimana === "giovedi" ? "selected" : ""
+          }>Giovedì</option>
+          <option value="venerdi" ${
+            data.giorno_settimana === "venerdi" ? "selected" : ""
+          }>Venerdì</option>
+          <option value="sabato" ${
+            data.giorno_settimana === "sabato" ? "selected" : ""
+          }>Sabato</option>
+          <option value="domenica" ${
+            data.giorno_settimana === "domenica" ? "selected" : ""
+          }>Domenica</option>
         </select>
       </div>
 
@@ -82,6 +95,7 @@ $(document).ready(function () {
                   name="ora_inizio"
                   id="ora_inizio"
                   class="form-control"
+                  value="${data.ora_inizio.substring(0, 5)}"
                   required
           >
         </div>
@@ -95,6 +109,7 @@ $(document).ready(function () {
                   name="ora_fine"
                   id="ora_fine"
                   class="form-control"
+                  value="${data.ora_fine.substring(0, 5)}"
                   required
           >
         </div>
@@ -110,7 +125,7 @@ $(document).ready(function () {
                 name="insegnante"
                 id="insegnante"
                 class="form-control"
-                placeholder="Nome insegnante"
+                value="${data.insegnante || ""}"
                 required
         >
       </div>
@@ -128,45 +143,31 @@ $(document).ready(function () {
                 id="posti_totali"
                 class="form-control"
                 placeholder="20"
-                value="20"
+                value="${data.posti_totali}"
                 required
         >
       </div>
-
-      <!-- Attiva (select) -->
-<!--      <div class="mb-3">
-        <label for="attiva" class="form-label">
-          <i class="fa fa-calendar"></i>Lezione attiva?
+      
+      <div class="col-12">
+        <label for="attiva" class="form-label fw-bold">
+          <i class="fa fa-toggle-on me-2"></i>Stato lezione
         </label>
-        <select
-                name="attiva"
-                id="attiva"
-                class="form-select"
-                required
-        >
-          <option value="1">Attiva</option>
-          <option value="0">NON Attiva</option>
+        <select name="attiva" id="attiva" class="form-select form-select-lg" required>
+          <option value="1" ${
+            lezione.attiva == 1 ? "selected" : ""
+          }>Attiva</option>
+          <option value="0" ${
+            lezione.attiva == 0 ? "selected" : ""
+          }>Non attiva</option>
         </select>
-      </div>-->
+      </div>
 
-      <!--<div class="mb-3 form-check">
-        <input
-                type="checkbox"
-                name="attiva"
-                id="attiva"
-                class="form-check-input"
-                value="1"
-                checked
-        >
-        <label class="form-check-label" for="attiva">
-          Lezione attiva
-        </label>
-      </div>-->
+      
 
       <!-- Pulsanti -->
       <div class="d-grid gap-2">
         <button type="submit" class="btn btn-success btn-lg">
-          <i class="fa fa-check"></i> Crea Lezione
+          <i class="fa fa-check"></i> Modifica Lezione
         </button>
         <button type="button" class="btn btn-secondary" onclick="mostraLezioni()">
           <i class="fa fa-times"></i> Annulla
@@ -177,58 +178,27 @@ $(document).ready(function () {
   </div>
 </div>
 
-</div>
-</div>
-</div>
-  `;
+    `;
 
-    // Cambio titolo della pagina
-    cambiaTitoloPagina("Crea una nuova lezione");
-
-    // Inietto l'html nella pagina
-    document.getElementById("page-content").innerHTML = formNuovaLezioneHTML;
-
-  });
-
-  $(document).on('submit', '#formNuovaLezione', function (e) {
-
-    e.preventDefault();
-
-    // Recupero i dati dell'oggetto aggiornato
-    const formData = new FormData(this);
-
-    // Costruisco l'oggetto manualmente (in questo modo riesco a passare anche il checkbox vuoto)
-    const datiLezione = {
-      nome: formData.get('nome'),
-      descrizione: formData.get('descrizione'),
-      giorno_settimana: formData.get('giorno_settimana'),
-      ora_inizio: formData.get('ora_inizio'),
-      ora_fine: formData.get('ora_fine'),
-      insegnante: formData.get('insegnante'),
-      posti_totali: formData.get('posti_totali'),
-      attiva: 1 // Quando l'admin crea una lezione, questa è sempre attiva di default
-    }
-
-    // Per debug
-    console.log("Dati Lezione: ", datiLezione);
-
-    // Converto in JSON
-    const datiFormJSON = JSON.stringify(datiLezione);
-
-    // Uso la mia funzione per inviare la richiesta
-    inviaRichiesta("lezioni/create.php", handleCreazioneAvvenuta, "POST", datiFormJSON);
-
+    cambiaTitoloPagina("Aggiorna lezione");
   });
 });
 
+// Mando la lezione aggiornata al servizio che gestisce l'update (update.php) quando l'utente invia il form
+$(document).on("submit", "#formNuovaLezione", function (e) {
+  e.preventDefault();
 
-function handleCreazioneAvvenuta(data) {
-  console.log("Creazione avvenuta: ", data);
-   alert("Lezione creata con successo!");
-   mostraLezioni();
+  // Recupero i dati dell'oggetto aggiornato
+  const formData = JSON.stringify(Object.fromEntries(new FormData(this)));
+
+  console.log("Dati lezione => ", formData);
+
+  // Uso la mia funzione per inviare la richiesta
+  inviaRichiesta("lezioni/update.php", handleModificaAvvenuta, "PUT", formData);
+});
+
+function handleModificaAvvenuta(data) {
+  console.log("Modifica avvenuta", data);
+  alert("Lezione modificata con successo!");
+  mostraLezioni();
 }
-
-
-
-
-

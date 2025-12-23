@@ -23,9 +23,10 @@ function generaNavbar() {
               <a id="lezioniLink" class="nav-link" href="#">Lezioni</a>
             </li>
             
+            ${isLoggedIn() ? `
             <li class="nav-item">
               <a id="areaPersonaleLink" class="nav-link" href="#">Area Personale</a>
-            </li>
+            </li> `: ''}
             
             ${isCurrentUserAdmin() ? `
             <li class="nav-item dropdown">
