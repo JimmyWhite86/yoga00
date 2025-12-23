@@ -133,8 +133,23 @@ $(document).ready(function () {
         >
       </div>
 
-      <!-- Attiva (checkbox) -->
-      <div class="mb-3 form-check">
+      <!-- Attiva (select) -->
+<!--      <div class="mb-3">
+        <label for="attiva" class="form-label">
+          <i class="fa fa-calendar"></i>Lezione attiva?
+        </label>
+        <select
+                name="attiva"
+                id="attiva"
+                class="form-select"
+                required
+        >
+          <option value="1">Attiva</option>
+          <option value="0">NON Attiva</option>
+        </select>
+      </div>-->
+
+      <!--<div class="mb-3 form-check">
         <input
                 type="checkbox"
                 name="attiva"
@@ -146,7 +161,7 @@ $(document).ready(function () {
         <label class="form-check-label" for="attiva">
           Lezione attiva
         </label>
-      </div>
+      </div>-->
 
       <!-- Pulsanti -->
       <div class="d-grid gap-2">
@@ -179,20 +194,38 @@ $(document).ready(function () {
 
     e.preventDefault();
 
-    // Recupero i dati dal form
-    const dati_form = JSON.stringify(Object.fromEntries(new FormData(this))); // this = il form inviato
+    const formData = new FormData(this);
+
+    // Costruisco l'oggetto manualmente (in questo modo riesco a passare anche il checkbox vuoto)
+    const datiLezione = {
+      nome: formData.get('nome'),
+      descrizione: formData.get('descrizione'),
+      giorno_settimana: formData.get('giorno_settimana'),
+      ora_inizio: formData.get('ora_inizio'),
+      ora_fine: formData.get('ora_fine'),
+      insegnante: formData.get('insegnante'),
+      posti_totali: formData.get('posti_totali'),
+      attiva: 1 // Quando l'admin crea una lezione, questa è sempre attiva di default
+    }
 
     // Per debug
-    console.log("FORM DATA: " + dati_form);
+    console.log("Dati Lezione: ", datiLezione);
 
-    // Uso la funzione per inviare la richiesta
-    inviaRichiesta("/lezioni/create.php", mostraLezioni, "POST", dati_form);
+    // Converto in JSON
+    const datiFormJSON = JSON.stringify(datiLezione);
 
+    // Uso la mia funzione per inviare la richiesta
+    inviaRichiesta("lezioni/create.php", handleCreazioneAvvenuta, "POST", datiFormJSON);
 
   });
-
 });
 
+
+function handleCreazioneAvvenuta(data) {
+  console.log("Creazione avvenuta: ", data);
+   alert("Lezione creata con successo!");
+   mostraLezioni();
+}
 
 
 
