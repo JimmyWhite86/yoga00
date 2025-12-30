@@ -30,13 +30,14 @@
     
     
     // Imposto i dati della sessione dopo il login
-    function impostaDatiUtenteInSessione($utente_id, $nome_utente, $admin, $email ): void
+    function impostaDatiUtenteInSessione($utente_id, $nome_utente, $admin, $email, $data_nascita ): void
     {
         startSession();
         $_SESSION['utente_id'] = $utente_id;
         $_SESSION['nome_utente'] = $nome_utente;
         $_SESSION['admin'] = $admin;
         $_SESSION['email'] = $email;
+        $_SESSION['data_nascita'] = $data_nascita;
         $_SESSION['ora_login'] = time(); // Memorizzo l'ora del login
     }
     
@@ -51,7 +52,8 @@
                 'nome_utente' => $_SESSION['nome_utente'],
                 'admin' => $_SESSION['admin'],
                 'email' => $_SESSION['email'],
-                'ora_login' => $_SESSION['ora_login']
+                'ora_login' => $_SESSION['ora_login'],
+                'data_nascita' => $_SESSION['data_nascita']
             ];
         }
         return null;
@@ -75,6 +77,7 @@
             echo json_encode(array(
                 "messaggio" => "Accesso negato. Devi essere loggato per accedere a questa pagina"
             ));
+            exit;
         }
     }
     
@@ -88,5 +91,6 @@
             echo json_encode(array(
                 "messaggio" => "Accesso negato. Devi essere admin per accedere a questa pagina"
             ));
+            exit;
         }
     }

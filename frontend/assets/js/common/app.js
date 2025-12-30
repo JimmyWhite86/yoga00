@@ -36,7 +36,7 @@ function inviaRichiesta (api, callback, method = 'GET', body = null) {
                 callback(result.data);
             } else {
                 // In caso di errori HTTP
-                const msg = result.data.messagio || 'Errore sconosciuto';
+                const msg = result.data.messaggio || 'Errore sconosciuto';
                 console.error(`Errore dalle API: ${result.status}: ${msg}`);
 
                 // Mostro messaggio all'utente

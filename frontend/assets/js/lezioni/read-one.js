@@ -104,9 +104,21 @@ function mostraDettaglioLezione(lezione_id) {
 // HTML Per utente loggato => mostro pulsante prenotazione
 function utenteLoggatoHTML(lezione_id) {
   return `
-    <button class="btn btn-primary mt-3" id="prenotaLezione" data-id="${lezione_id}">
-        <i class="fa fa-sign-in me-2"></i>Prenota la lezione
-    </button>
+    <div class="row justify-contnt-center mb-4">
+      <div>
+        <label for="data_prenotata" class="form-label fw-bold">
+          <i class="fa fa-calendar me-2 text-primary"></i>Seleziona la data 
+        </label>
+        <input type="date" id="data_prenotata" class="form-control form-control-lg"
+               min="${new Date().toISOString().split('T')[0]}" required>
+      </div>
+    </div>
+  
+    <div class="row text-center">
+      <button class="btn btn-primary mt-3" id="prenotaLezione" data-id="${lezione_id}">
+        <i class="fa fa-sign-in me-2"></i>Prenota
+      </button>
+    </div>
     `;
 }
 

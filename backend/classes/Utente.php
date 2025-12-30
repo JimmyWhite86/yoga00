@@ -235,7 +235,7 @@
         // Funzione per effettuare il login;
         public function login(): bool
         {
-            $query = "SELECT utente_id, nome_utente, password, admin, email
+            $query = "SELECT utente_id, nome_utente, password, admin, email, data_nascita
                          FROM {$this->table_name}
                          WHERE email = :email
                          LIMIT 1";  // Limito il risultato a 1 riga (non ha senso avere piu utenti con la stessa email)
@@ -251,6 +251,7 @@
                 $this->nome_utente = $row['nome_utente'];
                 $this->admin = $row['admin'];
                 $this->email = $row['email'];
+                $this->data_nascita = $row['data_nascita'];
                 return true;
             }
             return false;

@@ -1,12 +1,12 @@
 <?php
-    // yoga00/backend/api/login.php
+    // yoga00/backend/api/auth/login.php
     
     
     // Richiamo il file che contiene le funzioni condivise con le varie API
-    require_once '../utils/utils_api.php';
+    require_once '../../utils/utils_api.php';
     
     // Includo la classe Utente.php
-    require_once '../classes/Utente.php';
+    require_once '../../classes/Utente.php';
     
     // Richiamo la funzione per connettermi al database
     $db = connessioneDatabase();
@@ -21,11 +21,12 @@
     isJSONvalid($data);
     
     // Controllo se l'utente ha inserito i dati
-    if (empty($data->email) && empty($data->password)) {
+    if (empty($data->email) || empty($data->password)) {
         http_response_code(400);    // Bad request
         echo json_encode(array(
             "messaggio" => "Email e password sono obbligatori"
         ));
+        exit;
     }
     
     
@@ -41,6 +42,7 @@
         echo json_encode(array(
             "messaggio" => "Credenziali non valide"
         ));
+        exit;
         // Non dico se è la password o la mail ad essere sbagliate per questioni di sicurezza
     }
     
@@ -52,7 +54,8 @@
             $utente->getId(),
             $utente->getNomeUtente(),
             $utente->isAdmin(),
-            $utente->getEmail()
+            $utente->getEmail(),
+            $utente->getDataNascita()
         );
         
         // Rispondo con i dati dell'utente
@@ -60,10 +63,11 @@
         echo json_encode(array(
             "messaggio" => "Login effettuato con successo",
             "utente" => array(
-                "id" => $utente->getId(),
+                "utente_id" => $utente->getId(),
                 "nome_utente" => $utente->getNomeUtente(),
                 "admin" => $utente->isAdmin(),
-                "email" => $utente->getEmail()
+                "email" => $utente->getEmail(),
+                "data_nascita" => $utente->getDataNascita()
             )
         ));
     } else {        // Login fallito
