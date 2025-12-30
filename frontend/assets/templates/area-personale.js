@@ -1,7 +1,5 @@
 // yoga00/frontend/common/area-personale.js
 
-
-
 function generaAreaPersonale() {
 
   // Aggiorno il titolo della pagina
@@ -17,23 +15,27 @@ function generaAreaPersonale() {
   }
 
 
+  // Formatto i dati dell'utente
   let datiUtenteFormattati = `
     <dl class="row">
+      <dt class="col-sm-4">ID Utente</dt>  
+      <dd class="col-sm-8">${utente_corrente.utente_id}</dd>  
+    
       <dt class="col-sm-4">Nome</dt>
-        <dd class="col-sm-8">${utente_corrente.nome_utente}</dd>
+      <dd class="col-sm-8">${utente_corrente.nome_utente}</dd>
 
-        <dt class="col-sm-4">Email</dt>
-        <dd class="col-sm-8">${utente_corrente.email}</dd>
+      <dt class="col-sm-4">Email</dt>
+      <dd class="col-sm-8">${utente_corrente.email}</dd>
 
-        <dt class="col-sm-4">Data di nascita</dt>
-        <dd class="col-sm-8">${utente_corrente.data_nascita || 'Non specificata'}</dd>
+      <dt class="col-sm-4">Data di nascita</dt>
+      <dd class="col-sm-8">${utente_corrente.data_nascita || 'Non specificata'}</dd>
 
-        <dt class="col-sm-4">Ruolo</dt>
-        <dd class="col-sm-8">
-          <span class="badge bg-${utente_corrente.admin ? 'danger' : 'secondary'}">
-              ${utente_corrente.admin ? 'Amministratore' : 'Utente'}
-          </span>
-        </dd>
+      <dt class="col-sm-4">Ruolo</dt>
+      <dd class="col-sm-8">
+        <span class="badge bg-${utente_corrente.admin ? 'danger' : 'secondary'}">
+          ${utente_corrente.admin ? 'Amministratore' : 'Utente'}
+        </span>
+      </dd>
     </dl>
   `;
 
@@ -138,7 +140,7 @@ function mostraPrenotazioniUtente(data) {
               <li><strong><i class="fa fa-user"></i> Insegnante:</strong> ${prenotazione.insegnante}</li>
               <li class="mt-2">
                 <strong>Stato:</strong> 
-                ${prenotazione.stato === 'attiva' ? 'Attiva' : 'Cancellata'}
+                ${prenotazione.stato === 'confermata' ? 'Confermata' : 'Cancellata'}
               </li>
             </ul>
           </div>

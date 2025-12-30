@@ -1,11 +1,11 @@
 <?php
-    // yoga00/backend/api/check_session.php
+    // yoga00/backend/api/auth/check_session.php
     
     
     // Verifica se l'utente ha una sessione attiva (loggato) e restituisce i dati se disponibile
     
     // Richiamo il file che contiene le funzioni condivise con le varie API
-    require_once '../utils/utils_api.php';
+    require_once '../../utils/utils_api.php';
 
     // Verifico se l'utente è loggato con la funzione presente in utils_session.php
     if (isLoggedIn()) {         // Se l'utente è loggato

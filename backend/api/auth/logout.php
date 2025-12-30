@@ -1,7 +1,9 @@
 <?php
-    
+    // yoga00/backend/api/auth/logout.php
+
+
     // Richiamo il file che contiene le funzioni condivise con le varie API
-    require_once '../utils/utils_api.php';
+    require_once '../../utils/utils_api.php';
     
     distruggiSessione();
     

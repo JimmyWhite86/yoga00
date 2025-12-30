@@ -10,10 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Controllo lo stato della sessione
   controlloStatoSessione();
 
-  // Mostro le lezioni nella home
-  // mostraLezioni();
-  // generaHomepage()
-
   // LOGIN
   // Gestisco il click sul pulsante di login
   document.addEventListener('click', function (e) {
@@ -53,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // - Callback = gestisciLogin => funzione da eseguire quando arriva la risposta
       // - Metodo = POST => sto trasmettendo la password, non voglio dati in chiaro
       // - Body = datiLogin => Stringa JSON che contiene email e password inserite nel form
-      inviaRichiesta("login.php", gestisciLogin, "POST", datiLogin);
+      inviaRichiesta("auth/login.php", gestisciLogin, "POST", datiLogin);
     }
   });
 

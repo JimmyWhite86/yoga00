@@ -194,11 +194,16 @@
     // --------------------------------------------------
     // handlerSearchAll
     // Riutilizzo lo stesso codice per tutte le classi
-    function handlerSearchAll($istanza, $campi): void
+    function handlerSearchAll($istanza, $campi, $stmt = null): void
     {
         $nome_classe = getClasseOggetto($istanza);
         
-        $stmt = $istanza->searchAll();    // Invoco il metodo searchAll sull'istanza che viene passata dalla classe che lo chiama
+        // Aggiunto per utilizzare read_by_utente in prenotazioni e potenzialmente riutilizzare questa funzione per endpoint simili
+        if ($stmt === null) {
+            $stmt = $istanza -> searchAll();
+        }
+        
+        // $stmt = $istanza->searchAll();    // Invoco il metodo searchAll sull'istanza che viene passata dalla classe che lo chiama
         $row = $stmt->rowCount();         // Numero di righe trovate. Una per ogni istanza presente nel db
         
         if ($row > 0) {

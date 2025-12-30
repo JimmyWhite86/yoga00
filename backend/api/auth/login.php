@@ -1,12 +1,12 @@
 <?php
-    // yoga00/backend/api/login.php
+    // yoga00/backend/api/auth/login.php
     
     
     // Richiamo il file che contiene le funzioni condivise con le varie API
-    require_once '../utils/utils_api.php';
+    require_once '../../utils/utils_api.php';
     
     // Includo la classe Utente.php
-    require_once '../classes/Utente.php';
+    require_once '../../classes/Utente.php';
     
     // Richiamo la funzione per connettermi al database
     $db = connessioneDatabase();

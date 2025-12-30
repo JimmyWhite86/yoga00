@@ -16,7 +16,7 @@ function controlloStatoSessione() {
   // Chiamo l'endpoint check_session.php tramite AJAX. Usa la funzione inviaRichiesta
   // Ricevo una risposta JSON dal server
   // Questo endpoint non richiede parametri
-  inviaRichiesta("check_session.php", data => {
+  inviaRichiesta("auth/check_session.php", data => {
 
     // data = risposta JSON dal server
     // Può essere:

@@ -28,10 +28,16 @@
         'data_prenotata',
         'stato',
         'acquistato_con',
-        'prenotato_il'
+        'prenotato_il',
+        
+        'nome_utente',
+        'cognome_utente',
+        'lezione_nome',
+        'insegnante',
+        'giorno_settimana'
     ];
     
     // Richiamo la funzione per la searchALl
-    handlerSearchAll($prenotazione, $campi_istanza);
+    handlerSearchAll($prenotazione, $campi_istanza, $stmt);
     
     
