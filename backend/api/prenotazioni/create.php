@@ -23,8 +23,8 @@
         "utente_id",
         "lezione_id",
         "data_prenotata",
-        "stato",
-        "acquistato_con",
+        "stato"
+        // "acquistato_con",
     ];
     
     // Richiamo la funzione che valida la presenza dei campi obbligatori
@@ -35,8 +35,8 @@
         "utente_id" => "setUtenteId",
         "lezione_id" => "setLezioneId",
         "data_prenotata" => "setDataPrenotata",
-        "stato" => "setStato",
-        "acquistato_con" => "setAcquistatoCon",
+        "stato" => "setStato"
+        // "acquistato_con" => "setAcquistatoCon",
     ];
     
     // Creo un'istanza di Prenotazione

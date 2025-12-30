@@ -28,7 +28,7 @@ function generaAreaPersonale() {
       <dd class="col-sm-8">${utente_corrente.email}</dd>
 
       <dt class="col-sm-4">Data di nascita</dt>
-      <dd class="col-sm-8">${utente_corrente.data_nascita || 'Non specificata'}</dd>
+      <dd class="col-sm-8">${new Date(utente_corrente.data_nascita).toLocaleDateString('it-IT')}</dd>
 
       <dt class="col-sm-4">Ruolo</dt>
       <dd class="col-sm-8">
@@ -135,7 +135,7 @@ function mostraPrenotazioniUtente(data) {
           </div>
           <div class="card-body">
             <ul class="list-unstyled">
-              <li><strong><i class="fa fa-calendar"></i> Data:</strong> ${prenotazione.data_prenotata}</li>
+              <li><strong><i class="fa fa-calendar"></i> Data:</strong> ${new Date(prenotazione.data_prenotata).toLocaleDateString('it-IT')}</li>
               <li><strong><i class="fa fa-clock-o"></i> Giorno:</strong> ${prenotazione.giorno_settimana}</li>
               <li><strong><i class="fa fa-user"></i> Insegnante:</strong> ${prenotazione.insegnante}</li>
               <li class="mt-2">
@@ -148,7 +148,7 @@ function mostraPrenotazioniUtente(data) {
             <small class="text-muted">
               Prenotata il: ${new Date(prenotazione.prenotato_il).toLocaleDateString('it-IT')}
             </small>
-            ${prenotazione.stato === 'attiva' ? `
+            ${prenotazione.stato === 'confermata' ? `
               <button class="btn btn-sm btn-danger float-end annulla-prenotazione" data-id="${prenotazione.prenotazione_id}">
                 <i class="fa fa-times"></i> Annulla
               </button>

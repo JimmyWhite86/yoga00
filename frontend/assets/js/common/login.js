@@ -99,7 +99,7 @@ function gestisciLogin(data) {
 // LOGOUT
 // Termina la sessione dell'utente sul server
 function logout() {
-  inviaRichiesta("logout.php", () => {    // Chiamo l'endpoint logout.php
+  inviaRichiesta("auth/logout.php", () => {    // Chiamo l'endpoint logout.php
     utente_corrente = null;             // Imposto la variabile utente a null
     generaNavbar();
     mostraLezioni();                    // TOrno alla pagina che mostra le lezioni

@@ -20,24 +20,41 @@
     
     // Invoco la funzione per cercare le prenotazioni relative ad un utente
     $stmt = $prenotazione -> searchByUtente($id_utente);
+    $row_count = $stmt->rowCount();
     
-    $campi_istanza = [
-        'prenotazione_id',
-        'utente_id',
-        'lezione_id',
-        'data_prenotata',
-        'stato',
-        'acquistato_con',
-        'prenotato_il',
+    if ($row_count > 0) {
+        $prenotazioni_trovate = [
+            "numero di prenotazioni" => $row_count,
+            "Prenotazione" => []
+        ];
         
-        'nome_utente',
-        'cognome_utente',
-        'lezione_nome',
-        'insegnante',
-        'giorno_settimana'
-    ];
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $prenotazione_singola = [
+                'prenotazione_id' => $row['prenotazione_id'],
+                'utente_id' => $row['utente_id'],
+                'lezione_id' => $row['lezione_id'],
+                'data_prenotata' => $row['data_prenotata'],
+                'stato' => $row['stato'],
+                'prenotato_il' => $row['prenotato_il'],
+                
+                'nome_utente' => $row['nome_utente'],
+                'cognome_utente' => $row['cognome_utente'],
+                'lezione_nome' => $row['lezione_nome'],
+                'insegnante' => $row['insegnante'],
+                'giorno_settimana' => $row['giorno_settimana']
+            ];
+            
+            $prenotazioni_trovate["Prenotazione"][] = $prenotazione_singola;
+        }
+        
+        http_response_code(200);
+        echo json_encode($prenotazioni_trovate, JSON_UNESCAPED_UNICODE);
+    } else {
+        http_response_code(200);
+        echo json_encode(array(
+            "messaggio" => "Nessuna prenotazione trovata per l'utente con id {$id_utente}"
+        ));
+    }
     
-    // Richiamo la funzione per la searchALl
-    handlerSearchAll($prenotazione, $campi_istanza, $stmt);
     
     

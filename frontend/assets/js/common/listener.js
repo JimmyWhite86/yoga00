@@ -121,20 +121,19 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('click', function(e) {
     if(e.target.closest('#prenotaLezione')) {
       e.preventDefault();
-      createPrenotazione();
+
+      const lezione_id = e.target.dataset.id;
+      const data_prenotata = document.getElementById('data_prenotata').value;
+
+      const prenotazione = {
+        utente_id: utente_corrente.utente_id,
+        lezione_id: lezione_id,
+        data_prenotata: data_prenotata,
+        stato: "confermata"
+      };
+
+      createPrenotazione(prenotazione);
     }
-  })
+  });
 
-
-  // Crea nuova lezione
-/*  document.addEventListener('click', function(e) {
-    if(e.target.closest('.vaiGestioneLezioni')) {
-      e.preventDefault();
-
-    }
-  })*/
-
-
-
-}); // FINE LISTENER
-// ------------------------------------------------
+});

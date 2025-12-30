@@ -94,10 +94,10 @@
         
         public function setStato(string $stato): void
         {
-            $stati_validi = ['attiva', 'cancellata'];
+            $stati_validi = ['confermata', 'cancellata'];
             
             if (!in_array($stato, $stati_validi)) {
-                throw new InvalidArgumentException("Lo stato della prenotazione può essere solo 'attiva' o 'cancellata'");
+                throw new InvalidArgumentException("Lo stato della prenotazione può essere solo 'confermata' o 'cancellata'");
             }
             $this->stato = $stato;
         }
@@ -161,7 +161,6 @@
                         lezione_id=:lezione_id,
                         data_prenotata=:data_prenotata,
                         stato=:stato,
-                        acquistato_con=:acquistato_con,
                         prenotato_il = NOW();";
             
             // Preparo la query
@@ -172,7 +171,6 @@
             $stmt->bindParam(':lezione_id', $this->lezione_id);
             $stmt->bindParam(':data_prenotata', $this->data_prenotata);
             $stmt->bindParam(':stato', $this->stato);
-            $stmt->bindParam(':acquistato_con', $this->acquistato_con);
             
             // Eseguo la query e restituisco il risultato
             $stmt->execute();
