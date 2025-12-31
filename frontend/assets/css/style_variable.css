@@ -1,0 +1,16 @@
+:root {
+    /* Colori Brand */
+    --bg-light: #fefbf1;
+    --accent: #d0bfa6;
+    --primary: #2f4f58;
+    --accent-hover: #c0b099;
+
+    /* Transizioni */
+    --transition-base: all 0.3s ease;
+
+    /* Ombre */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
