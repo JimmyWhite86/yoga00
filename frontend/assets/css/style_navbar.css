@@ -1,0 +1,81 @@
+/* Il nome del sito sulla navbar*/
+.navbar-brand {
+    font-size: 1.5rem;          /* Dimensione del font*/
+    font-weight: bold;          /* Grassetto */
+    transition: all 0.3s ease;  /* Transizione per hover*/
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);     /* Leggero ingrandimento al passaggio del mouse*/
+    color: var(--accent) !important;
+}
+
+/* Transizioni smooth per i link */
+.nav-link {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--accent) !important;
+}
+
+/* Sottolineatura animata per i link */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+/* Styling per il div user-info */
+#user-info {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+#user-info:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Badge utente */
+#user-info .badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    margin-left: 0.5rem;
+}
+
+/* Pulsanti login/logout nella navbar */
+#user-info .btn {
+    transition: all 0.3s ease;
+    border-width: 2px;
+}
+
+#user-info .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive: su mobile centra il contenuto */
+@media (max-width: 991px) {
+    #user-info {
+        margin-top: 1rem;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+}

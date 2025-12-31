@@ -1,0 +1,20 @@
+/* Footer - Coerente con il brand White Yoga */
+footer {
+    background-color: #fefbf1;
+    border-top: 3px solid #d0bfa6;
+    color: #2f4f58;
+}
+
+
+
+footer .text-muted {
+    color: #6c757d;
+}
+
+footer .fa-spa {
+    color: #d0bfa6;
+}
+
+footer .fw-bold {
+    font-weight: 600;
+}

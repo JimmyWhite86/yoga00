@@ -2,11 +2,11 @@
 
 function generaNavbar() {
   let navbarHTML = `
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-      <div class="container-fluid">
-        <a id="logo-navbar" class="navbar-brand fw-bold home-link" href="#">White Yoga</a>
-        
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+          <div class="container-fluid">
+           <a id="logo-navbar" class="navbar-brand fw-bold home-link" href="#">White Yoga</a>
+           
+             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,9 +35,9 @@ function generaNavbar() {
               </a>
               <ul class="dropdown-menu">
                 <li>
-                    <a class="dropdown-item vaiGestioneUtente" href="#">
+                    <button type="button" class="dropdown-item vaiGestioneUtente" href="#" disabled>
                         Gestione Utenti
-                    </a>
+                    </button>
                 </li>
                 <li>
                     <a class="dropdown-item vaiGestioneLezioni" href="#">
@@ -45,9 +45,9 @@ function generaNavbar() {
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item vaiGestionePrenotazioni" href="#">
+                    <button type="button" class="dropdown-item vaiGestionePrenotazioni" href="#" disabled>
                         Gestione Prenotazioni
-                    </a>
+                    </button>
                 </li>
               </ul>
             </li>

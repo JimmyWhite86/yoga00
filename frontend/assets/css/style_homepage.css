@@ -9,7 +9,7 @@
 body {
     background-color: var(--bg-light);
     color: var(--primary);
-    font-family: 'Georgia', serif;
+    font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* Hero section */
@@ -47,7 +47,7 @@ body {
     color: var(--primary);
 }
 
-/* Card benefici */
+/* Card homepage (benefici) e card lezioni */
 .card {
     transition: transform 0.3s;
     border-radius: 15px;

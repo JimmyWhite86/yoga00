@@ -149,7 +149,7 @@ function mostraPrenotazioniUtente(data) {
               Prenotata il: ${new Date(prenotazione.prenotato_il).toLocaleDateString('it-IT')}
             </small>
             ${prenotazione.stato === 'confermata' ? `
-              <button class="btn btn-sm btn-danger float-end annulla-prenotazione" data-id="${prenotazione.prenotazione_id}">
+              <button type="button" class="btn btn-sm btn-danger float-end annulla-prenotazione" data-id="${prenotazione.prenotazione_id}" disabled>
                 <i class="fa fa-times"></i> Annulla
               </button>
             ` : ''}
