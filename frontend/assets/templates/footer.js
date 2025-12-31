@@ -29,6 +29,5 @@ function generaFooter() {
   `;
 
   // Inietto l'thml della navabar appena creata
-  document.getElementById('contenitore-footer').innerHTML = footerHTML;
-
+  document.getElementById("contenitore-footer").innerHTML = footerHTML;
 }

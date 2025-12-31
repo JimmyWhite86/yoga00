@@ -24,7 +24,6 @@ const formNuovaLezioneHTML = `
       <label for="postiDisponibili">Posti disponibili</label>
       <input type="number" min="1" max="50" name="postiDisponibili" id="postiDisponibili" >
       
-      
       <button type="submit" class="btn">
         Crea lezione
       </button>
