@@ -67,3 +67,13 @@ function cambiaTitoloPagina(titoloDellaPagina) {
 
 
 
+// Funzione per restituire stringhe formattate con la prima lettera maiuscola e le altre minuscole
+function formattaLettere(str) {
+    return str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : 'N/D';
+}
+
+
+// Funzione per rimuovere i secondi dagli orari
+function rimuoviSecondiOrario(str) {
+    return str ? str.substring(0, 5) : '--:--';
+}

@@ -82,7 +82,7 @@ function generaHomepage() {
                         </div>
                     </div>
                     <div class="text-center mt-4">
-                        <a href="" class="btn btn-lg">Accedi all'area riservata</a>
+                        <button type="button" class="btn btn-lg" disabled>Contattaci</button>
                     </div>
                 </div>
             </div>

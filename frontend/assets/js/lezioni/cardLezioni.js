@@ -20,69 +20,112 @@ function card_lezione(lezioni) {
   const isAdmin = isCurrentUserAdmin();
 
   // Inizializzo un contenitore per il codice HTML
-  let cards_html = `<div class="row g-4">`; // Container per le card
+  let cards_html = `<div class="container-fluid px-2 px-md-4">`;
+  cards_html += `<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">`;
+  // row-cols-* gestisce automaticamente le colonne responsive
+  // g-4 aggiunge gap (spacing) tra le card
 
   // Itero su tutte le lezioni
   // $.each(lezioni, function (key, val) { => JQUERY
   lezioni.forEach(function (val, key) {   // JS Vanilla
 
+    // Formatto il giorno della lezione
+    // Lo restituisco con la prima lettera maiuscola
+    const giornoFormattato = formattaLettere(val.giorno_settimana);
+
+    // Formatto ora inizio e ora fine per rimuovere i secondi
+    const oraInizio = rimuoviSecondiOrario(val.ora_inizio);
+    const oraFine = rimuoviSecondiOrario(val.ora_fine);
+
+    // Badge per stato attivo non attivo
+    const badgeAttiva = val.attiva == 1
+      ? '<span class="badge bg-success"><i class="fa fa-check-circle"></i>Attiva</span>'
+      : '<span class="badge bg-secondary"><i class="fa fa-times-circle"></i> Non Attiva</span>';
+
     // Costruisco la singola card
     cards_html += `
-    <div class="card" style="width: 18rem;">
-      
-      <!-- Immagine della card -->
-      <!--<img class="card-img-top" src="..." alt="Card image cap">-->
-      
-      <!-- ID, nome e descrizione della lezione-->
-      <div class="card-body">
-        <h5 class="card-title">${val.lezione_id} ${val.nome}</h5>
-        <p class="card-text">${val.descrizione}</p>
-      </div>
-      
-      <!-- Altre informazioni sulla lezione -->
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Giorno della settimana: ${val.giorno_settimana}</li>
-        <li class="list-group-item">Orario: dalle ${val.ora_inizio} alle ${val.ora_fine}</li>
-        <li class="list-group-item">Insegnante: ${val.insegnante}</li>
-        <li class="list-group-item">Posti totali: ${val.posti_totali}</li>
-      </ul>
-      
-      <div class="card-body">
-        <!--<a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>-->
+    <div class="col">
+      <div class="card h-100 shadow-sm border-0 fade-in">
         
-        <!-- BOTTONI -->
-        <div class='btn-group btn-group-sm'>
+        <!-- Header Card con gradiente brand -->
+        <div class="card-header text-white" style="background: var(--primary)">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0">
+              <i class="fa fa-om"></i> ${val.nome}
+            </h5>
+            ${badgeAttiva}
+          </div>
+        </div>
+        
+        <!-- Corpo Card -->
+        <div class="card-body d-flex flex-column">
+          
+          <!-- Descrizione -->
+          <p class="card-text text-muted mb-3 flex-grow-1" style="min-height: 60px;">
+            ${val.descrizione || 'Nessuna descrizione disponibile'}
+          </p>
+          
+          <!-- Info Lezione con icone -->
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item d-flex align-items-center px-0 border-0 py-2">
+              <i class="fa fa-calendar me-2" style="color: var(--accent); width: 20px;"></i>
+              <strong>${giornoFormattato}</strong>
+            </li>
+            
+            <li class="list-group-item d-flex align-items-center px-0 border-0 py-2">
+              <i class="fa fa-clock-o me-2" style="color: var(--accent); width: 20px;"></i>
+              <span>${oraInizio} - ${oraFine}</span>
+            </li>
+            
+            <li class="list-group-item d-flex align-items-center px-0 border-0 py-2">
+              <i class="fa fa-user me-2" style="color: var(--accent); width: 20px;"></i>
+              <span>${val.insegnante || 'Da definire'}</span>
+            </li>
+            
+            <li class="list-group-item d-flex align-items-center px-0 border-0 py-2">
+              <i class="fa fa-users me-2" style="color: var(--accent); width: 20px;"></i>
+              <span>${val.posti_totali} posti disponibili</span>
+            </li>
+          </ul>
+          
+          <!-- BOTTONI - Sempre in fondo grazie a mt-auto -->
+          <div class="btn-group btn-group-sm d-flex mt-auto" role="group">
             
             <!-- Bottone per leggere una singola lezione -->
-            <button class='btn btn-primary me-2 read-one-product-button readLezione' data-id='${val.lezione_id}'>   <!--La classe readLezione mi serve per andare a leggere l'evento sul bottone -->
-              <span class='fa fa-eye'></span> <small>Leggi</small>
+            <button class="btn btn-primary flex-fill readLezione" 
+                    data-id="${val.lezione_id}"
+                    title="Visualizza dettagli">
+              <i class="fa fa-eye"></i> Dettagli
             </button>
             
-            <!-- Bottone per modificare una lezione => Attivo solo per admin -->
             ${isAdmin ? `
-              <button class='btn btn-info me-2 update-product-button' data-id='${val.lezione_id}'>
-                <span class='fa fa-edit'></span> <small>Modifica</small>
+              <!-- Bottone per modificare una lezione -->
+              <button class="btn btn-info flex-fill update-product-button" 
+                      data-id="${val.lezione_id}"
+                      title="Modifica lezione">
+                <i class="fa fa-edit"></i> Modifica
               </button>
-            `: ''}
-            
-            <!-- Bottone per cancellare una lezione => Attivo solo per admin -->
-            ${isAdmin ? `
-              <button class='btn btn-danger delete-product-button' data-id='${val.lezione_id}'>
-                <span class='fa fa-remove'></span> <small>Cancella</small>
+              
+              <!-- Bottone per cancellare una lezione -->
+              <button class="btn btn-danger flex-fill delete-product-button" 
+                      data-id="${val.lezione_id}"
+                      title="Elimina lezione">
+                <i class="fa fa-trash"></i> Elimina
               </button>
-            `: ''}
+            ` : ''}
           </div>
           
+        </div>
       </div>
     </div>
   `;
   });
 
-  // Chiudo il contenitore che raccoglie tutte le card create
-  cards_html += `</div>`;
+  // Chiudo i contenitori
+  cards_html += `</div>`; // Chiudo row
+  cards_html += `</div>`; // Chiudo container
 
-  // Restituisco l'html completo di tutte le card, racchiuse in un div
+  // Restituisco l'html completo
   return cards_html;
 }
 // ------------------------------------------------
