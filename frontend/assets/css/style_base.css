@@ -115,10 +115,7 @@ html {
    BACKGROUND E COLORI GENERALI
    ------------------------------------------------ */
 
-/*body {
-    background-color: #f8f9fa;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-}*/
+
 
 /* Titolo pagina */
 .display-4 {
@@ -146,4 +143,27 @@ hr {
 .btn-hover-lift:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
+}
+
+
+
+
+/* Sticky Footer - Fa sì che il footer sia sempre in fondo */
+html {
+    height: 100%; /* Necessario per far crescere il body */
+}
+
+body {
+    min-height: 100vh; /* Almeno alto quanto lo schermo */
+    display: flex;
+    flex-direction: column; /* Colonna verticale: header, content, footer */
+}
+
+#app, #page-content { /* Il tuo contenuto principale */
+    flex-grow: 1; /* Cresce per spingere il footer in fondo */
+}
+
+footer {
+    margin-top: auto; /* Spinge il footer in basso automaticamente */
+    flex-shrink: 0; /* Non si restringe */
 }

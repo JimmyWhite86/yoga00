@@ -59,28 +59,23 @@
 
 <body>
 
-<div id="contenitore-navbar"></div>
+  <!-- Dove viene iniettato il codice della navbar-->
+  <div id="contenitore-navbar"></div>
 
-<div id="app" class="container-fluid">
-
-
-  <div class="py-5 text-center bg-light">
-    <h1 id="page-title" class="display-5 fw-normal text-secondary">
-      Lezioni
-    </h1>
-    <div class="mx-auto mt-3"
-         style="width:60px; height:2px; background-color:#c8b59b;">
+  <!-- Container per il contenuto della pagina-->
+  <div id="app" class="container-fluid">
+    <!-- Titolo della pagina-->
+    <div class="py-5 text-center bg-light">
+      <h1 id="page-title" class="display-5 fw-normal text-secondary">
+        Lezioni
+      </h1>
     </div>
+    <!-- Dove viene inserito il codice generato automaticamente -->
+    <div id="page-content"></div>
   </div>
 
-
-  <!-- Dove viene inserito il codice generato automaticamente -->
-  <div id="page-content"></div>
-
-
-</div>
-
-<div id="contenitore-footer"></div>
+  <!-- Dove viene iniettato il codice del footer -->
+  <div id="contenitore-footer"></div>
 
 <!-- Carico i file JS -->
 <script src="assets/js/common/login.js"></script>
