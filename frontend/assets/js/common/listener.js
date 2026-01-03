@@ -1,5 +1,7 @@
-// yoga00/frontend/common/listener.js
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/js/common/listener.js
 
+// LISTENER CENTRALIZZATO
+// Gestisco parte degli eventi usando event delegation => bene per elementi HTML creati dinamicamente
 
 // LISTENER
 // Eseguo il codice quando il DOM è completamente caricato.
@@ -7,11 +9,11 @@
 // In JQUERY => $(document).ready()
 document.addEventListener('DOMContentLoaded', function() {
 
-  // Controllo lo stato della sessione
+  // Controllo lo stato della sessione => Se utente loggato o meno
   controlloStatoSessione();
 
-  // LOGIN
-  // Gestisco il click sul pulsante di login
+  // FORM DI LOGIN
+  // Gestisco il click sul pulsante di login, mostrarndo il form per effettuare il login
   document.addEventListener('click', function (e) {
     if (e.target.closest('.login-button')) {
       e.preventDefault();
