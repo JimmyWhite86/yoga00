@@ -258,6 +258,7 @@
         /**
          * Imposta l'ora di fine della lezione
          * - Verifica che l'ora sia nel formato HH:MM (24h)
+         * TODO: Verificare che l'ora di fine sia successiva all'ora di inizio
          *
          * @param string $ora_fine = ora di fine della lezione (formato HH:MM)
          * @throws InvalidArgumentException se l'ora di fine non è valida
@@ -268,7 +269,6 @@
                 throw new InvalidArgumentException("L'ora di fine non è valida. Formato corretto HH:MM (24h).");
             }
             $this->ora_fine = $ora_fine;
-
         }
         
         /**
