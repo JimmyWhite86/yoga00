@@ -336,18 +336,21 @@
             $stmt = $istanza->searchAll();
             
             // Numero di righe trovate. Una per ogni istanza presente nel db
-            $row = $stmt->rowCount();
+            /*$row = $stmt->rowCount();*/
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $numero_righe = count($rows);
             
             // Se le righe sono maggiori di 0, significa che ha trovato delle istanze
-            if ($row > 0) {
+            if ($numero_righe > 0) {
                 // Creo l'array principale che conterrà tutti gli oggetti trovati
                 $oggetti_trovati = [
-                    "numero di" . $nome_classe => $row,
+                    "numero di" . $nome_classe => $numero_righe,
                     $nome_classe => []
                 ];
                 
                 // Ciclo sui risultati della query
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                /*while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {*/
+                foreach ($rows as $row) {
                     // Costruisco un array che rappresenta ogni singolo record trovato nel db
                     $oggetto_singolo = [];
                     
