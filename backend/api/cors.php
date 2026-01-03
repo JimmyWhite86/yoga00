@@ -1,5 +1,6 @@
 <?php
-    /** https://stackoverflow.com/a/9866124
+    /**
+     *  https://stackoverflow.com/a/9866124
      *  An example CORS-compliant method.  It will allow any GET, POST, or OPTIONS requests from any
      *  origin.
      *
@@ -10,6 +11,7 @@
      *  - https://fetch.spec.whatwg.org/#http-cors-protocol
      *
      */
+    
     // function cors() {
     
     // Allow from any origin
