@@ -1,6 +1,9 @@
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/js/lezioni/update-lezione.js
+
 $(document).ready(function () {
 
-  // Mostro il form già compilato quando l'utente clicca sul bottone per aggiornare una lezione
+  // Mostro il form al click sul bottone
+  // Il form è precompilato con i dati della lezione che si vuole modificare
   $(document).on("click", ".update-product-button", function (e) {
 
     // Recupero l'id della lezione che vogliamo modificare
@@ -8,6 +11,8 @@ $(document).ready(function () {
 
     // Carico i dati della lezione
     inviaRichiesta(`lezioni/read.php?id=${lezione_id}`, (data) => {
+
+      // Controllo che ci siano i dati della lezione da modificare
       if (!data) {
         alert("Lezione non trovata");
         mostraLezioni();
@@ -37,12 +42,12 @@ $(document).ready(function () {
                   <i class="fa fa-tag"></i> Nome Lezione
                 </label>
                 <input
-                        type="text"
-                        name="nome"
-                        id="nome"
-                        class="form-control"
-                        value="${data.nome}"
-                        required
+                  type="text"
+                  name="nome"
+                  id="nome"
+                  class="form-control"
+                  value="${data.nome}"
+                  required
                 >
               </div>
         
@@ -52,11 +57,11 @@ $(document).ready(function () {
                   <i class="fa fa-align-left"></i> Descrizione
                 </label>
                 <textarea
-                        name="descrizione"
-                        id="descrizione"
-                        class="form-control"
-                        rows="3"
-                        required
+                  name="descrizione"
+                  id="descrizione"
+                  class="form-control"
+                  rows="3"
+                  required
                 >
                   ${data.descrizione || ""}
                 </textarea>
@@ -68,26 +73,32 @@ $(document).ready(function () {
                   <i class="fa fa-calendar"></i> Giorno della Settimana
                 </label>
                 <select
-                        name="giorno_settimana"
-                        id="giorno_settimana"
-                        class="form-select"
-                        required
+                  name="giorno_settimana"
+                  id="giorno_settimana"
+                  class="form-select"
+                  required
                 >
-                  <option value="">-- Seleziona giorno --</option>
-                  <option value="lunedi" ${data.giorno_settimana === "lunedi" ? "selected" : ""
-        }>Lunedì</option>
-                  <option value="martedi" ${data.giorno_settimana === "martedi" ? "selected" : ""
-        }>Martedì</option>
-                  <option value="mercoledi" ${data.giorno_settimana === "mercoledi" ? "selected" : ""
-        }>Mercoledì</option>
-                  <option value="giovedi" ${data.giorno_settimana === "giovedi" ? "selected" : ""
-        }>Giovedì</option>
-                  <option value="venerdi" ${data.giorno_settimana === "venerdi" ? "selected" : ""
-        }>Venerdì</option>
-                  <option value="sabato" ${data.giorno_settimana === "sabato" ? "selected" : ""
-        }>Sabato</option>
-                  <option value="domenica" ${data.giorno_settimana === "domenica" ? "selected" : ""
-        }>Domenica</option>
+                  <option value="lunedi" ${data.giorno_settimana === "lunedi" ? "selected" : ""}>
+                    Lunedì
+                  </option>
+                  <option value="martedi" ${data.giorno_settimana === "martedi" ? "selected" : ""}>
+                    Martedì
+                  </option>
+                  <option value="mercoledi" ${data.giorno_settimana === "mercoledi" ? "selected" : ""}>
+                    Mercoledì
+                  </option>
+                  <option value="giovedi" ${data.giorno_settimana === "giovedi" ? "selected" : ""}>
+                    Giovedì
+                  </option>
+                  <option value="venerdi" ${data.giorno_settimana === "venerdi" ? "selected" : ""}>
+                    Venerdì
+                  </option>
+                  <option value="sabato" ${data.giorno_settimana === "sabato" ? "selected" : ""}>
+                    Sabato
+                  </option>
+                  <option value="domenica" ${data.giorno_settimana === "domenica" ? "selected" : ""}>
+                    Domenica
+                  </option>
                 </select>
               </div>
         
@@ -98,12 +109,12 @@ $(document).ready(function () {
                     <i class="fa fa-clock-o"></i> Ora Inizio
                   </label>
                   <input
-                          type="time"
-                          name="ora_inizio"
-                          id="ora_inizio"
-                          class="form-control"
-                          value="${data.ora_inizio.substring(0, 5)}"
-                          required
+                    type="time"
+                    name="ora_inizio"
+                    id="ora_inizio"
+                    class="form-control"
+                    value="${data.ora_inizio.substring(0, 5)}"
+                    required
                   >
                 </div>
         
@@ -112,12 +123,12 @@ $(document).ready(function () {
                     <i class="fa fa-clock-o"></i> Ora Fine
                   </label>
                   <input
-                          type="time"
-                          name="ora_fine"
-                          id="ora_fine"
-                          class="form-control"
-                          value="${data.ora_fine.substring(0, 5)}"
-                          required
+                    type="time"
+                    name="ora_fine"
+                    id="ora_fine"
+                    class="form-control"
+                    value="${data.ora_fine.substring(0, 5)}"
+                    required
                   >
                 </div>
               </div>
@@ -128,12 +139,12 @@ $(document).ready(function () {
                   <i class="fa fa-user"></i> Insegnante
                 </label>
                 <input
-                        type="text"
-                        name="insegnante"
-                        id="insegnante"
-                        class="form-control"
-                        value="${data.insegnante || ""}"
-                        required
+                  type="text"
+                  name="insegnante"
+                  id="insegnante"
+                  class="form-control"
+                  value="${data.insegnante || ""}"
+                  required
                 >
               </div>
         
@@ -143,15 +154,15 @@ $(document).ready(function () {
                   <i class="fa fa-users"></i> Posti Disponibili
                 </label>
                 <input
-                        type="number"
-                        min="1"
-                        max="50"
-                        name="posti_totali"
-                        id="posti_totali"
-                        class="form-control"
-                        placeholder="20"
-                        value="${data.posti_totali}"
-                        required
+                  type="number"
+                  min="1"
+                  max="50"
+                  name="posti_totali"
+                  id="posti_totali"
+                  class="form-control"
+                  placeholder="20"
+                  value="${data.posti_totali}"
+                  required
                 >
               </div>
               
@@ -160,8 +171,8 @@ $(document).ready(function () {
                   <i class="fa fa-toggle-on me-2"></i>Stato lezione
                 </label>
                 <select name="attiva" id="attiva" class="form-select form-select-lg" required>
-                  <option value="1" ${data.attiva == 1 ? "selected" : ""}>Attiva</option>
-                  <option value="0" ${data.attiva == 0 ? "selected" : ""}>Non attiva</option>
+                  <option value="1" ${data.attiva === 1 ? "selected" : ""}>Attiva</option>
+                  <option value="0" ${data.attiva === 0 ? "selected" : ""}>Non attiva</option>
                 </select>
               </div>
         

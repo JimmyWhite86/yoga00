@@ -1,15 +1,9 @@
-/* ================================================
-   STILI PERSONALIZZATI PER WHITE YOGA
-   ================================================ */
+/* /Applications/MAMP/htdocs/yoga00/frontend/assets/css/style_base.css  */
 
 
-
-
-
-
-/* ------------------------------------------------
+/*
    CARDS
-   ------------------------------------------------ */
+*/
 
 .card {
     transition: var(--transition-base);

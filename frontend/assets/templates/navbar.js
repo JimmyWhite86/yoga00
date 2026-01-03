@@ -1,4 +1,4 @@
-// /yoga00/frontend/common/navbar.js
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/templates/navbar.js
 
 function generaNavbar() {
   let navbarHTML = `

@@ -1,4 +1,4 @@
-// /yoga00/frontend/lezioni/read-all-lezioni.js
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/js/lezioni/read-all-lezioni.js
 
 
 function mostraLezioni() {
@@ -17,6 +17,5 @@ function mostraLezioni() {
     }
 
   });
-  /*let read_lezioni_html = products_table(data.lezioni);
-  $("#page-content").html(read_lezioni_html);*/
+
 }

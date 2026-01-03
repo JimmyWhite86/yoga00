@@ -1,3 +1,5 @@
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/templates/footer.js
+
 function generaFooter() {
   let footerHTML = `
   <footer class="bg-light border-top py-5 mt-5">

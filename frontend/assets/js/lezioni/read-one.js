@@ -1,6 +1,6 @@
-// yoga00/frontend/common/read-one.js
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/js/lezioni/read-one.js
 
-// Funzione per mostrare il dettaglio della lezione caricata
+// Funzione per mostrare i dettagli di una singola lezione
 function mostraDettaglioLezione(lezione_id) {
 
   // Uso la funzione inviaRichiesta per chiamare l'API e ottnere i dettagli della lezione selezionata dall'utente
@@ -109,8 +109,12 @@ function utenteLoggatoHTML(lezione_id) {
         <label for="data_prenotata" class="form-label fw-bold">
           <i class="fa fa-calendar me-2 text-primary"></i>Seleziona la data 
         </label>
-        <input type="date" id="data_prenotata" class="form-control form-control-lg"
-               min="${new Date().toISOString().split('T')[0]}" required>
+        <input type="date" 
+               id="data_prenotata" 
+               class="form-control form-control-lg"
+               min="${new Date().toISOString().split('T')[0]}" 
+               required
+        >
       </div>
     </div>
   
@@ -119,7 +123,7 @@ function utenteLoggatoHTML(lezione_id) {
         <i class="fa fa-sign-in me-2"></i>Prenota
       </button>
     </div>
-    `;
+  `;
 }
 
 // HTML per utente non loggato => mostro messaggio che dice di loggarsi per prenotarsi
@@ -133,5 +137,5 @@ function utenteNonLoggatoHTML() {
         <i class="fa fa-sign-in me-2"></i>Accedi ora
       </button>
     </div>
-      `;
+  `;
 }

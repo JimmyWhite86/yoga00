@@ -1,4 +1,4 @@
-// yoga00/frontend/common/listener.js
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/js/common/listener.js
 
 // LISTENER CENTRALIZZATO
 // Gestisco parte degli eventi usando event delegation => bene per elementi HTML creati dinamicamente

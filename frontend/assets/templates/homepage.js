@@ -1,4 +1,4 @@
-// yoga00/frontend/common/homepage.js
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/templates/homepage.js
 
 function generaHomepage() {
   // Aggiorno il titolo della pagina

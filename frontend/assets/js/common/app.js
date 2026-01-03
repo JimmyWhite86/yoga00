@@ -1,4 +1,4 @@
-// yoga00/frontend/common/app.js
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/js/common/app.js
 
 // ------------------------------------------------
 // URL BASE

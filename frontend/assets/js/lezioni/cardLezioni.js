@@ -1,4 +1,4 @@
-// yoga00/frontend/common/cardLezioni.js
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/js/lezioni/cardLezioni.js
 
 
 
@@ -10,6 +10,7 @@
 //
 // RETURN:
 // @return {string} - HTML completo con tutte le card
+//
 function card_lezione(lezioni) {
 
   // Aggiorno il titolo della pagina
@@ -31,7 +32,7 @@ function card_lezione(lezioni) {
 
     // Formatto il giorno della lezione
     // Lo restituisco con la prima lettera maiuscola
-    const giornoFormattato = formattaLettere(val.giorno_settimana);
+    const giorno = formattaLettere(val.giorno_settimana);
 
     // Formatto ora inizio e ora fine per rimuovere i secondi
     const oraInizio = rimuoviSecondiOrario(val.ora_inizio);
@@ -47,11 +48,11 @@ function card_lezione(lezioni) {
     <div class="col">
       <div class="card h-100 shadow-sm border-0 fade-in">
         
-        <!-- Header Card con gradiente brand -->
+        <!-- Intestazione della card -->
         <div class="card-header text-white" style="background: var(--primary)">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-0">
-              <i class="fa fa-om"></i> ${val.nome}
+              <i class="fa fa-om px-2"></i> ${val.nome}
             </h5>
             ${badgeAttiva}
           </div>
@@ -69,7 +70,7 @@ function card_lezione(lezioni) {
           <ul class="list-group list-group-flush mb-3">
             <li class="list-group-item d-flex align-items-center px-0 border-0 py-2">
               <i class="fa fa-calendar me-2" style="color: var(--accent); width: 20px;"></i>
-              <strong>${giornoFormattato}</strong>
+              <strong>${giorno}</strong>
             </li>
             
             <li class="list-group-item d-flex align-items-center px-0 border-0 py-2">
@@ -88,7 +89,8 @@ function card_lezione(lezioni) {
             </li>
           </ul>
           
-          <!-- BOTTONI - Sempre in fondo grazie a mt-auto -->
+          <!-- BOTTONI -->
+          <!-- mt-auto => fa in modo che i bottoni restino nella parte bassa -->
           <div class="btn-group btn-group-sm d-flex mt-auto" role="group">
             
             <!-- Bottone per leggere una singola lezione -->
@@ -98,6 +100,7 @@ function card_lezione(lezioni) {
               <i class="fa fa-eye"></i> Dettagli
             </button>
             
+            <!-- Se l'utente è admin => Mostro i bottoni per modificare o cancellare la lezione -->
             ${isAdmin ? `
               <!-- Bottone per modificare una lezione -->
               <button class="btn btn-info flex-fill update-product-button" 
