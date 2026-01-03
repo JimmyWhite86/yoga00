@@ -4,8 +4,12 @@
     
     /**
      * Classe Utente => Gestione utente
+     * Rappresenta una utente con attributi e metodi per la gestione nel database.
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/classes/Utente.php
+     *
+     * @author Bianchi Andrea
+     * @version 1.0
      */
     
     
@@ -103,39 +107,39 @@
         
         /**
          * Restituisce l'ID dell'utente
-         * @return int|null = ID dell'utente o null se non trovato
+         * @return int|null
          */
         public function getId(): ?int { return $this->utente_id; }    // ? => Può restituire un intero oppure null (nel caso di utente non trovato)
         
         /**
          * Verifica se l'utente è amministratore
-         * @return bool = true se è admin, false altrimenti
+         * @return bool
          */
         public function isAdmin(): bool { return $this->admin; }
         
         /**
          * Restituisce il nome dell'utente
-         * @return string = Nome dell'utente
+         * @return string|null
          */
-        public function getNomeUtente(): string { return $this->nome_utente; }
+        public function getNomeUtente(): ?string { return $this->nome_utente; }
         
         /**
          * Restituisce il cognome dell'utente
-         * @return string = Cognome dell'utente
+         * @return string|null
          */
-        public function getCognomeUtente(): string { return $this->cognome_utente; }
+        public function getCognomeUtente(): ?string { return $this->cognome_utente; }
         
         /**
          * Restituisce la data di nascita dell'utente
-         * @return string = Data di nascita dell'utente
+         * @return string|null
          */
-        public function getDataNascita(): string { return $this->data_nascita;}
+        public function getDataNascita(): ?string { return $this->data_nascita;}
         
         /**
          * Restituisce l'email dell'utente
-         * @return string = Email dell'utente
+         * @return string|null
          */
-        public function getEmail(): string { return $this->email; }
+        public function getEmail(): ?string { return $this->email; }
         
         // TODO: Verificare se posso togliere questo getter (al momento non viene usato) [Potrebbe essere un problema di sicurezza]
         public function getPassword(): string {return $this->password; }
@@ -148,6 +152,7 @@
         
         /**
          * Imposta l'ID dell'utente
+         *
          * @param int $utente_id = ID dell'utente (deve essere un intero positivo)
          * @throws InvalidArgumentException se l'ID non è valido
          */
@@ -304,13 +309,15 @@
                 // Specifico le colonne per non includere la password nel risultato della query
                 // Il risultato viene inoltre ordinato in base all'ID crescente
                 
+                // Invio i valori ai parametri della query
+                // I valori del nuovo utente sono nelle variabili di istanza.
                 $stmt = $this->conn->prepare($query);
+                
+                // Eseguo la query e restituisco il risultato
                 $stmt->execute();
-                
                 return $stmt;
-                
             } catch (PDOException $e) {
-                error_log("Errore searchAll(): " . $e->getMessage());
+                error_log("Errore Utente->searchAll(): " . $e->getMessage());
                 return false;
             }
         }
@@ -334,7 +341,7 @@
                            email=:email,
                            password=:password";
                 
-                // Invio i valori per i parametri (i valori del nuovo prodotto sono nelle variabili di istanza).
+                // Invio i valori ai parametri della query
                 $stmt = $this->conn->prepare($query);
                 
                 // Bind dei parametri
@@ -372,11 +379,17 @@
             try {
                 $query = "SELECT * FROM {$this->table_name} WHERE utente_id = :utente_id";
                 
+                // Invio i valori ai parametri della query
                 $stmt = $this->conn->prepare($query);
+                
+                // Bind del parametro
                 $stmt->bindParam(':utente_id', $this->utente_id);
+                
+                // Eseguo la query
                 $stmt->execute();
                 
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);// Leggo la prima (e unica) riga del risultato della query
+                
                 if ($row) {
                     // Inserisco i valori nelle variabili di istanza
                     $this->admin = $row['admin'];
@@ -473,7 +486,6 @@
                         "Impossibile eliminare l'utente: esistono record collegati a sistema"
                     );
                 }
-                
                 return false;
             }
         }
