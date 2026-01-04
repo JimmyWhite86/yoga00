@@ -10,11 +10,20 @@
      *  - https://developer.mozilla.org/en/HTTP_access_control
      *  - https://fetch.spec.whatwg.org/#http-cors-protocol
      *
+     *  -----------------------------------------------------------
+     *
+     *  CORS (Cros-Origin Resource Sharing)
+     *  Meccanismo di sicurezza dei browser che blocca richieste HTTP da un dominio diverso da quello che ha servito la pagina.
+     *  Esempio:
+     *  Una pagina web caricata da "https://example.com" fa una richiesta AJAX a "https://api.example.org".
+     *  In questo caso, il browser bloccherà la richiesta a meno che il server "api.example.org" non consenta esplicitamente le richieste cross-origin.
+     *  Per consentire le richieste cross-origin, il server deve includere specifici header HTTP nelle risposte.
+     *
+     *  Questo codice implementa una versione "permissiva" di CORS, utile in sviluppo.
+     *  In produzione, è consigliabile limitare gli origin consentiti per motivi di sicurezza.
      */
     
-    // function cors() {
     
-    // Allow from any origin
     if (isset($_SERVER['HTTP_ORIGIN'])) {
         // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
         // you want to allow, and if so:
