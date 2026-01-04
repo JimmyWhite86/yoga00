@@ -1,5 +1,21 @@
 <?php
     
+    /**
+     * API Endpoint: Crea un nuovo utente nel database
+     *
+     * Permette di aggiungere un nuovo utente al sistema
+     *
+     * Metodo HTTP: POST
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/utenti/create.php
+     * @param JSON body - I dati dell'utente da creare (nome_utente, cognome_utente, data_nascita, email, password)
+     *
+     * @method POST
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     
