@@ -1,10 +1,26 @@
 <?php
     
+    /**
+     * API Endpoint: Legge i dettagli di una lezione specifica dal database
+     *
+     * Permette di recuperare le informazioni di una lezione specifica
+     *
+     * Metodo HTTP: GET
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/lezioni/read.php
+     * @param int id - L'ID della lezione da leggere (fornito come parametro di query)
+     * @method GET
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     
     // Includo la classe Lezione.php
     require_once '../../classes/Lezione.php';
+    
     
     // Richiamo la funzione per connettermi al database
     $db = connessioneDatabase();
@@ -17,6 +33,7 @@
     
     $lezione = new Lezione($db);    // Creo l'oggetto lezione
     $lezione->setId($id_letto);     // Setto l'id dell'oggetto
+    
     
     // Invoco il metodo readOne
     // L'id è già presente nella variabile di $lezione
@@ -39,6 +56,7 @@
         
         http_response_code(200);
         echo json_encode($lezione_trovata, JSON_UNESCAPED_UNICODE);
+    
     } else {                                            // Caso in cui la lezione cercata non viene trovata
         http_response_code(404);
         echo json_encode(array("messaggio" => "Utente non trovato"));

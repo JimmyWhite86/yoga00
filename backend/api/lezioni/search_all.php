@@ -1,5 +1,19 @@
 <?php
     
+    /**
+     * API Endpoint: Recupera tutte le lezioni dal database
+     *
+     * Permette di ottenere una lista di tutte le lezioni presenti nel database
+     *
+     * Metodo HTTP: GET
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/lezioni/search_all.php
+     * @method GET
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

@@ -1,5 +1,20 @@
 <?php
     
+    /**
+     * API Endpoint: Cerca lezioni nel database in base a una keyword
+     *
+     * Permette di cercare lezioni in base a una keyword fornita come parametro di query
+     *
+     * Metodo HTTP: GET
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/lezioni/search.php
+     * @param string s - La keyword da cercare (fornita come parametro di query)
+     * @method GET
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     
