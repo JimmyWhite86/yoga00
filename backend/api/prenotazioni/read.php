@@ -1,4 +1,19 @@
 <?php
+    
+    /**
+     * API Read One Prenotazione
+     *
+     * Endpoint che permette di ottenere una singola prenotazione in base all'id fornito.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/prenotazioni/read.php
+     * @package api.prenotazioni
+     *
+     * @api
+     * METHOD: GET
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
 
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';

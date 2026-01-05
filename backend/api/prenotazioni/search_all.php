@@ -1,5 +1,25 @@
 <?php
     
+    /**
+     * API Endpoint: Recupera tutte le prenotazioni dal database
+     *
+     * Permette di ottenere una lista di tutte le prenotazioni presenti nel database
+     *
+     * TODO: Integrare filtro per stato prenotazione (es. attive, cancellate, completate)
+     * TODO: Solo admin può accedere a tutte le prenotazioni di tutti gli utenti.
+     *
+     * Metodo HTTP: GET
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/prenotazioni/search_all.php
+     * @package api.prenotazioni
+     *
+     * @api
+     * METHOD: GET
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

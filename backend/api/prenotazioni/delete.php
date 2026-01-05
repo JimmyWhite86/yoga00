@@ -1,5 +1,23 @@
 <?php
     
+    /**
+     * API Delete Prenotazione
+     *
+     * Endpoint che permette di eliminare una prenotazione dal database.
+     *
+     * TODO: Integrare vincolo che utente può eliminare solo le proprie prenotazioni.
+     * TODO: Integrare permesso ad admin di eliminare le prenotazioni di tutti gli utenti.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/prenotazioni/delete.php
+     * @package api.prenotazioni
+     *
+     * @api
+     * METHOD: DELETE
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

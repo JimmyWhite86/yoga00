@@ -1,9 +1,23 @@
 <?php
-    // yoga00/backend/utils/utils_session.php
     
-    // FUNZIONI PER SESSIONE UTENTE
+    /**
+     * File di utility per la gestione delle sessioni utente
+     *
+     * Contiene funzioni gestire sessioni, autenticazione e ruoli utente.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/utils/utils_session.php
+     * @package backend\utils
+     *
+     * @author Bianchi Andrea
+     * @version 1.0
+     */
     
-    // Avvia la sessione se non è già attiva
+
+    /**
+     * Avvia o riprende una sessione PHP
+     *
+     * @return void
+     */
     function startSession(): void
     {
         if (session_status() === PHP_SESSION_NONE) {        // https://www.php.net/manual/en/function.session-status.php
@@ -12,10 +26,16 @@
     }
     
     
-    // Verifico se l'utente è loggato
-    //  1. Chiama startSession() per avviare / riprendere la sessione PHP
-    //  2. Controlla se esiste $_SESSION['utente_id']
-    //  3. Restituisce true se esiste, altrimenti false
+    /**
+     * Verifica se l'utente è loggato
+     *
+     * Controlla se esiste una sessione attiva con un utente loggato.
+     *  1. Chiama startSession() per avviare o riprendere la sessione PHP.
+     *  2. Controlla se esiste $_SESSION['utente_id'].
+     *  3. Restituisce true se l'utente è loggato, altrimenti false.
+     *
+     * @return bool True se l'utente è loggato, false altrimenti.
+     */
     function isLoggedIn(): bool
     {
         startSession();
@@ -23,13 +43,30 @@
     }
     
     
+    /**
+     * Verifica se l'utente loggato è un amministratore
+     *
+     * @return bool True se l'utente è admin, false altrimenti.
+     */
     function isAdmin(): bool {
         startSession();
         return isset($_SESSION['admin']) && $_SESSION['admin'] === true;
     }
     
     
-    // Imposto i dati della sessione dopo il login
+    /**
+     * Setta i dati dell'utente in sessione
+     *
+     *Salva i dati dell'utente nella variabile di sessione $_SESSION, dopo il login.
+     *
+     * @param int $utente_id                = ID univoco dell'utente.
+     * @param string $nome_utente    = Nome utente dell'utente.
+     * @param bool $admin                  = Indica se l'utente ha privilegi di amministratore.
+     * @param string $email                 = Indirizzo email dell'utente.
+     * @param string $data_nascita     = Data di nascita dell'utente.
+     *
+     * @return void
+     */
     function impostaDatiUtenteInSessione($utente_id, $nome_utente, $admin, $email, $data_nascita ): void
     {
         startSession();
@@ -38,12 +75,19 @@
         $_SESSION['admin'] = $admin;
         $_SESSION['email'] = $email;
         $_SESSION['data_nascita'] = $data_nascita;
-        $_SESSION['ora_login'] = time(); // Memorizzo l'ora del login
+        $_SESSION['ora_login'] = time();                            // Memorizzo l'ora del login
     }
     
     
-    // Recupero i dati utente memorizzati in sessione
-    function leggiDatiUtenteInSessione()
+    /**
+     * Legge i dati dell'utente dalla sessione
+     *
+     * Recupera i dati dell'utente dalla variabile di sessione $_SESSION.
+     * Se l'utente non è loggato, restituisce null.
+     *
+     * @return array|null Array associativo con i dati dell'utente se loggato, null altrimenti.
+     */
+    function leggiDatiUtenteInSessione(): array|null
     {
         startSession();
         if (isLoggedIn()) {
@@ -60,7 +104,13 @@
     }
     
     
-    // Logout (distruggo la sessione)
+    /**
+     * Distrugge la sessione utente
+     *
+     * Esegue il logout dell'utente
+     *
+     * @return void
+     */
     function distruggiSessione(): void
     {
         startSession();
@@ -69,7 +119,13 @@
     }
     
     
-    // Pagine che richiedono che l'utente sia loggato
+    /**
+     * Funzione per pagine che richiedono il login dell'utente
+     *
+     * Se l'utente non è loggato, restituisce un errore 401 Unauthorized e termina l'esecuzione.
+     *
+     * @return void
+     */
     function login_necessario()
     {
         if(!isLoggedIn()) {
@@ -82,7 +138,13 @@
     }
     
     
-    // Pagine che richiedono privilegi da admin
+    /**
+     * Funzione per pagine che richiedono privilegi di amministratore
+     *
+     * Se l'utente non è loggato o non è admin, restituisce un errore 403 Forbidden e termina l'esecuzione.
+     *
+     * @return void
+     */
     function admin_necessario()
     {
         login_necessario();
