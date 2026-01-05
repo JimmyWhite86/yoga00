@@ -52,7 +52,7 @@ function card_lezione(lezioni) {
         <div class="card-header text-white" style="background: var(--primary)">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-0">
-              <i class="fa fa-om px-2"></i> ${val.nome}
+              ${val.nome}
             </h5>
             ${badgeAttiva}
           </div>
