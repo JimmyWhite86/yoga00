@@ -20,6 +20,11 @@ L'obiettivo del progetto è realizzare un'applicazione web per permettere la ges
 
 ---
 
+## Note preliminari
+Al fine del progetto d'esame le classi CRUD completamente implementate sia lato backend che lato frontend sono solo quelle relative alla classe **Lezione**.
+
+Le altre classi (Utente, Abbonamento, Acquisto, Prenotazione) sono state implementate solo parzialmente, con funzionalità limitate.
+
 ## Progettazione del database
 Come primo passo del progetto parto dal definire la struttura del mio database.
 Il database è un modello relazionale. 
@@ -245,6 +250,9 @@ frontend.
 
 
 
-![PHP](https://img.shields.io/badge/PHP-8.2-blue)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
+
+
+
+
+
+
