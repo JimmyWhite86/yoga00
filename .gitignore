@@ -1,1 +1,23 @@
 
+# Sicurezza
+backend/credenziali.php
+
+# Dipendenze
+node_modules/
+
+# Cache e Build
+build/
+api-cache/
+
+# Documentazione generata (opzionale)
+docs/
+
+# Sistema Operativo e IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# Installer (se è uno script temporaneo)
+installer
