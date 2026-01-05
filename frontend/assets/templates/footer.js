@@ -1,3 +1,5 @@
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/templates/footer.js
+
 function generaFooter() {
   let footerHTML = `
   <footer class="bg-light border-top py-5 mt-5">
@@ -29,6 +31,5 @@ function generaFooter() {
   `;
 
   // Inietto l'thml della navabar appena creata
-  document.getElementById('contenitore-footer').innerHTML = footerHTML;
-
+  document.getElementById("contenitore-footer").innerHTML = footerHTML;
 }

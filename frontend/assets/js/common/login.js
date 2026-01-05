@@ -1,4 +1,4 @@
-// yoga00/frontend/common/login.js
+// /Applications/MAMP/htdocs/yoga00/frontend/assets/js/common/login.js
 
 
 // Variabile dove memorizzo i dati dell'utente loggato.
@@ -41,33 +41,34 @@ function controlloStatoSessione() {
 function mostraFormLogin() {
 
   const loginHtml = `
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Login</h3>
-                    </div>
-                    <div class="card-body">
-                        <form id="login-form">
-                            <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="text" name="email" class="form-control" required />
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" required />
-                            </div>
-                            <button type="submit" class="btn btn-primary">
-                                <span class="fa fa-sign-in"></span> Accedi
-                            </button>
-                            <button type="button" class="btn btn-secondary mostra-lezioni-button">
-                                Annulla <!-- TODO: Farlo funzionare -->
-                            </button>
-                        </form>
-                    </div>
-                </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3>Login</h3>
             </div>
-        </div>`;
+            <div class="card-body">
+              <form id="login-form">
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="text" name="email" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  <span class="fa fa-sign-in"></span> Accedi
+                </button>
+                <button type="button" class="btn btn-secondary mostra-lezioni-button" disabled>
+                  Annulla <!-- TODO: Farlo funzionare -->
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+`;
 
   // Sostituisco tutto il contenuto di page-content con il form
   // innerHTML = imposta contenuto HTML di un elemento
@@ -88,8 +89,8 @@ function gestisciLogin(data) {
   console.log("Dati utente: ", data.utente);
 
   utente_corrente = data.utente;      // setto i dati dell'utente
-  generaNavbar();
-  mostraLezioni();                    // Richiamo la funzione che richiama tutte le funzioni
+  generaNavbar();                     // Genero la navbar personalizata con dati utente
+  generaAreaPersonale();              // Richiamo la funzione che mostra l'area personale
 
   // Messaggio di benvenuto
   // TODO: sostituire con toast o notifica piu "elegante"
@@ -101,7 +102,7 @@ function gestisciLogin(data) {
 function logout() {
   inviaRichiesta("auth/logout.php", () => {    // Chiamo l'endpoint logout.php
     utente_corrente = null;             // Imposto la variabile utente a null
-    generaNavbar();
+    generaNavbar();                     // Genero la nav bar per utente generico
     mostraLezioni();                    // TOrno alla pagina che mostra le lezioni
     alert("Logout effettuato con succecsso");  // TODO: Sostituire con toast o notifica piu "elegante"
   });

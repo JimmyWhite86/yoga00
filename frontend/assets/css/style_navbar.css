@@ -1,4 +1,8 @@
-/* Il nome del sito sulla navbar*/
+/*
+/Applications/MAMP/htdocs/yoga00/frontend/assets/css/style_navbar.css
+*/
+
+/* Nome azienda in navbar con effetto hover */
 .navbar-brand {
     font-size: 1.5rem;          /* Dimensione del font*/
     font-weight: bold;          /* Grassetto */
@@ -6,13 +10,14 @@
 }
 
 .navbar-brand:hover {
-    transform: scale(1.05);     /* Leggero ingrandimento al passaggio del mouse*/
+    transform: scale(1.05);     /* Leggero ingrandimento al passaggio del mouse (5%) */
     color: var(--accent) !important;
 }
 
-/* Transizioni smooth per i link */
+
+/* Link di navigazione con transazione */
 .nav-link {
-    transition: all 0.3s ease;
+    transition: --transition-base;
     position: relative;
 }
 
@@ -20,24 +25,26 @@
     color: var(--accent) !important;
 }
 
+
 /* Sottolineatura animata per i link */
 .nav-link::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 0;
+    width: 0;                           /* Inizialmente invisibile */
     height: 2px;
     background-color: var(--accent);
     transition: all 0.3s ease;
-    transform: translateX(-50%);
+    transform: translateX(-50%);       /* Centrata rispetto al link */
 }
 
 .nav-link:hover::after {
-    width: 80%;
+    width: 80%;                     /* Si espande all'80% della larghezza all'hover */
 }
 
-/* Styling per il div user-info */
+
+/* Parte della navbar che contiene le informazioni dell'utente */
 #user-info {
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
