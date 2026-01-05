@@ -24,7 +24,7 @@
      *  Questo codice implementa una versione "permissiva" di CORS, utile in sviluppo.
      *  In produzione, è consigliabile limitare gli origin consentiti per motivi di sicurezza.
      *
-     * @path /Applications/MAMP/htdocs/yoga00/backend/api/cors.php
+     * @path /Applications/MAMP/htdocs/yoga00/backend/utils/cors.php
      * @package api
      *
      * @author Unknown
