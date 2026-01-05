@@ -1,5 +1,23 @@
 <?php
     
+    /**
+     * API Update Acquisto
+     *
+     * Endpoint che permette di aggiornare un acquisto nel database.
+     *
+     * TODO: La classe acquisti non è attualmente sviluppata in modo definitivo.
+     * TODO: L'aggiornamento dell'acquisto deve essere permesso solo ad utenti admin
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/acquisti/update.php
+     * @package api.acquisti
+     *
+     * @api
+     * METHOD: PUT
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

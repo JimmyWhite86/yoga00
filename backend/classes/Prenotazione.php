@@ -1,5 +1,16 @@
 <?php
-
+    
+    /**
+     * Classe Prenotazione
+     * Rappresenta una prenotazione ad una lezione, da parte di un utente, con metodi e attributi
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/classes/Prenotazione.php
+     * @package classes
+     *
+     * @author Bianchi Andrea
+     * @version 1.0
+     */
+    
     // require_once '../database/Database.php';
     require_once __DIR__ . '/../database/Database.php';
     

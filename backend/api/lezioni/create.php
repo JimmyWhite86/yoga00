@@ -10,7 +10,11 @@
      * METODO: POST
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/api/lezioni/create.php
-     * @method POST
+     * @package api.lezioni
+     *
+     * @api
+     * METHOD: POST
+     *
      * @access Admin
      *
      * @request_body {

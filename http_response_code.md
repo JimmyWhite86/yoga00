@@ -1,14 +1,7 @@
-<?php
-    
-    // https://www.php.net/manual/it/function.http-response-code.php
-    // lo uso per leggere la descrizione dell'errore html
-    
-    if (!function_exists('http_response_code')) {
-        function http_response_code($code = NULL) {
-            
-            if ($code !== NULL) {
-                
-                switch ($code) {
+Lista dei codici di stato HTTP
+Ho trovato questa lista durante delle ricerche
+Ad un certo punto volevo automatizzare i messaggi di errore 
+
                     case 100: $text = 'Continue'; break;
                     case 101: $text = 'Switching Protocols'; break;
                     case 200: $text = 'OK'; break;
@@ -46,26 +39,3 @@
                     case 503: $text = 'Service Unavailable'; break;
                     case 504: $text = 'Gateway Time-out'; break;
                     case 505: $text = 'HTTP Version not supported'; break;
-                    default:
-                        exit('Unknown http status code "' . htmlentities($code) . '"');
-                        break;
-                }
-                
-                $protocol = (isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0');
-                
-                header($protocol . ' ' . $code . ' ' . $text);
-                
-                $GLOBALS['http_response_code'] = $code;
-                
-            } else {
-                
-                $code = (isset($GLOBALS['http_response_code']) ? $GLOBALS['http_response_code'] : 200);
-                
-            }
-            
-            return $code;
-            
-        }
-    }
-
-?>

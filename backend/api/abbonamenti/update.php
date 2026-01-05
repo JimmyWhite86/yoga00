@@ -1,5 +1,23 @@
 <?php
     
+    /**
+     * API Update Abbonamento
+     *
+     * Endpoint che permette di aggiornare un abbonamento esistente nel database.
+     *
+     * TODO: La classe abbonamento non è attualmente sviluppata in modo definitivo.
+     * TODO: la funzione deve essere accessibile solo a utenti admin.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/abbonamenti/update.php
+     * @package api.abbonamenti
+     *
+     * @api
+     * METHOD: PUT
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

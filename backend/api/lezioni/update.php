@@ -8,7 +8,12 @@
      * Metodo HTTP: PUT
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/api/lezioni/update.php
-     * @method PUT
+     * @package api.lezioni
+     *
+     * @api
+     * METHOD: GET
+     *
+     * @access Admin
      *
      * @author Bianchi Andrea
      * @version 1.0.0

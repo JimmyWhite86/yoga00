@@ -1,5 +1,23 @@
 <?php
     
+    /**
+     * API Update Prenotazione
+     *
+     * Endpoint che permette di aggiornare una prenotazione esistente nel database.
+     *
+     * TODO: Implementare controlli per permettere all'utente di aggiornare solo le proprie prenotazioni.
+     * TODO: Implementare permessi per admin di aggiornare le prenotazioni di tutti gli utenti.
+     *
+     * @api
+     * METHOD: PUT
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/prenotazioni/update.php
+     * @package api.prenotazioni
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

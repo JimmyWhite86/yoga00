@@ -8,7 +8,10 @@
      * Metodo HTTP: GET
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/api/lezioni/search_all.php
-     * @method GET
+     * @package api.lezioni
+     *
+     * @api
+     * METHOD: GET
      *
      * @author Bianchi Andrea
      * @version 1.0.0

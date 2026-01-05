@@ -8,8 +8,12 @@
      * Metodo HTTP: GET
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/api/lezioni/read.php
+     * @package api.lezioni
+     *
      * @param int id - L'ID della lezione da leggere (fornito come parametro di query)
-     * @method GET
+     *
+     * @api
+     * METHOD: GET
      *
      * @author Bianchi Andrea
      * @version 1.0.0

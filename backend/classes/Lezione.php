@@ -7,6 +7,7 @@
      * Rappresenta una lezione di yoga con attributi e metodi per la gestione delle lezioni nel database.
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/classes/Lezione.php
+     * @package classes
      *
      * @author Bianchi Andrea
      * @version 1.0

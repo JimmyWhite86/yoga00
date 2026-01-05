@@ -1,5 +1,20 @@
 <?php
     
+    /**
+     * API Delete Utente
+     *
+     * Endpoint che permette di eliminare un utente dal database.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/utenti/delete.php
+     * @package api.utenti
+     *
+     * @api
+     * METHOD: DELETE
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

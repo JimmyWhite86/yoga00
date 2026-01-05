@@ -1,10 +1,22 @@
 <?php
-    // yoga00/backend/api/auth/check_session.php
+    
+    /**
+     * API Controllo Sessione Utente
+     *
+     * Endpoint che verifica se l'utente ha una sessione attiva (loggato) e restituisce
+     * una risposta in formato JSON con le informazioni sull'utente se loggato.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/auth/check_session.php
+     * @package api.auth
+     *
+     * @author Bianchi Andrea
+     * @version 1.0
+     */
     
     
-    // Verifica se l'utente ha una sessione attiva (loggato) e restituisce i dati se disponibile
-    
-    // Richiamo il file che contiene le funzioni condivise con le varie API
+    /**
+     * Includo il file con le funzioni di utilità per le API
+     */
     require_once '../../utils/utils_api.php';
 
     // Verifico se l'utente è loggato con la funzione presente in utils_session.php

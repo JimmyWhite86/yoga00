@@ -1,5 +1,7 @@
 <?php
     /**
+     * FILE DI CONFIGURAZIONE CORS
+     *
      *  https://stackoverflow.com/a/9866124
      *  An example CORS-compliant method.  It will allow any GET, POST, or OPTIONS requests from any
      *  origin.
@@ -21,6 +23,11 @@
      *
      *  Questo codice implementa una versione "permissiva" di CORS, utile in sviluppo.
      *  In produzione, è consigliabile limitare gli origin consentiti per motivi di sicurezza.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/cors.php
+     * @package api
+     *
+     * @author Unknown
      */
     
     

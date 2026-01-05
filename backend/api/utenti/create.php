@@ -5,12 +5,13 @@
      *
      * Permette di aggiungere un nuovo utente al sistema
      *
+     * @api
      * Metodo HTTP: POST
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/api/utenti/create.php
-     * @param JSON body - I dati dell'utente da creare (nome_utente, cognome_utente, data_nascita, email, password)
+     * @package api.utenti
      *
-     * @method POST
+     * @param JSON body - I dati dell'utente da creare (nome_utente, cognome_utente, data_nascita, email, password)
      *
      * @author Bianchi Andrea
      * @version 1.0.0

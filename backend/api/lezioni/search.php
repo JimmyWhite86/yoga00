@@ -8,8 +8,12 @@
      * Metodo HTTP: GET
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/api/lezioni/search.php
+     * @package api.lezioni
+     *
      * @param string s - La keyword da cercare (fornita come parametro di query)
-     * @method GET
+     *
+     * @api
+     * METHOD: GET
      *
      * @author Bianchi Andrea
      * @version 1.0.0

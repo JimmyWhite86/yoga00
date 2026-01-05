@@ -3,10 +3,11 @@
     /* ATTENZIONE: I COMMENTI DI QUESTO FILE SONO UNA PROVA DI DOCUMENTAZIONE */
     
     /**
-     * Classe Utente => Gestione utente
+     * Classe Utente
      * Rappresenta una utente con attributi e metodi per la gestione nel database.
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/classes/Utente.php
+     * @package classes
      *
      * @author Bianchi Andrea
      * @version 1.0
@@ -558,6 +559,7 @@
                 
                 // Verifico se l'utente è stato trovato
                 // Verifico se la password in chiaro corrisponde a quella criptata nel database
+                // https://www.php.net/manual/en/function.password-verify.php
                 if ($row && password_verify($this->password_in_chiaro, $row['password'])) {
                     $this->utente_id = $row['utente_id'];
                     $this->nome_utente = $row['nome_utente'];

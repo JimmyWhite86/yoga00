@@ -1,5 +1,20 @@
 <?php
     
+    /**
+     * API Update Utente
+     *
+     * Endpoint che permette di aggiornare i dati di un utente esistente nel database.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/utenti/update.php
+     * @package api.utenti
+     *
+     * @api
+     * method PUT
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

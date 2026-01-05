@@ -853,17 +853,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Database",
             "name": "Database",
-            "summary": "",
+            "summary": "Database",
             "url": "classes/Database.html"
         },                {
             "fqsen": "\\Database\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Costruttore\u0020della\u0020classe\u0020database",
             "url": "classes/Database.html#method___construct"
         },                {
             "fqsen": "\\Database\u003A\u003AgetConnection\u0028\u0029",
             "name": "getConnection",
-            "summary": "",
+            "summary": "Metodo\u0020che\u0020restituisce\u0020la\u0020connessione",
             "url": "classes/Database.html#method_getConnection"
         },                {
             "fqsen": "\\Database\u003A\u003A\u0024host",
@@ -888,7 +888,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Database\u003A\u003A\u0024conn",
             "name": "conn",
-            "summary": "",
+            "summary": "Variabile\u0020che\u0020conterr\u00E0\u0020l\u0027istanza\u0020PDO",
             "url": "classes/Database.html#property_conn"
         },                {
             "fqsen": "\\connessioneDatabase\u0028\u0029",
@@ -980,11 +980,6 @@ Search.appendIndex(
             "name": "admin_necessario",
             "summary": "Funzione\u0020per\u0020pagine\u0020che\u0020richiedono\u0020privilegi\u0020di\u0020amministratore",
             "url": "namespaces/default.html#function_admin_necessario"
-        },                {
-            "fqsen": "\\http_response_code\u0028\u0029",
-            "name": "http_response_code",
-            "summary": "",
-            "url": "namespaces/default.html#function_http_response_code"
         },                {
             "fqsen": "\\",
             "name": "\\",

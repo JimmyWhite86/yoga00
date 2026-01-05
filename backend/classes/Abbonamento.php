@@ -1,5 +1,16 @@
 <?php
-
+    
+    /**
+     * Classe Abbonamento
+     * Rappresenta un abbonamento con metodi e attributi
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/classes/Abbonamento.php
+     * @package classes
+     *
+     * @atuthor Bianchi Andrea
+     * @version 1.0
+     */
+    
     //require_once '../database/Database.php';
     require_once __DIR__ . '/../database/Database.php';
     

@@ -1,5 +1,21 @@
 <?php
     
+    /**
+     * API Search Utenti by Keyword
+     *
+     * Endpoint che permette di cercare utenti nel database in base a una keyword.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/utenti/search.php
+     * @package api.utenti
+     *
+     * @api
+     * METHOD: GET
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

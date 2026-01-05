@@ -6,12 +6,19 @@
      * Permette ad un utente con privilegi di amministratore di eliminare una lezione specifica
      *
      * TODO: Gestire la chiave esterna per evitare errori di integrità referenziale
+     * TODO: Gestire casi in cui la lezione è associata a prenotazioni o altri record.
      *
      * Metodo HTTP: DELETE
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/api/lezioni/delete.php
+     * @package api.lezioni
+     *
      * @param int id - L'ID della lezione da eliminare (fornito come parametro di query)
-     * @method DELETE
+     *
+     * @api
+     * METHOD: DELETE
+     *
+     * @access Admin
      *
      * @author Bianchi Andrea
      * @version 1.0.0

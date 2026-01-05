@@ -6,6 +6,8 @@
      * Contiene funzioni gestire sessioni, autenticazione e ruoli utente.
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/utils/utils_session.php
+     * @package backend\utils
+     *
      * @author Bianchi Andrea
      * @version 1.0
      */
