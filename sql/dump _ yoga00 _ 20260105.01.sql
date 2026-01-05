@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Creato il: Dic 10, 2025 alle 14:35
+-- Creato il: Gen 05, 2026 alle 15:13
 -- Versione del server: 5.7.39
 -- Versione PHP: 8.2.0
 
@@ -110,19 +110,19 @@ CREATE TABLE `lezioni` (
 --
 
 INSERT INTO `lezioni` (`lezione_id`, `nome`, `descrizione`, `giorno_settimana`, `ora_inizio`, `ora_fine`, `insegnante`, `posti_totali`, `attiva`) VALUES
-(1, 'Hatha Yoga', 'Lezioni tradizionali di Hatha', 'lunedi', '18:30:00', '19:45:00', 'Laura', 20, 1),
+(1, 'Hatha Yoga', 'Lezioni tradizionali di Hatha', 'lunedi', '18:30:00', '19:45:00', 'Paolino Paperino', 20, 1),
 (2, 'Vinyasa Flow', 'Sequenze dinamiche e fluide', 'martedi', '19:00:00', '20:15:00', 'Marco', 18, 1),
 (3, 'Yin Yoga', 'Yoga lento e profondo', 'mercoledi', '18:00:00', '19:15:00', 'Giulia', 22, 1),
 (4, 'Ashtanga', 'Serie primaria guidata', 'giovedi', '07:00:00', '08:30:00', 'Alessandro', 15, 1),
 (5, 'Power Yoga', 'Yoga dinamico e tonificante', 'venerdi', '18:30:00', '19:45:00', 'Sofia', 20, 1),
 (6, 'Yoga Dolce', 'Perfetto per principianti e senior', 'sabato', '10:00:00', '11:15:00', 'Chiara', 25, 1),
 (7, 'Meditazione Guidata', 'Mindfulness e respirazione', 'domenica', '09:00:00', '10:00:00', 'Davide', 30, 1),
-(8, 'Prenatal Yoga', 'Yoga per donne in gravidanza', 'martedi', '10:30:00', '11:45:00', 'Valentina', 12, 1),
+(8, 'Prenatal Yoga', 'Yoga per donne in gravidanza', 'martedi', '10:30:00', '11:45:00', 'Valentina', 12, 0),
 (9, 'Restorative Yoga', 'Rilassamento profondo con supporti', 'venerdi', '20:00:00', '21:15:00', 'Lorenzo', 18, 1),
 (10, 'Kundalini Yoga', 'Risveglio dell’energia', 'sabato', '18:00:00', '19:30:00', 'Marco', 16, 1),
-(11, 'Yoga della risata', 'Prova update 00', 'lunedi', '18:30:00', '19:45:00', 'Tinti, Rapone e Danilo da Fiumicino', 20, 1),
 (12, 'Yoga della risata', 'Lorem Ipsum', 'lunedi', '18:30:00', '19:45:00', 'Laura', 20, 1),
-(13, 'Prova Inserimento 00', 'Lorem Ipsum', 'lunedi', '18:30:00', '19:45:00', 'Laura', 20, 1);
+(19, 'Hatha Yoga', 'Lezioni tradizionali di Hatha', 'lunedi', '18:30:00', '19:45:00', 'Laura', 20, 1),
+(21, 'Yoga in gravidanza', 'Yoga adatto a donne in stato di gravidanza', 'martedi', '10:00:00', '11:00:00', 'Federica', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -149,13 +149,16 @@ INSERT INTO `prenotazioni` (`prenotazione_id`, `utente_id`, `lezione_id`, `data_
 (2, 3, 2, '2025-12-10', 'confermata', 2, '2025-12-06 16:08:44'),
 (4, 5, 4, '2025-12-12', 'confermata', 4, '2025-12-06 16:08:44'),
 (5, 6, 5, '2025-12-13', 'confermata', NULL, '2025-12-06 16:08:44'),
-(6, 2, 6, '2025-12-14', 'confermata', 1, '2025-12-06 16:08:44'),
-(8, 3, 1, '2025-12-16', 'confermata', 2, '2025-12-06 16:08:44'),
-(9, 9, 2, '2025-12-17', 'confermata', 8, '2025-12-06 16:08:44'),
+(6, 16, 6, '2025-12-14', 'confermata', 1, '2025-12-06 16:08:44'),
+(8, 16, 1, '2025-12-16', 'cancellata', 2, '2025-12-06 16:08:44'),
+(9, 16, 2, '2025-12-17', 'confermata', 8, '2025-12-06 16:08:44'),
 (10, 10, 8, '2025-12-10', 'confermata', 9, '2025-12-06 16:08:44'),
 (11, 2, 1, '2027-12-09', 'confermata', 1, '2025-12-10 09:51:30'),
 (13, 2, 1, '2030-12-09', 'confermata', 1, '2025-12-10 13:47:31'),
-(15, 2, 1, '2031-12-09', 'confermata', 1, '2025-12-10 13:49:36');
+(15, 2, 1, '2031-12-09', 'confermata', 1, '2025-12-10 13:49:36'),
+(16, 16, 2, '2026-01-10', 'confermata', NULL, '2025-12-30 18:29:40'),
+(17, 16, 12, '2026-01-11', 'confermata', NULL, '2025-12-31 08:43:58'),
+(18, 18, 1, '2025-01-01', 'confermata', NULL, '2026-01-05 10:05:44');
 
 -- --------------------------------------------------------
 
@@ -187,9 +190,12 @@ INSERT INTO `utenti` (`utente_id`, `admin`, `nome_utente`, `cognome_utente`, `da
 (6, 0, 'Sofia', 'Ricci', '1993-09-05', 'sofia.ricci@email.com', '$2y$10$eF8X8Qz2vG9kL5nQwErT/.3fK8vX8Qz2vG9kL5nQwErT/.3fK8vX8Q', '2025-12-06 16:08:43'),
 (7, 0, 'Davide', 'Moretti', '1985-12-12', 'davide.moretti@email.it', '$2y$10$eF8X8Qz2vG9kL5nQwErT/.3fK8vX8Qz2vG9kL5nQwErT/.3fK8vX8Q', '2025-12-06 16:08:43'),
 (9, 0, 'Matteo', 'Conti', '1991-08-08', 'matteo.conti@email.it', '$2y$10$eF8X8Qz2vG9kL5nQwErT/.3fK8vX8Qz2vG9kL5nQwErT/.3fK8vX8Q', '2025-12-06 16:08:43'),
-(10, 0, 'Valentina', 'Martini', '1994-06-17', 'valentina.martini@email.com', '$2y$10$eF8X8Qz2vG9kL5nQwErT/.3fK8vX8Qz2vG9kL5nQwErT/.3fK8vX8Q', '2025-12-06 16:08:43'),
+(10, 0, 'Valentina', 'Martini', '1994-06-17', 'valentina.martini@email.com', '123456', '2025-12-06 16:08:43'),
 (13, 0, 'Admin', 'Yoga', '1980-05-15', 'prova01@yoga.it', '$2y$10$XkbJ5mAZuyC2Z3xNOp3Z1.B/.ja0t.2bmeBZGFbloA0m/HD.l.fHS', '2025-12-07 14:14:36'),
-(14, 0, 'Prova Inserimento 00', 'Yoga', '1980-05-15', 'provaInserimento.00@yoga.it', '$2y$10$oPGXw1qjzswsceitOMY4K.MZp5f5G8j3jkrZECqkdAGIkPbMBSjI6', '2025-12-10 13:34:18');
+(14, 0, 'Prova Inserimento 00', 'Yoga', '1980-05-15', 'provaInserimento.00@yoga.it', '$2y$10$oPGXw1qjzswsceitOMY4K.MZp5f5G8j3jkrZECqkdAGIkPbMBSjI6', '2025-12-10 13:34:18'),
+(15, 0, 'Akira', 'Cana', '2016-08-01', 'akira.bau@yoga.it', 'akira01!', '2025-12-15 17:28:03'),
+(16, 0, 'Tajin', 'Gatta', '2019-11-01', 'tajin.miao@yoga.it', '$2y$10$vE4E1/TqvLMnDDQIvi33NOtAZnm3JymeyB9aSTGwVaR3Xu4K6469K', '2025-12-15 18:47:41'),
+(18, 1, 'Admin', 'Superuser', '2019-11-01', 'admin02@yoga.it', '$2y$10$eQoL0YmPmVfa4QszNc2IdOFb4u5hwyRqghtJ6lRGlTrhTJmTBpxWS', '2025-12-17 16:32:06');
 
 --
 -- Indici per le tabelle scaricate
@@ -253,19 +259,19 @@ ALTER TABLE `acquisti`
 -- AUTO_INCREMENT per la tabella `lezioni`
 --
 ALTER TABLE `lezioni`
-  MODIFY `lezione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `lezione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT per la tabella `prenotazioni`
 --
 ALTER TABLE `prenotazioni`
-  MODIFY `prenotazione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `prenotazione_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `utente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `utente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Limiti per le tabelle scaricate
