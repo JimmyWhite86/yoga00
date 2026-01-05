@@ -1,25 +1,44 @@
-// yoga00/frontend/common/cardLezioni.js
+// Attenzione: I commenti presenti in questo file sono una prova di documentazione
 
+/**
+ * CARD LEZIONI
+ *
+ * Genera dinamicamente le card Bootstrap per visualizzare le lezioni
+ *
+ * @param {array} lezioni - Array di oggetti lezione
+ * @return {string} - HTML completo con tutte le card
+ *
+ * @path /Applications/MAMP/htdocs/yoga00/frontend/assets/js/lezioni/cardLezioni.js
+ * @author Bianchi Andrea
+ * @version 1.0.0
+ */
 
-
-// CARD LEZIONI
-// Genera l'HTML per visualizzare le lezioni come card Bootstrap
-//
-// PARAMETRO:
-// @param {Array} lezioni - Array di oggetti lezione
-//
-// RETURN:
-// @return {string} - HTML completo con tutte le card
 function card_lezione(lezioni) {
 
-  // Aggiorno il titolo della pagina
+  /**
+   * Cambia il titolo della pagina
+   *
+   * Usa la funzione definita in app.js
+   *
+   * @param {string} titoloDellaPagina - Il nuovo titolo della pagina
+   * @return {void}
+   * */
   const titoloDellaPagina = "Lezioni";
   cambiaTitoloPagina(titoloDellaPagina);
 
-  // Controllo se l'utente è admin
+  /**
+   * Verifico se l'utente corrente è un admin
+   *
+   * Usa la funzione definita in login.js
+   *
+   * @return {boolean} - true se l'utente è admin, false altrimenti
+   * */
   const isAdmin = isCurrentUserAdmin();
 
-  // Inizializzo un contenitore per il codice HTML
+  /**
+   * Inizializzo il contenitore HTML per le card
+   * @type {string}
+   */
   let cards_html = `<div class="container-fluid px-2 px-md-4">`;
   cards_html += `<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">`;
   // row-cols-* gestisce automaticamente le colonne responsive
@@ -51,7 +70,7 @@ function card_lezione(lezioni) {
         <div class="card-header text-white" style="background: var(--primary)">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-0">
-              <i class="fa fa-om"></i> ${val.nome}
+              <!--<i class="fa fa-om"></i>--> ${val.nome}
             </h5>
             ${badgeAttiva}
           </div>
@@ -92,7 +111,7 @@ function card_lezione(lezioni) {
           <div class="btn-group btn-group-sm d-flex mt-auto" role="group">
             
             <!-- Bottone per leggere una singola lezione -->
-            <button class="btn btn-primary flex-fill readLezione" 
+            <button class="btn btn-primary me-2 flex-fill readLezione" 
                     data-id="${val.lezione_id}"
                     title="Visualizza dettagli">
               <i class="fa fa-eye"></i> Dettagli
@@ -100,7 +119,7 @@ function card_lezione(lezioni) {
             
             ${isAdmin ? `
               <!-- Bottone per modificare una lezione -->
-              <button class="btn btn-info flex-fill update-product-button" 
+              <button class="btn btn-info flex-fill me-2 update-product-button" 
                       data-id="${val.lezione_id}"
                       title="Modifica lezione">
                 <i class="fa fa-edit"></i> Modifica
