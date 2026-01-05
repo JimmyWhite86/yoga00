@@ -1,4 +1,22 @@
 <?php
+    
+    /**
+     * API Endpoint: Recupera le prenotazioni di un utente specifico
+     *
+     * Permette di ottenere tutte le prenotazioni associate a un utente specifico
+     * identificato dal suo ID.
+     *
+     * Metodo HTTP: GET
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/prenotazioni/read_by_utente.php
+     * @package api.prenotazioni
+     *
+     * @api
+     * METHOD: GET
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
 
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';

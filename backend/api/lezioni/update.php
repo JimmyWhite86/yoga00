@@ -1,5 +1,24 @@
 <?php
     
+    /**
+     * API Endpoint: Aggiorna i dettagli di una lezione esistente nel database
+     *
+     * Permette ad un utente con privilegi di amministratore di aggiornare i dettagli di una lezione specifica
+     *
+     * Metodo HTTP: PUT
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/lezioni/update.php
+     * @package api.lezioni
+     *
+     * @api
+     * METHOD: GET
+     *
+     * @access Admin
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     
@@ -53,38 +72,3 @@
     // Richiamo la funzione che esegue l'update
     handlerUpdate($lezione, $data, $campi_con_setter);
     
-    
-    
-    /*try {
-        $lezione -> setId($data->lezione_id);
-        $lezione -> setNome($data->nome);
-        $lezione -> setDescrizione($data->descrizione);
-        $lezione -> setGiornoSettimana($data->giorno_settimana);
-        $lezione -> setOraInizio($data->ora_inizio);
-        $lezione -> setOraFine($data->ora_fine);
-        $lezione -> setInsegnante($data->insegnante);
-        $lezione -> setPostiTotali($data->posti_totali);
-        $lezione -> setAttiva($data->attiva);
-        
-        if ($lezione -> update()) {
-            http_response_code(200);
-            echo json_encode(array("messaggio" => "Lezione ID {$lezione->getLezioneId()} aggiornata con successo"));
-        } else {
-            http_response_code(503);
-            echo json_encode(array("messaggio" => "Lezione non trovata o impossibile da aggiornare"));
-        }
-        
-    } catch (InvalidArgumentException $e) {
-        http_response_code(400);
-        echo json_encode(array(
-            "messaggio" => "Errore validazione dati",
-            "errore" => $e->getMessage()
-        ));
-        
-    } catch (Exception $e) {
-        http_response_code(500);
-        echo json_encode(array(
-            "messaggio" => "Errore interno al server",
-            "errore" => $e->getMessage()
-        ));
-    }*/

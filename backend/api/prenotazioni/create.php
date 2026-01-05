@@ -1,5 +1,20 @@
 <?php
     
+    /**
+     * API Create Prenotazione
+     *
+     * Endpoint che permette di creare una nuova prenotazione nel database.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/prenotazioni/create.php
+     * @package api.prenotazioni
+     *
+     * @api
+     * METHOD: POST
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

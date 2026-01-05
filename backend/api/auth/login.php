@@ -1,5 +1,24 @@
 <?php
-    // yoga00/backend/api/auth/login.php
+    
+    /**
+     * API per autenticazione dell'utente
+     *
+     * Questo endpoint gestisce l'autenticazione deggli utenti tramite credenziali.
+     *
+     * Se le credenziali sono corrette:
+     * - viene inizializzata la sessione
+     * - vengono impostati i dati dell'utente nella sessione
+     *
+     * Se le credenziali sono errate:
+     * - viene restituito un messaggio di errore
+     * - HTTP status code 401 Unauthorized
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/auth/login.php
+     * @package api.auth
+     *
+     * @author Bianchi Andrea
+     * @version 1.0
+     */
     
     
     // Richiamo il file che contiene le funzioni condivise con le varie API
@@ -19,6 +38,7 @@
     
     // Richiamo la funzione che valida il JSON appena letto
     isJSONvalid($data);
+    
     
     // Controllo se l'utente ha inserito i dati
     if (empty($data->email) || empty($data->password)) {
@@ -45,6 +65,7 @@
         exit;
         // Non dico se è la password o la mail ad essere sbagliate per questioni di sicurezza
     }
+    
     
     // Tento il login
     if ($utente->login()) {     // Login riuscito

@@ -1,5 +1,22 @@
 <?php
     
+    /**
+     * API Creazione Abbonamento
+     *
+     * Endpoint che permette di creare un nuovo abbonamento nel sistema.
+     *
+     * TODO: La classe abbonamento non è attualmente sviluppata in modo definitivo.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/abbonamenti/create.php
+     * @package api.abbonamenti
+     *
+     * @api
+     * METHOD: POST
+     *
+     * @author Bianchi Andrea
+     * @version 1.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

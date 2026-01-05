@@ -1,5 +1,22 @@
 <?php
     
+    /**
+     * API Read One Acquisto
+     *
+     * Endpoint che permette di leggere un singolo acquisto dal database in base al suo ID.
+     *
+     * TODO: La classe acquisti non è attualmente sviluppata in modo definitivo.
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/acquisti/read.php
+     * @package api.acquisti
+     *
+     * @api
+     * METHOD: GET
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

@@ -1,5 +1,16 @@
 <?php
     
+    /**
+     * Classe Acquisto
+     * Rappresenta un acquisto di un abbonamento da parte di un utente, con metodi e attributi
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/classes/Acquisto.php
+     * @package classes
+     *
+     * @atuthor Bianchi Andrea
+     * @version 1.0
+     */
+    
     // TODO: Gestire le date di acquisto e scadenza
     
     //require_once '../database/Database.php';

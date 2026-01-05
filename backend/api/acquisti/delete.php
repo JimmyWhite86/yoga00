@@ -1,5 +1,23 @@
 <?php
     
+    /**
+     * API Delete Acquisto
+     *
+     * Endpoint che permette di eliminare un acquisto dal database.
+     *
+     * TODO: La classe acquisti non è attualmente sviluppata in modo definitivo.
+     * TODO: La cancellazione di un acquisto deve essere solo permessa ad utenti admin
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/acquisti/delete.php
+     * @package api.acquisti
+     *
+     * @api
+     * METHOD: DELETE
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     

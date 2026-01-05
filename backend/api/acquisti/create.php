@@ -1,6 +1,25 @@
 <?php
     
-    // TODO: Gestire le date di acquisto e scadenza
+    /**
+     * API Create Acquisto
+     *
+     * Endpoint che permette di creare un nuovo acquisto nel database.
+     *
+     * TODO: La classe acquisti non è attualmente sviluppata in modo definitivo.
+     * TODO: Gestire le date di acquisto e scadenza
+     *
+     * @path /Applications/MAMP/htdocs/yoga00/backend/api/acquisti/create.php
+     * @package api.acquisti
+     *
+     * @api
+     * METHOD: POST
+     *
+     *
+     * @author Bianchi Andrea
+     * @version 1.0.0
+     */
+    
+    
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
     require_once '../../utils/utils_api.php';
     
