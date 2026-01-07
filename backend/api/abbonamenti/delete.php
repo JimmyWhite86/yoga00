@@ -7,6 +7,7 @@
      * Richiede che l'utente sia autenticato come admin.
      *
      * TODO: La classe abbonamento non è attualmente sviluppata in modo definitivo.
+     * TODO: Risolvere chiave esterna
      *
      * @path /Applications/MAMP/htdocs/yoga00/backend/api/abbonamenti/delete.php
      * @package api.abbonamenti
@@ -40,4 +41,12 @@
     // Richiamo la funzione delete
     handlerDelete($abbonamento, $id_letto);
     
-    // TODO: Risolvere chiave esterna
+    // Chiudo la connessione
+    $db = null;
+    /*
+     * Se la connessione non viene chiusa esplicitamente, viene comunque
+     * chiusa dall'interprete PHP quando lo script termina, ma è considerata
+     * buona pratica inserire un'esplicita istruzione di chiusura quando le
+     * operazioni sul database sono terminate.
+     * [Slide 06_PHPDB n18]
+     */

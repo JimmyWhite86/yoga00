@@ -59,3 +59,12 @@
         ));
     }
     
+    // Chiudo la connessione
+    $db = null;
+    /*
+     * Se la connessione non viene chiusa esplicitamente, viene comunque
+     * chiusa dall'interprete PHP quando lo script termina, ma è considerata
+     * buona pratica inserire un'esplicita istruzione di chiusura quando le
+     * operazioni sul database sono terminate.
+     * [Slide 06_PHPDB n18]
+     */

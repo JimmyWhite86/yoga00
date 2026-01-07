@@ -593,4 +593,7 @@
       Se l'email è valida => restituisce la stringa stessa (che in questo caso viene riassegnata alla variabile email)
       Se l'email non è valida => restituisce false.
 - FILTER_SANITAZE_EMAIL = rimuove caratteri illegali dalla mail
- https://www.w3schools.com/php/filter_validate_email.asp  */
+ 
+ https://www.w3schools.com/php/filter_validate_email.asp
+ slide 04_PHPform
+  */
