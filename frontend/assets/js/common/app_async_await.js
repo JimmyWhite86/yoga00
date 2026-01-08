@@ -15,8 +15,8 @@ async function inviaRichiesta(api, callback, method = 'GET', body = null) {
   try {
 
     // await => aspetta che fetch() finisca prima di continuare
-    // senza await il codice contiruerebbe subito e response sarebbe una Promise non risolta
-    // fetch() invia la richeista http al server
+    // senza await il codice continuerebbe subito e response sarebbe una Promise non risolta
+    // fetch() invia la richiesta http al server
     const response = await fetch(BASEURL + api, {
       method,
       headers: body ? {'Content-Type': 'application/json'} : undefined,
