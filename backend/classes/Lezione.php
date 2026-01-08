@@ -382,17 +382,29 @@
         /**
          * Read One => Recupera una singola lezione dal database in base all'id
          *
+         * La funzione readOne non restituisce un risultato, ma modifica l'oggetto su cui viene invocata
+         *
          * @return void
          * @throws PDOException in caso di errore nella query
          */
         public function readOne(): void
         {
             try {
-                $query = "SELECT * FROM {$this->table_name} WHERE lezione_id = :lezione_id;";// Invio i valori ai parametri della query
-                $stmt = $this->conn->prepare($query);// Bind dei parametri
-                $stmt->bindParam(':lezione_id', $this->lezione_id);// Eseguo la query
+                // Invio i valori ai parametri della query
+                $query = "SELECT * FROM {$this->table_name} WHERE lezione_id = :lezione_id;";
+                
+                // Preparo la query
+                $stmt = $this->conn->prepare($query);
+                
+                // Bind dei parametri
+                $stmt->bindParam(':lezione_id', $this->lezione_id);
+                
+                // Eseguo la query
                 $stmt->execute();
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);// Leggo la prima (e unica) riga del risultato della query
+                
+                // Leggo la prima (e unica) riga del risultato della query
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                
                 if ($row) {
                     // Inserisco i valori nelle variabili di istanza
                     $this->nome = $row['nome'];
@@ -417,7 +429,6 @@
             } catch (PDOException $e) {
                 error_log("Errore Lezione->readOne(): " . $e->getMessage());
             }
-            // La funzione readOne non restituisce un risultato, ma modifica l'oggetto su cui viene invocata
         }
         
         /**

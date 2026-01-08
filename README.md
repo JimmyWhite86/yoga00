@@ -25,6 +25,20 @@ Al fine del progetto d'esame le classi CRUD completamente implementate sia lato 
 
 Le altre classi (Utente, Abbonamento, Acquisto, Prenotazione) sono state implementate solo parzialmente, con funzionalità limitate.
 
+
+## Credenziali di prova
+Le credenziali per accedere agli account per testare le funzionalità sono i seguenti:
+
+Utente generico
+email => tajin.miao@yoga.it 
+password => tajin01!
+
+Utente Admin
+email => admin02@yoga.it
+password => admin_admin
+
+
+
 ## Progettazione del database
 Come primo passo del progetto parto dal definire la struttura del mio database.
 Il database è un modello relazionale. 

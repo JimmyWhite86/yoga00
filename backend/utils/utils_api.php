@@ -26,7 +26,7 @@
      *
      * TODO: Inserire spiegazione da lezione 04.12.2025
      */
-    require_once __DIR__ . '/../api/cors.php';
+    require_once __DIR__ . '/../utils/cors.php';
     
     
     /**

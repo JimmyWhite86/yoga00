@@ -30,6 +30,11 @@ function inviaRichiesta (api, callback, method = 'GET', body = null) {
     // Permette al backend di restituire errori strutturati
     .then(response=> {
       // Leggo JSON anche se è presente un errore
+
+      // Per debug
+      console.log("Response status:", response.status);
+      console.log("Response headers:", response.headers.get('content-type'));
+
       return response.json().then(data => ({
         ok: response.ok,          // Booleano => true se httpstatus 200-299, false altrimenti
         status: response.status,  // Codice HTTP numerico
