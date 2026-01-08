@@ -12,6 +12,10 @@ const BASEURL = '../backend/api/';
 // INVIA RICHIESTA
 // Funzione generica per effettuare chiamate AJAX alle API REST del backend
 //
+// Chiamata asincrona con promessa
+// JavaScript promises con la funzione fetch()
+// [slide 09_AJAX p15]
+//
 // Parametri:
 // @param {string} api          =>      Endpoint relativo (es "lezioni/search_all.php")
 // @param {function} callback   =>      Funzione da eseguire quando la risposta è positiva
@@ -19,12 +23,16 @@ const BASEURL = '../backend/api/';
 // @param {string} body         =>      Dati da inviare (solo per POST e PUT). Deve essere JSON
 //
 function inviaRichiesta (api, callback, method = 'GET', body = null) {
+
+  // 1. Invio della richiesta HTTP
   fetch(BASEURL + api, {
     method,                                                             // Metodo HTTP richiesto
-    headers: body ? {'Content-Type': 'application/json'} : undefined,   // Imposta l'header in base alla presenza o meno di un body
+    headers: body ? {'Content-Type': 'application/json'} : undefined,   // Imposta l'header in base alla presenza o meno di un body. Se POST/PUT => Mi serve body / Se GET => Non mi serve body
     body,                                                               // Corpo della richiesta
-    credentials: 'include'                                              // Includo i cookie di sessione
+    credentials: 'include'                                              // Includo i cookie di sessione (per sessione php)
   })
+
+    // 2. Primo promise
     // Gestione della risposta
     // Legge il JSON anche in caso di errore HTTP
     // Permette al backend di restituire errori strutturati
@@ -35,12 +43,15 @@ function inviaRichiesta (api, callback, method = 'GET', body = null) {
       console.log("Response status:", response.status);
       console.log("Response headers:", response.headers.get('content-type'));
 
+      // Parsing del JSON che restituisce un'altra promise
       return response.json().then(data => ({
         ok: response.ok,          // Booleano => true se httpstatus 200-299, false altrimenti
         status: response.status,  // Codice HTTP numerico
-        data: data                // Il JSON parsato dal server
+        data: data                // Il JSON parsato
       }));
     })
+
+    // 3. Seconda Primse: Quando il JSON è pronto
     // Gestione Successo/Errore
     .then(result => {
       if (result.ok) {
@@ -55,6 +66,8 @@ function inviaRichiesta (api, callback, method = 'GET', body = null) {
         alert(`Errore: ${msg}`);   // TODO: Cambiare alert ed eventualmente preparare una callback ad hoc
       }
     })
+
+    // 4. Errori
     // Gestione errori di rete
     // Errore di rete o parsing JSON fallito (server offline, risposta non JSON)
     .catch(error => {
@@ -63,9 +76,6 @@ function inviaRichiesta (api, callback, method = 'GET', body = null) {
       // TODO: modificare alert con qualcosa di piu elegante.
     })
 }
-// ------------------------------------------------
-// Versione modificata il 17.12.2025 per gestire anche i casi in cui l'utente inserisce dati errati in fase di login
-// Prima non gestiva i casi di credenziali sbagliate
 
 
 
@@ -96,3 +106,6 @@ function rimuoviSecondiOrario(str) {
   return str ? str.substring(0, 5) : '--:--';
 }
 // ------------------------------------------------
+
+
+
