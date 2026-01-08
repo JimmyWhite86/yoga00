@@ -1,0 +1,1015 @@
+{
+  "info": {
+    "_postman_id": "e5c44cea-44a1-4f31-9a80-caccafe08f37",
+    "name": "YOGA",
+    "description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" width=\"2162\" height=\"1530\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Utenti",
+      "item": [
+        {
+          "name": "search_all",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b138954a-d72c-4713-b112-ab053da2f8b5",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "d246f1e8-f0ab-41b8-9bbc-2adfb8b11118",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/utenti/search_all.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "utenti",
+                "search_all.php"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "05413df5-5c07-4519-86c2-5c8d606203ab",
+                "exec": [
+                  "pm.test(\"Successful POST request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "72a420dd-ad10-4c13-9bca-ef24af84a203",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n   \n    \"nome_utente\": \"Prova Inserimento 00\",\n    \"cognome_utente\": \"Yoga\",\n    \"data_nascita\": \"1980-05-15\",\n    \"email\": \"provaInserimento.00@yoga.it\",\n    \"password\": \"password01!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/utenti/create.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "utenti",
+                "create.php"
+              ]
+            },
+            "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+          },
+          "response": [
+            {
+              "id": "87b21584-1045-4821-8e37-a6e1cb544e18",
+              "name": "Post data",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \n    \"nome_utente\": \"Admin\",\n    \"cognome_utente\": \"Yoga\",\n    \"data_nascita\": \"1980-05-15\",\n    \"email\": \"admin@yoga.it\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/utenti/create.php",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "utenti",
+                    "create.php"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 07 Dec 2025 14:13:17 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.54 (Unix) OpenSSL/1.0.2u PHP/8.2.0 mod_wsgi/3.5 Python/2.7.18 mod_fastcgi/mod_fastcgi-SNAP-0910052141 mod_perl/2.0.11 Perl/v5.30.1"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.0"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "66"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"messaggio\": \"Campi incompleti: \",\n    \"Campi incompleti\": [\n        \"password\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8170687c-f57f-4410-b00d-0f7d95d42177",
+                "exec": [
+                  "pm.test(\"Successful PUT request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "9a1dc2b3-adac-4294-90e2-686aef17d8a5",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"utente_id\": 5,\n  \"nome_utente\": \"Prova modifica\",\n  \"cognome_utente\": \"Verdi\",\n  \"data_nascita\": \"1990-05-15\",\n  \"email\": \"mario.verdi@email.it\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/utenti/update.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "utenti",
+                "update.php"
+              ]
+            },
+            "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0faf8c12-1edf-4d9e-bdc2-72d7a57855a1",
+                "exec": [
+                  "pm.test(\"Successful DELETE request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "fa443366-230e-440b-85b3-6df3d983cbf9",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/utenti/delete.php?id=8",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "utenti",
+                "delete.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "8"
+                }
+              ]
+            },
+            "description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "read",
+          "id": "f960eada-4a66-4565-b8df-e4b8c5a78791",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/utenti/read.php?id=4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "utenti",
+                "read.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ddb253f5-e8c1-42a5-babe-f3017f907bc6",
+              "name": "Id mancante o non valido",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/utenti/read.php?id=1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "utenti",
+                    "read.php"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 07 Dec 2025 15:18:30 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.54 (Unix) OpenSSL/1.0.2u PHP/8.2.0 mod_wsgi/3.5 Python/2.7.18 mod_fastcgi/mod_fastcgi-SNAP-0910052141 mod_perl/2.0.11 Perl/v5.30.1"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.0"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "47"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"messaggio\": \"ID utente mancante o non valido\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "search_by_keyword",
+          "id": "aa7f241c-19d0-4d5c-a926-a1693262eb1d",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/utenti/search.php?s=aki",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "utenti",
+                "search.php"
+              ],
+              "query": [
+                {
+                  "key": "s",
+                  "value": "aki"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "read",
+          "id": "b9643d46-9140-43a5-bce7-f12e535a0c1b",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/utenti/read.php?id=03",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "utenti",
+                "read.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "03"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1bcceea1-2ac7-4bd1-8103-dc30624f30ff"
+    },
+    {
+      "name": "Lezioni",
+      "item": [
+        {
+          "name": "search_all",
+          "id": "362a941d-ae14-4131-8dc6-4cb259914537",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/lezioni/search_all.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "lezioni",
+                "search_all.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "id": "542e7d04-d482-481a-9b4a-b708903df889",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nome\": \"Prova Inserimento 00\",\n    \"descrizione\": \"Lorem Ipsum\",\n    \"giorno_settimana\": \"lunedì\",\n    \"ora_inizio\": \"18:30:00\",\n    \"ora_fine\": \"19:45:00\",\n    \"insegnante\": \"Laura\",\n    \"posti_totali\": 20,\n    \"attiva\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/lezioni/create.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "lezioni",
+                "create.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "read",
+          "id": "64b4870e-3550-4139-ad4e-f2daa3b62c11",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/lezioni/read.php?id=5",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "lezioni",
+                "read.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "id": "a5b5c71a-d85b-4db0-8882-b9ab2e98586e",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/lezioni/delete.php?id=5",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "lezioni",
+                "delete.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "search_by_keyword",
+          "id": "e74f9579-275f-49d2-a5ae-670a6660b650",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/lezioni/search.php?s=rap",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "lezioni",
+                "search.php"
+              ],
+              "query": [
+                {
+                  "key": "s",
+                  "value": "rap"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "id": "99f7fc77-033b-481c-9e48-f6d3aa921a29",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n            \"lezione_id\": 11,\n            \"nome\": \"Yoga della risata\",\n            \"descrizione\": \"Prova update 00\",\n            \"giorno_settimana\": \"lunedì\",\n            \"ora_inizio\": \"18:30:00\",\n            \"ora_fine\": \"19:45:00\",\n            \"insegnante\": \"Tinti, Rapone e Danilo da Fiumicino\",\n            \"posti_totali\": 20,\n            \"attiva\": 1\n        }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/lezioni/update.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "lezioni",
+                "update.php"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a74322d4-8ced-44d4-8d93-cbf6e06aa586"
+    },
+    {
+      "name": "Abbonamenti",
+      "item": [
+        {
+          "name": "search_all",
+          "id": "a1a61822-62b6-471d-89f8-258f94e6eeef",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/abbonamenti/search_all.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "abbonamenti",
+                "search_all.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "id": "69903c3e-6eba-4574-bbb6-8c2b21f35277",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n            \"nome\": \"Prova terzo inserimento\",\n            \"descrizione\": \"10 lezioni valide 6 mesi\",\n            \"prezzo\": \"120.00\",\n            \"durata_giorni\": 180,\n            \"durata_lezioni\": 10\n        }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/abbonamenti/create.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "abbonamenti",
+                "create.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "id": "9ce038ba-9f4d-44d7-b6b9-7cc0d8702968",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/abbonamenti/delete.php?id=3",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "abbonamenti",
+                "delete.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "read_one",
+          "id": "6f5f9ddd-b798-418c-9cde-f532dfd0918b",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/abbonamenti/read.php?id=3",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "abbonamenti",
+                "read.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "search_by_keyword",
+          "id": "a6656903-198d-4286-a11d-bd739d453750",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/abbonamenti/search.php?s=xxx",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "abbonamenti",
+                "search.php"
+              ],
+              "query": [
+                {
+                  "key": "s",
+                  "value": "xxx"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "id": "f33f42c9-7455-4846-b48d-6816853ac995",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "        {\n            \"abbonamento_id\": 11,\n            \"nome\": \" XXX \",\n            \"descrizione\": \"Quarta prova di modifica\",\n            \"prezzo\": \"120.00\",\n            \"durata_giorni\": 180,\n            \"durata_lezioni\": 10\n        }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/abbonamenti/update.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "abbonamenti",
+                "update.php"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "b166de6f-3cfc-442b-87c3-470903ba0208"
+    },
+    {
+      "name": "Acquisti",
+      "item": [
+        {
+          "name": "search_all",
+          "id": "7b9080cd-8035-4d11-b781-7466a8ed059d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "        {\n            \"abbonamento_id\": 11,\n            \"nome\": \"Prova primo inserimento\",\n            \"descrizione\": \"prima prova di modifica\",\n            \"prezzo\": \"120.00\",\n            \"durata_giorni\": 180,\n            \"durata_lezioni\": 10\n        }"
+            },
+            "url": {
+              "raw": "{{base_url}}/acquisti/search_all.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "acquisti",
+                "search_all.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "id": "c31bdc7f-dd5b-4781-95cf-1a323057eb5b",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n            \"utente_id\": 2,\n            \"abbonamento_id\": 1,\n            \"data_acquisto\": \"2025-11-01\",\n            \"data_scadenza\": \"2026-04-30\",\n            \"lezioni_rimanenti\": 666,\n            \"attivo\": 1\n        }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/acquisti/create.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "acquisti",
+                "create.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "id": "4bbcbf0d-a832-4a4b-83e9-f3746c9a9839",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "        {\n            \"abbonamento_id\": 11,\n            \"nome\": \"Prova primo inserimento\",\n            \"descrizione\": \"prima prova di modifica\",\n            \"prezzo\": \"120.00\",\n            \"durata_giorni\": 180,\n            \"durata_lezioni\": 10\n        }"
+            },
+            "url": {
+              "raw": "{{base_url}}/acquisti/delete.php?id=3",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "acquisti",
+                "delete.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "red_one",
+          "id": "4841182a-1b39-404a-9302-5056b669040a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "        {\n            \"abbonamento_id\": 11,\n            \"nome\": \"Prova primo inserimento\",\n            \"descrizione\": \"prima prova di modifica\",\n            \"prezzo\": \"120.00\",\n            \"durata_giorni\": 180,\n            \"durata_lezioni\": 10\n        }"
+            },
+            "url": {
+              "raw": "{{base_url}}/acquisti/read.php?id=2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "acquisti",
+                "read.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "id": "c69194d9-68ce-4311-ad58-5f0eb09442b6",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"acquisto_id\": 2,\n    \"utente_id\": 1,\n    \"abbonamento_id\": 3,\n    \"data_acquisto\": \"2025-11-15\",\n    \"data_scadenza\": \"2027-12-15\",\n    \"lezioni_rimanenti\": 2,\n    \"attivo\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/acquisti/update.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "acquisti",
+                "update.php"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "578cc9b8-ab45-49a4-8efd-5c7a70bf7beb"
+    },
+    {
+      "name": "Prenotazioni",
+      "item": [
+        {
+          "name": "search_all",
+          "id": "f94dd553-c2af-4f8e-a0c0-da2c52a5d0b1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"acquisto_id\": 2,\n    \"utente_id\": 1,\n    \"abbonamento_id\": 3,\n    \"data_acquisto\": \"2025-11-15\",\n    \"data_scadenza\": \"2027-12-15\",\n    \"lezioni_rimanenti\": 2,\n    \"attivo\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/prenotazioni/search_all.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "prenotazioni",
+                "search_all.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "id": "b229aecd-9e89-4dc3-a19b-885454088071",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/prenotazioni/delete.php?id=3",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "prenotazioni",
+                "delete.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "read_one",
+          "id": "6931ed6a-b74b-4120-9d22-264d64ab7f18",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/prenotazioni/read.php?id=5",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "prenotazioni",
+                "read.php"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "id": "a2b2a6f5-ded8-4c1c-b5e2-cd9f516d3a69",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n            \"utente_id\": 2,\n            \"lezione_id\": 1,\n            \"data_prenotata\": \"2031-12-09\",\n            \"stato\": \"confermata\",\n            \"acquistato_con\": 1\n        }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/prenotazioni/create.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "prenotazioni",
+                "create.php"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "id": "d3b92a95-b804-4582-a5c7-49cee40192ad",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"prenotazione_id\": 3,\n            \"utente_id\": 2,\n            \"lezione_id\": 1,\n            \"data_prenotata\": \"2000-12-09\",\n            \"stato\": \"confermata\",\n            \"acquistato_con\": 1\n        }"
+            },
+            "url": {
+              "raw": "{{base_url}}/prenotazioni/update.php",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "prenotazioni",
+                "update.php"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "7d0be845-4b43-4694-95e6-2f2b392c3e48"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "530bbdd9-38d3-441e-92dc-61f171c18dc2",
+      "key": "id",
+      "value": "1"
+    },
+    {
+      "id": "57b5ecc1-1ffd-4eb5-a9a4-fa78c5251c5d",
+      "key": "base_url",
+      "value": "https://template.postman-echo.com"
+    }
+  ]
+}
