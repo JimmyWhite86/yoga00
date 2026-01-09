@@ -60,10 +60,11 @@ function inviaRichiesta (api, callback, method = 'GET', body = null) {
       } else {
         // In caso di errori HTTP
         const msg = result.data.messaggio || 'Errore sconosciuto';
-        console.error(`Errore dalle API: ${result.status}: ${msg}`);
+        const err = result.data.errore || '';                         // Dettaglio dell'errore -> Lo uso durante lo sviluppo
+        console.error(`Errore dalle API: ${result.status}: ${msg} - ${err}`);
 
         // Mostro messaggio all'utente
-        alert(`Errore: ${msg}`);   // TODO: Cambiare alert ed eventualmente preparare una callback ad hoc
+        alert(`Errore: ${msg}${err ? `\nDettaglio: ${err}` : ''}`);   // TODO: Cambiare alert ed eventualmente preparare una callback ad hoc
       }
     })
 
