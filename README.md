@@ -15,6 +15,10 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ---![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)
 
+## Repository GitHub
+Il progetto è stato caricato su GitHub ed è disponibile al seguente link
+https://github.com/JimmyWhite86/yoga00.git
+
 ## Descrizione del progetto
 L'obiettivo del progetto è realizzare un'applicazione web per permettere la gestione degli abbonamenti e delle lezioni di una scuola di yoga.
 
