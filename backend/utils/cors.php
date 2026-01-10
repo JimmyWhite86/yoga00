@@ -14,7 +14,7 @@
      *
      *  -----------------------------------------------------------
      *
-     *  CORS (Cros-Origin Resource Sharing)
+     *  CORS (Cross-Origin Resource Sharing)
      *  Meccanismo di sicurezza dei browser che blocca richieste HTTP da un dominio diverso da quello che ha servito la pagina.
      *  Esempio:
      *  Una pagina web caricata da "https://example.com" fa una richiesta AJAX a "https://api.example.org".
@@ -56,5 +56,5 @@
 
 
 
-// TODO: Vedere appunti del 05.12.2025
+// TODO: Vedere appunti del 04.12.2025
 
