@@ -16,6 +16,29 @@ function generaAreaPersonale() {
 
 
   // Formatto i dati dell'utente
+  // Viene usato "Description List"
+  //
+  //
+  // https://www.w3schools.com/html/html_lists.asp
+  // HTML also supports description lists.
+  // A description list is a list of terms, with a description of each term.
+  // - The <dl> tag defines the description list
+  // - The <dt> tag defines the term (name)
+  // - The <dd> tag describes each term
+  //
+  //
+  // <dt> e <dd> sono una coppia speciale di HTML -> Description list
+  // Serve a creare liste strutturate "termine -> descrizione"
+  //
+  // <dl> -> Definition List = contenitore della lista intera
+  // <dt> -> Definition Term = termine o etichetta
+  // <dd> -> Definition Description = la descrizione o valore
+  //
+  // Vantaggi
+  // - Semantico = piu performante rispetto a tabella per screen reader => aumenta accessibilità
+  // - Modificalbile con Bootstrap
+  // - Meno codice rispetto a tabella
+  //
   let datiUtenteFormattati = `
       <dl class="row">
         <dt class="col-sm-4">ID Utente</dt>  
