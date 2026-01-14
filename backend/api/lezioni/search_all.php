@@ -11,10 +11,9 @@
      * @package api.lezioni
      *
      * @api
-     * METHOD: GET
      *
      * @author Bianchi Andrea
-     * @version 1.0.0
+     * @version 1.0
      */
     
     // Richiamo il file che contiene le funzioni che vengono ripetute nelle classi CRUD di ogni istanza
@@ -26,8 +25,12 @@
     // Richiamo la funzione per connettermi al database
     $db = connessioneDatabase();
     
+    // Creo l'istanza della classe Lezione
+    // passando come parametro la connessione al database
     $lezione = new Lezione($db);
-    $stmt = $lezione -> searchAll();
+    
+    // Richiamo il metodo searchAll della classe Lezione
+    // $stmt = $lezione -> searchAll();
     
     $campi_istanza = [
         'lezione_id',
