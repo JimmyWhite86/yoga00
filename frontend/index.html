@@ -63,33 +63,44 @@
 
   <body>
 
+
     <!-- Dove viene iniettato il codice della navbar-->
     <div id="contenitore-navbar"></div>
 
+
     <!-- Container per il contenuto della pagina-->
     <div id="app" class="container-fluid">
+
       <!-- Titolo della pagina-->
       <div class="py-5 text-center bg-light">
         <h1 id="page-title" class="display-5 fw-normal text-secondary">
           Lezioni
         </h1>
       </div>
-      <!-- Dove viene inserito il codice generato automaticamente -->
+
+      <!-- Dove viene inserito il contenuto principale della pagina generato dinamicamente -->
       <div id="page-content"></div>
     </div>
+
 
     <!-- Dove viene iniettato il codice del footer -->
     <div id="contenitore-footer"></div>
 
+
+
     <!-- Carico i file JS -->
+
+    <!-- File comuni -->
     <script src="assets/js/common/login.js"></script>
     <script src="assets/js/common/listener.js"></script>
 
+    <!-- File di template -->
     <script src="assets/templates/navbar.js"></script>
     <script src="assets/templates/footer.js"></script>
     <script src="assets/templates/homepage.js"></script>
     <script src="assets/templates/area-personale.js"></script>
 
+    <!-- File per lezioni -->
     <script src="assets/js/lezioni/cardLezioni.js"></script>
     <script src="assets/js/lezioni/read-all-lezioni.js"></script>
     <script src="assets/js/lezioni/read-one.js"></script>
@@ -97,6 +108,7 @@
     <script src="assets/js/lezioni/delete-lezione.js"></script>
     <script src="assets/js/lezioni/update-lezione.js"></script>
 
+    <!-- File per prenotazioni -->
     <script src="assets/js/prenotazioni/cardPrenotazioni.js"></script>
     <script src="assets/js/prenotazioni/read-all-prenotazioni.js"></script>
     <script src="assets/js/prenotazioni/create-prenotazione.js"></script>

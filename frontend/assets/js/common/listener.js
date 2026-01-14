@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
 
+
   // Gestisci prenotazione
   // Mostra le card con le prenotazioni
   document.addEventListener('click', function(e) {

@@ -15,7 +15,9 @@
      *  -----------------------------------------------------------
      *
      *  CORS (Cross-Origin Resource Sharing)
+     *
      *  Meccanismo di sicurezza dei browser che blocca richieste HTTP da un dominio diverso da quello che ha servito la pagina.
+     *
      *  Esempio:
      *  Una pagina web caricata da "https://example.com" fa una richiesta AJAX a "https://api.example.org".
      *  In questo caso, il browser bloccherà la richiesta a meno che il server "api.example.org" non consenta esplicitamente le richieste cross-origin.
@@ -57,4 +59,27 @@
 
 
 // TODO: Vedere appunti del 04.12.2025
+
+/*
+
+Slide 10_REST1 p 23
+
+Possibile problema:
+una pagina scaricataa dal sito www.cattivo.com potrebbe contenere un JS malizioso che si collega
+ad un sito www.postaelettronica.com su cui l'utente è loggato.
+
+Per evitare questo problema, i browser hanno inizialmente implementato un
+sistema di protezione chiamato Same-Origin Policy (SOP):
+Un js può accedere solo a dati che provengono dalla stessa origin da cui è stato scaricato.
+
+La same-origin policy blocca "richieste incrociate" (cross-origin requests).
+Il Js scaricato da cattivo.com non può accedere a risorse di postaelettronica.com
+in quanto hanno origine diversa.
+
+Ci sono però casi in cui, come le nostre REST API,  vogliamo permettere l'accesso cross-origin.
+Per es il browser potrebbe prelevare le pagine da www.miosito.com e richiedere le api a api.miosito.com
+
+Quindi i browser implementano CORS (Cross-Origin Resource Sharing):
+MEccanismo che, richiedendo la collaborazione tra browser e web server con uno scambio di header che dimostrino il "consenso" del server alla condivisione,
+permette ad un js di effettuare richieste a origine diversa da quella da cui è stato scaricato.
 

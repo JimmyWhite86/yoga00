@@ -31,6 +31,7 @@
     $db = connessioneDatabase();
     
     // Creo oggetto utente
+    // Passo la connessione al database al costruttore
     $utente = new Utente($db);
     
     // Leggo i dati JSON dal body della richiesta HTTP
@@ -58,12 +59,11 @@
         // Imposto la password in chiaro (per il login)
         $utente->setPassword_in_chiaro($data->password);
     } catch (InvalidArgumentException $e) {
-        http_response_code(401); // non autorizzato
+        http_response_code(400); // bad request
         echo json_encode(array(
-            "messaggio" => "Credenziali non valide"
+            "messaggio" => "Dati non validi"
         ));
         exit;
-        // Non dico se è la password o la mail ad essere sbagliate per questioni di sicurezza
     }
     
     
@@ -96,5 +96,6 @@
         echo json_encode(array(
             "messaggio" => "Credenziali non valide"
         ));
+        // Non dico se è la password o l'email errata per motivi di sicurezza
     }
     

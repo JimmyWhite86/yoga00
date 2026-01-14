@@ -14,19 +14,20 @@
      */
     
     
-    // =======================================================
+    // ===============================================================
     // ======= INTESTAZIONE DI OGNI CLASSE CRUD DI OGNI ENTITÀ =======
-    // =======================================================
+    // ===============================================================
     
     /**
      * CORS (Cross-Origin Resource Sharing)
-     * Includo il file per gestire le CORS
-     * Permette richieste da domini diversi (es: frontend su porta diversa)
-     * Necessario per API REST moderne con frontend separato
      *
-     * TODO: Inserire spiegazione da lezione 04.12.2025
+     * Includo il file per gestire le CORS
+     *
+     * - Permette richieste da domini diversi (es: frontend su porta diversa)
+     * - Necessario per API REST moderne con frontend separato
      */
     require_once __DIR__ . '/../utils/cors.php';
+    // TODO Inserire spiegazione da lezione 04.12.2025
     
     
     /**
@@ -53,9 +54,9 @@
     
     
     
-    // ===============================
+    // ====================================
     // ======= FUNZIONI DI UTILITY  =======
-    // ===============================
+    // ====================================
     
     /**
      * Connessione al Database
@@ -92,6 +93,8 @@
      *
      * Restituisce il nome della classe di un'istanza oggetto.
      *
+     * Viene usato negli handler, ad esempio create e searchAll.
+     *
      * @param object $istanza Istanza di una classe (Utente, Lezione, ecc.)
      * @return string Nome della classe (es: "Utente", "Lezione")
      *
@@ -107,7 +110,7 @@
     
     
     /**
-     * Validazione ID dalla Query String
+     * Validazione ID dalla Query String.
      *
      * Estrae e valida un ID dalla richiesta GET ($_GET).
      * Verifica che sia presente, numerico e positivo.
@@ -137,7 +140,7 @@
     
     
     /**
-     * Validazione JSON
+     * Validazione JSON.
      *
      * Verifica che i dati ricevuti siano un JSON valido.
      *
@@ -184,7 +187,7 @@
             }
         }
         
-        // Se dopo il foreach sopra l'arrey non è vuoto, significa che mancano campi obbligatori
+        // Se dopo il foreach sopra l'array non è vuoto, significa che mancano campi obbligatori
         // Termino con errore e lista dei campi mancanti
         if (!empty($campi_incompleti)) {
             http_response_code(400);
@@ -368,7 +371,7 @@
                 }
                 
                 http_response_code(200);        // Ok
-                echo json_encode($oggetti_trovati, JSON_UNESCAPED_UNICODE);
+                echo json_encode($oggetti_trovati, JSON_UNESCAPED_UNICODE); // Response in JSON
             } else {
                 // Numero di righe = 0 => non ha trovato nessuna istanza nel db
                 http_response_code(200);        // Ok (Anche se non trova nessun record, non significa che ci sia un errore)

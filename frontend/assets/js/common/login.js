@@ -104,7 +104,7 @@ function logout() {
     utente_corrente = null;             // Imposto la variabile utente a null
     generaNavbar();                     // Genero la nav bar per utente generico
     mostraLezioni();                    // TOrno alla pagina che mostra le lezioni
-    alert("Logout effettuato con succecsso");  // TODO: Sostituire con toast o notifica piu "elegante"
+    alert("Logout effettuato con successo");  // TODO: Sostituire con toast o notifica piu "elegante"
   });
 }
 

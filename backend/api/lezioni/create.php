@@ -29,7 +29,7 @@
      * }
      *
      * @author Bianchi Andrea
-     * @version 1.0.0
+     * @version 1.0
      */
     
     
@@ -67,8 +67,8 @@
     /**
      * Legge il corpo della richiesta HTTP POST
      *
-     * file_get_contents("php://input") legge tutto il corpo della richiesta
-     * json_decode converte la stringa JSON in un oggetto PHP
+     * - file_get_contents("php://input")    legge tutto il corpo della richiesta.
+     * - json_decode                         converte la stringa JSON in un oggetto PHP
      *
      * @var  object|null $data = Oggetto PHP con i dati decodificati
      */
