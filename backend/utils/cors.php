@@ -58,7 +58,7 @@
 
 
 
-// TODO: Vedere appunti del 04.12.2025
+/* TODO: Vedere appunti del 04.12.2025 */
 
 /*
 
@@ -83,3 +83,4 @@ Quindi i browser implementano CORS (Cross-Origin Resource Sharing):
 MEccanismo che, richiedendo la collaborazione tra browser e web server con uno scambio di header che dimostrino il "consenso" del server alla condivisione,
 permette ad un js di effettuare richieste a origine diversa da quella da cui è stato scaricato.
 
+*/
