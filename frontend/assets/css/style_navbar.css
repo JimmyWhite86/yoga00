@@ -17,7 +17,8 @@
 
 /* Link di navigazione con transazione */
 .nav-link {
-    transition: --transition-base;
+    /*transition: --transition-base;*/
+    transition: var(--transition-base);     /* Modifica suggerita da GitHub dopo il pull _ Mail del 03/01/2026 */
     position: relative;
 }
 

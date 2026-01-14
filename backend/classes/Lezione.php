@@ -81,7 +81,7 @@
         private ?int $posti_totali;
         
         /**
-         * @var bool|null = stato di attivazione della lezione
+         * @var bool|null = indica se la lezione è attiva o no.
          */
         private ?bool $attiva;
         
@@ -177,9 +177,9 @@
         
         /**
          * Imposta il nome della lezione
-         * - Rimuove spazi vuoti all'inizio e alla fine della stringa
+         * - Rimuove spazi vuoti all'inizio e alla fine della stringa (trim())
          * - Verifica che il nome non sia vuoto e abbia almeno 2 caratteri
-         * - Protegge da attacchi XSS convertendo i caratteri speciali in entità HTML
+         * - Protegge da attacchi XSS convertendo i caratteri speciali in entità HTML (htmlspecialchars())
          *
          * @param string $nome = nome della lezione (minimo 2 caratteri)
          * @throws InvalidArgumentException se il nome non è valido
@@ -260,10 +260,11 @@
         /**
          * Imposta l'ora di fine della lezione
          * - Verifica che l'ora sia nel formato HH:MM (24h)
-         * TODO: Verificare che l'ora di fine sia successiva all'ora di inizio
          *
          * @param string $ora_fine = ora di fine della lezione (formato HH:MM)
          * @throws InvalidArgumentException se l'ora di fine non è valida
+         *
+         *  TODO: Verificare che l'ora di fine sia successiva all'ora di inizio
          */
         public function setOraFine($ora_fine): void
         {
@@ -321,6 +322,7 @@
         
         /**
          * SEARCH ALL => Recupera tutte le lezioni dal database
+         * - Le lezioni vengono ordinate in base al loro id
          *
          * @return PDOStatement|false =Restituisce il risultato della query come PDOStatement o false in caso di errore
          * @throws PDOException in caso di errore nella query
@@ -476,8 +478,14 @@
             }
         }
         
-        // Delete
-        public function delete()
+        /**
+         * DELETE => Elimina una lezione dal database
+         *
+         * @return PDOStatement|false   Restituisce il risultato della query come PDOStatement o false in caso di errore
+         * @throws Exception            in caso di vincoli di integrità referenziale
+         * @throws PDOException         in caso di errore nella query
+         */
+        public function delete(): PDOStatement|false
         {
             try {
                 $query = "DELETE FROM {$this->table_name} WHERE lezione_id = :lezione_id;";
